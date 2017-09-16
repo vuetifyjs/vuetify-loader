@@ -15,5 +15,8 @@
   "bugs": {
     "url": "git+https://github.com/vuetifyjs/vuetify-loader/issues"
   },
-  "homepage": "git+https://github.com/vuetifyjs/vuetify-loader#readme"
+  "homepage": "git+https://github.com/vuetifyjs/vuetify-loader#readme",
+  "dependencies": {
+    "loader-utils": "^1.1.0"
+  }
 }
