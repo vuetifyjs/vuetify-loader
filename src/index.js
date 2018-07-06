@@ -1,5 +1,7 @@
-const vuetifyLoader = require('./loader')
-const vuetifyProgressiveModule = require('./progressive-module')
+const VuetifyLoader = require('./loader')
+const VuetifyProgressiveModule = require('./progressive-module')
+const VuetifyProgressiveLoader = require('./progressive-loader')
 
-module.exports = vuetifyLoader
-module.exports.VuetifyProgressiveModule = vuetifyProgressiveModule
+module.exports = VuetifyLoader
+module.exports.VuetifyProgressiveModule = VuetifyProgressiveModule
+module.exports.VuetifyProgressiveLoader = VuetifyProgressiveLoader

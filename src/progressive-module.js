@@ -2,6 +2,7 @@ module.exports = {
   postTransformNode: transform
 }
 
+// Modified from @vue/component-compiler-utils
 function transform(node) {
   const tags = ['v-img']
 

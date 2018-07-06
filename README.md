@@ -4,6 +4,7 @@
 
 `vuetify-loader` can automatically generate low-res placeholders for the `v-img` component
 
+Just some small modifications to your webpack rules:
 ```js
 const { VuetifyProgressiveModule, VuetifyProgressiveLoader } = require('vuetify-loader')
 
@@ -28,6 +29,23 @@ const { VuetifyProgressiveModule, VuetifyProgressiveLoader } = require('vuetify-
       }
     ]
   }
+```
+
+And away you go!
+```html
+<v-img src="@/assets/some-image.jpg"></v-img>
+```
+
+### Lazy-loading specific images
+
+If you only want some images to have placeholders, add `?lazy` to the end of the request:
+```html
+<v-img src="@/assets/some-image.jpg?lazy"></v-img>
+```
+
+And modify the regex to match:
+```js
+resourceQuery: /lazy\?vuetify-preload/
 ```
 
 ## a-la-carte
