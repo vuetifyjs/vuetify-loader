@@ -2,7 +2,7 @@
   "name": "vuetify-loader",
   "version": "0.1.1",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
