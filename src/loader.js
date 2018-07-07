@@ -1,4 +1,4 @@
-const loaderUtils = require("loader-utils")
+const loaderUtils = require('loader-utils')
 const vuetifySrc = require('path').join('vuetify', 'src')
 
 module.exports = function loader (source) {

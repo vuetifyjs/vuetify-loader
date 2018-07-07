@@ -6,7 +6,7 @@
 
 Just some small modifications to your webpack rules:
 ```js
-const { VuetifyProgressiveModule, VuetifyProgressiveLoader } = require('vuetify-loader')
+const { VuetifyProgressiveModule } = require('vuetify-loader')
 
 
   {
@@ -22,7 +22,7 @@ const { VuetifyProgressiveModule, VuetifyProgressiveLoader } = require('vuetify-
     test: /\.(png|jpe?g|gif)$/,
     resourceQuery: /vuetify-preload/,
     use: [
-      VuetifyProgressiveLoader,
+      'vuetify-loader/src/progressive-loader',
       {
         loader: 'url-loader',
         options: { limit: 8000 }
@@ -46,6 +46,43 @@ If you only want some images to have placeholders, add `?lazy` to the end of the
 And modify the regex to match:
 ```js
 resourceQuery: /lazy\?vuetify-preload/
+```
+
+### Configuration
+
+```js
+{
+  size: number // The minimum dimensions of the preview images, defaults to 9px
+  // TODO
+  // limit: number // Source images smaller than this value (in bytes) will not be transformed
+}
+```
+
+### Combining with another url-loader rule
+
+Use `Rule.oneOf` to prevent corrupt output when there are multiple overlapping rules:
+
+```js
+{
+  test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)(\?.*)?$/,
+  oneOf: [
+    {
+      test: /\.(png|jpe?g|gif)$/,
+      resourceQuery: /vuetify-preload/,
+      use: [
+        'vuetify-loader/src/progressive-loader',
+        {
+          loader: 'url-loader',
+          options: { limit: 8000 }
+        }
+      ]
+    },
+    {
+      loader: 'url-loader',
+      options: { limit: 8000 }
+    }
+  ]
+}
 ```
 
 ## a-la-carte
