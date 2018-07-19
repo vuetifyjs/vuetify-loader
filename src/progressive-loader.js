@@ -43,7 +43,7 @@ module.exports = function loader (contentBuffer) {
         }
         const result = {
           lazySrc: 'data:image/gif;base64,' + buffer.toString('base64'),
-          aspect: size.height / size.width
+          aspect: size.width / size.height
         }
         callback(null, `module.exports = {src:${source},` + JSON.stringify(result).slice(1))
       })
