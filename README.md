@@ -42,6 +42,14 @@ And away you go!
 <v-img src="@/assets/some-image.jpg"></v-img>
 ```
 
+### Loops and dynamic paths
+
+`VuetifyProgressiveModule` only works on static paths, for use in a loop you have to `require` the image yourself:
+
+```html
+<v-img v-for="i in 10" :src="require(`@/images/image-${i}.jpg?vuetify-preload`)" :key="i">
+```
+
 ### Lazy-loading specific images
 
 If you only want some images to have placeholders, add `?lazy` to the end of the request:
