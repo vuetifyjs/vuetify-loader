@@ -10,6 +10,8 @@ Read more at the vuetify [documentation](https://vuetifyjs.com/releases/0.16/#/v
 
 `vuetify-loader` can automatically generate low-res placeholders for the `v-img` component
 
+**NOTE:** You ***must*** have [ImageMagick](https://www.imagemagick.org/script/index.php) installed for this to work
+
 Just some small modifications to your webpack rules:
 ```js
 const { VuetifyProgressiveModule } = require('vuetify-loader')
