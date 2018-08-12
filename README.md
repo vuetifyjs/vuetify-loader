@@ -86,7 +86,7 @@ Use `Rule.oneOf` to prevent corrupt output when there are multiple overlapping r
       test: /\.(png|jpe?g|gif)$/,
       resourceQuery: /vuetify-preload/,
       use: [
-        'vuetify-loader/src/progressive-loader',
+        'vuetify-loader/progressive-loader',
         {
           loader: 'url-loader',
           options: { limit: 8000 }
