@@ -32,24 +32,18 @@ module.exports = function loader(contentBuffer) {
     const sharpImg = require('sharp')(path)
 
     sharpImg
-      .metadata()
-      .then(({ height, width }) => {
-        sharpImg
-          .webp({ quality: 10 })
-          .resize(config.size || 9)
-          .toBuffer()
-          .then(buffer => {
-            const result = {
-              lazySrc: 'data:image/webp;base64,' + buffer.toString('base64'),
-              aspect: width / height,
-            }
-            callback(
-              null,
-              `module.exports = {src:${source},` +
-                JSON.stringify(result).slice(1)
-            )
-          })
-          .catch(console.error)
+      .webp({ quality: 10 })
+      .resize(config.size || 9)
+      .toBuffer({ resolveWithObject: true })
+      .then(({ data, info }) => {
+        const result = {
+          lazySrc: 'data:image/webp;base64,' + data.toString('base64'),
+          aspect: info.width / info.height,
+        }
+        callback(
+          null,
+          `module.exports = {src:${source},` + JSON.stringify(result).slice(1)
+        )
       })
       .catch(console.error)
   } else {
