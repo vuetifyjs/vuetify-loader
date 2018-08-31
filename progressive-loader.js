@@ -1,7 +1,6 @@
 const loaderUtils = require('loader-utils')
-const gm = require('gm').subClass({ imageMagick: true })
 
-module.exports = function loader (contentBuffer) {
+module.exports = function loader(contentBuffer) {
   this.cacheable && this.cacheable()
   const callback = this.async()
 
@@ -15,7 +14,7 @@ module.exports = function loader (contentBuffer) {
   /** @see https://github.com/zouhir/lqip-loader */
   const contentIsUrlExport = /^module.exports = "data:(.*)base64,(.*)/.test(
     content
-  );
+  )
   const contentIsFileExport = /^module.exports = (.*)/.test(content)
   let source = ''
 
@@ -29,25 +28,55 @@ module.exports = function loader (contentBuffer) {
     source = content.match(/^module.exports = (.*);/)[1]
   }
 
-  gm(path).size(function (err, size) {
-    if (err) {
-      console.error(err)
-      return
-    }
+  if (config.sharp) {
+    const sharpImg = require('sharp')(path)
 
-    this.resize(config.size || 9)
-      .toBuffer('gif', (err, buffer) => {
+    sharpImg
+      .metadata()
+      .then(({ height, width }) => {
+        sharpImg
+          .webp({ quality: 10 })
+          .resize(config.size || 9)
+          .toBuffer()
+          .then(buffer => {
+            const result = {
+              lazySrc: 'data:image/webp;base64,' + buffer.toString('base64'),
+              aspect: width / height,
+            }
+            callback(
+              null,
+              `module.exports = {src:${source},` +
+                JSON.stringify(result).slice(1)
+            )
+          })
+          .catch(console.error)
+      })
+      .catch(console.error)
+  } else {
+    const gm = require('gm').subClass({ imageMagick: true })
+
+    gm(path).size(function(err, size) {
+      if (err) {
+        console.error(err)
+        return
+      }
+
+      this.resize(config.size || 9).toBuffer('gif', (err, buffer) => {
         if (err) {
           console.error(err)
           return
         }
         const result = {
           lazySrc: 'data:image/gif;base64,' + buffer.toString('base64'),
-          aspect: size.width / size.height
+          aspect: size.width / size.height,
         }
-        callback(null, `module.exports = {src:${source},` + JSON.stringify(result).slice(1))
+        callback(
+          null,
+          `module.exports = {src:${source},` + JSON.stringify(result).slice(1)
+        )
       })
-  })
+    })
+  }
 }
 
 module.exports.raw = true
