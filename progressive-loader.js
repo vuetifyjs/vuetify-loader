@@ -32,12 +32,12 @@ module.exports = function loader(contentBuffer) {
     const sharpImg = require('sharp')(path)
 
     sharpImg
-      .webp({ quality: 10 })
+      .jpeg({ quality: 10 })
       .resize(config.size || 9)
       .toBuffer({ resolveWithObject: true })
       .then(({ data, info }) => {
         const result = {
-          lazySrc: 'data:image/webp;base64,' + data.toString('base64'),
+          lazySrc: 'data:image/jpeg;base64,' + data.toString('base64'),
           aspect: info.width / info.height,
         }
         callback(
