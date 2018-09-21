@@ -19,5 +19,8 @@
   "dependencies": {
     "gm": "^1.23.1",
     "loader-utils": "^1.1.0"
+  },
+  "peerDependencies": {
+    "sharp": "^0.20.7"
   }
 }
