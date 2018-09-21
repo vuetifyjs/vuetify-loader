@@ -66,9 +66,11 @@ resourceQuery: /lazy\?vuetify-preload/
 
 ### Configuration
 
-```js
+```ts
 {
   size: number // The minimum dimensions of the preview images, defaults to 9px
+  sharp: boolean // Use sharp instead of GM for environments without ImageMagick. This will result in lower-quality images
+  graphicsMagick: boolean // Use GraphicsMagic instead of ImageMagick
   // TODO
   // limit: number // Source images smaller than this value (in bytes) will not be transformed
 }

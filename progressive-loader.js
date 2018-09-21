@@ -1,7 +1,6 @@
 const loaderUtils = require('loader-utils')
-const gm = require('gm').subClass({ imageMagick: true })
 
-module.exports = function loader (contentBuffer) {
+module.exports = function loader(contentBuffer) {
   this.cacheable && this.cacheable()
   const callback = this.async()
 
@@ -10,12 +9,17 @@ module.exports = function loader (contentBuffer) {
   const path = this.resourcePath
 
   // user options
-  const config = loaderUtils.getOptions(this) || {}
+  const config = {
+    sharp: false,
+    graphicsMagick: false,
+    size: 9,
+    ...loaderUtils.getOptions(this)
+  }
 
   /** @see https://github.com/zouhir/lqip-loader */
   const contentIsUrlExport = /^module.exports = "data:(.*)base64,(.*)/.test(
     content
-  );
+  )
   const contentIsFileExport = /^module.exports = (.*)/.test(content)
   let source = ''
 
@@ -29,25 +33,37 @@ module.exports = function loader (contentBuffer) {
     source = content.match(/^module.exports = (.*);/)[1]
   }
 
-  gm(path).size(function (err, size) {
-    if (err) {
-      console.error(err)
-      return
+  function createModule ({ data, info, type }) {
+    const result = {
+      lazySrc: `data:image/${type};base64,` + data.toString('base64'),
+      aspect: info.width / info.height,
     }
+    callback(
+      null,
+      `module.exports = {src:${source},` + JSON.stringify(result).slice(1)
+    )
+  }
 
-    this.resize(config.size || 9)
-      .toBuffer('gif', (err, buffer) => {
-        if (err) {
-          console.error(err)
-          return
-        }
-        const result = {
-          lazySrc: 'data:image/gif;base64,' + buffer.toString('base64'),
-          aspect: size.width / size.height
-        }
-        callback(null, `module.exports = {src:${source},` + JSON.stringify(result).slice(1))
+  if (config.sharp) {
+    const sharpImg = require('sharp')(path)
+
+    sharpImg
+      .jpeg({ quality: 10 })
+      .resize(config.size)
+      .toBuffer({ resolveWithObject: true })
+      .then(({ data, info }) => createModule({ data, info, type: 'jpeg' }))
+      .catch(console.error)
+  } else {
+    const gm = require('gm').subClass({ imageMagick: config.graphicsMagick })
+
+    gm(path).size(function(err, info) {
+      if (err) console.error(err)
+      else this.resize(config.size).toBuffer('gif', (err, data) => {
+        if (err) console.error(err)
+        else createModule({ data, info, type: 'gif' })
       })
-  })
+    })
+  }
 }
 
 module.exports.raw = true
