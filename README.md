@@ -1,11 +1,5 @@
 # vuetify-loader
-
-## a-la-carte
-The main part of this webpack loader should only be used when utilizing the a-la-carte functionality of [vuetify](https://www.github.com/vuetifyjs/vuetify) together with custom themes.
-
-Read more at the vuetify [documentation](https://vuetifyjs.com/releases/0.16/#/vuetify/a-la-carte).
-
-
+module.exports
 ## Progressive images
 
 `vuetify-loader` can automatically generate low-res placeholders for the `v-img` component

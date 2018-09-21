@@ -2,7 +2,7 @@
   "name": "vuetify-loader",
   "version": "0.2.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
@@ -19,5 +19,11 @@
   "dependencies": {
     "gm": "^1.23.1",
     "loader-utils": "^1.1.0"
+  },
+  "devDependencies": {
+    "vue-template-compiler": "^2.5.17"
+  },
+  "peerDependencies": {
+    "vue-template-compiler": "^2.5.0"
   }
 }
