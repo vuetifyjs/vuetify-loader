@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -18,7 +19,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        use: ['vuetify-loader', 'vue-loader'],
+        loader: 'vue-loader',
       },
       {
         test: /\.js$/,
@@ -39,6 +40,7 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
+    new VuetifyLoaderPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false

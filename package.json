@@ -21,7 +21,8 @@
     "loader-utils": "^1.1.0"
   },
   "devDependencies": {
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.20.2"
   },
   "peerDependencies": {
     "vue-template-compiler": "^2.5.0"
