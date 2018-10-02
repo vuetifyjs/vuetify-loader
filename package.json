@@ -1,6 +1,6 @@
 {
   "name": "vuetify-loader",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "repository": {
@@ -25,7 +25,7 @@
     "webpack": "^4.20.2"
   },
   "peerDependencies": {
-    "vuetify": "^1.3.0",
-    "vue-template-compiler": "^2.5.0"
+    "vue-template-compiler": "^2.5.0",
+    "vuetify": "^1.3.0"
   }
 }
