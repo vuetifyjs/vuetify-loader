@@ -7,7 +7,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  devtool: false,
+  devtool: 'source-map',
   mode: isProd ? 'production' : 'development',
   entry: './src/main.js',
   output: {
