@@ -4935,15 +4935,15 @@ vue@^2.5.17:
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
 
 vuetify-loader@../:
-  version "0.2.0"
+  version "1.0.3"
   dependencies:
     gm "^1.23.1"
     loader-utils "^1.1.0"
 
-vuetify@^1.2.3:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.2.4.tgz#b03a634791b1627e7aab89ed4651a5cd1ea2f211"
-  integrity sha512-1Nshre1osuZD/4rzz7avnxzsK8r6cPyx7STIon7pMGn9AVnHEf7pv7157Dft6fwxkriyMyhSTXiLETz/XDLgdg==
+vuetify@^1.3.0-beta.0:
+  version "1.3.0-beta.0"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.3.0-beta.0.tgz#7083e2136297c98f0480fd1c83d215b60d6e16c0"
+  integrity sha512-8aseqxw1nGbhEQOJg/an8ZFLgToR8Jo6GnURaAPaNw2orwtzRjsrZ2krxHQ9K5nklKuNBzY+aVFy0Jt5H7tx0A==
 
 watchpack@^1.5.0:
   version "1.6.0"
