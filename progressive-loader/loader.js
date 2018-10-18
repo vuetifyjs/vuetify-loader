@@ -54,7 +54,7 @@ module.exports = function loader(contentBuffer) {
       .then(({ data, info }) => createModule({ data, info, type: 'jpeg' }))
       .catch(console.error)
   } else {
-    const gm = require('gm').subClass({ imageMagick: config.graphicsMagick })
+    const gm = require('gm').subClass({ imageMagick: !config.graphicsMagick })
 
     gm(path).size(function(err, info) {
       if (err) console.error(err)
