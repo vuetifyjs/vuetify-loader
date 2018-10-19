@@ -18,7 +18,8 @@
   "homepage": "git+https://github.com/vuetifyjs/vuetify-loader#readme",
   "dependencies": {
     "gm": "^1.23.1",
-    "loader-utils": "^1.1.0"
+    "loader-utils": "^1.1.0",
+    "pug": "^2.0.3"
   },
   "devDependencies": {
     "vue-template-compiler": "^2.5.17",
