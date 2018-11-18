@@ -1,4 +1,5 @@
 const loaderUtils = require('loader-utils')
+const requirePeer = require('codependency').register(module, { strictCheck: false })
 
 module.exports = function loader(contentBuffer) {
   this.cacheable && this.cacheable()
@@ -45,7 +46,7 @@ module.exports = function loader(contentBuffer) {
   }
 
   if (config.sharp) {
-    const sharpImg = require('sharp')(path)
+    const sharpImg = requirePeer('sharp')(path)
 
     sharpImg
       .jpeg({ quality: 10 })
@@ -54,7 +55,7 @@ module.exports = function loader(contentBuffer) {
       .then(({ data, info }) => createModule({ data, info, type: 'jpeg' }))
       .catch(console.error)
   } else {
-    const gm = require('gm').subClass({ imageMagick: !config.graphicsMagick })
+    const gm = requirePeer('gm').subClass({ imageMagick: !config.graphicsMagick })
 
     gm(path).size(function(err, info) {
       if (err) console.error(err)
