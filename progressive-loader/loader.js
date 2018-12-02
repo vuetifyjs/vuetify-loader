@@ -1,5 +1,5 @@
 const loaderUtils = require('loader-utils')
-const requirePeer = require('codependency').register(module, { strictCheck: false })
+const { requirePeer } = require('../lib/util')
 
 module.exports = function loader(contentBuffer) {
   this.cacheable && this.cacheable()
