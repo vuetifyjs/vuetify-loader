@@ -1,5 +1,11 @@
 # vuetify-loader
 
+<p align="center">
+  <a href="https://www.patreon.com/kaelwd">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become a Patron" />
+  </a>
+</p>
+
 ## Automatic Imports
 `vuetify-loader` will automatically import all Vuetify components as you use them
 
