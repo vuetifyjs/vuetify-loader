@@ -20,7 +20,10 @@
     "loader-utils": "^1.1.0"
   },
   "devDependencies": {
-    "vue-template-compiler": "^2.5.17",
+    "gm": "^1.23.1",
+    "vue": "^2.6.6",
+    "vue-template-compiler": "^2.6.6",
+    "vuetify": "^1.5.1",
     "webpack": "^4.20.2"
   },
   "peerDependencies": {

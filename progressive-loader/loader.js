@@ -53,12 +53,16 @@ module.exports = function loader(contentBuffer) {
       .resize(config.size)
       .toBuffer({ resolveWithObject: true })
       .then(({ data, info }) => createModule({ data, info, type: 'jpeg' }))
-      .catch(console.error)
+      .catch(err => callback(err))
   } else {
     const gm = requirePeer('gm').subClass({ imageMagick: !config.graphicsMagick })
+    const extension = path.split('.').pop().toLowerCase()
+    if (!['gif', 'png', 'jpg', 'jpeg'].includes(extension)) {
+      return callback(new Error('vuetify-loader does not support this file type (' + extension + ')'))
+    }
 
-    gm(path).size(function(err, info) {
-      if (err) console.error(err)
+    gm(extension + ':' + path).size(function(err, info) {
+      if (err) callback(err)
       else this.resize(config.size).toBuffer('gif', (err, data) => {
         if (err) console.error(err)
         else createModule({ data, info, type: 'gif' })
