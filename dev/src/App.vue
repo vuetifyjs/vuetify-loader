@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <v-card>
+      <v-card v-ripple>
         <v-card-text>
           <v-text-field></v-text-field>
         </v-card-text>

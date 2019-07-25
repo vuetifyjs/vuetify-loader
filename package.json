@@ -17,14 +17,14 @@
   },
   "homepage": "git+https://github.com/vuetifyjs/vuetify-loader#readme",
   "dependencies": {
-    "loader-utils": "^1.1.0"
+    "loader-utils": "^1.2.0"
   },
   "devDependencies": {
     "gm": "^1.23.1",
-    "vue": "^2.6.6",
-    "vue-template-compiler": "^2.6.6",
-    "vuetify": "^1.5.1",
-    "webpack": "^4.20.2"
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify": "^2.0.0",
+    "webpack": "^4.37.0"
   },
   "peerDependencies": {
     "vue-template-compiler": "^2.5.0",

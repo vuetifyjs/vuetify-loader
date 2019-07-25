@@ -6,6 +6,13 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const isProd = process.env.NODE_ENV === 'production'
 
+const sassLoaderOptions = {
+  implementation: require('sass'),
+  fiber: require('fibers'),
+  indentedSyntax: false,
+  data: `@import "~@/_variables.scss"`
+}
+
 module.exports = {
   devtool: 'source-map',
   mode: isProd ? 'production' : 'development',
@@ -27,14 +34,30 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.styl$/,
-        loader: ['vue-style-loader', 'css-loader', 'stylus-loader']
+        test: /\.sass$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          { loader: 'sass-loader', options: {
+            ...sassLoaderOptions,
+            indentedSyntax: true
+          } }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          { loader: 'sass-loader', options: sassLoaderOptions }
+        ]
       }
     ]
   },
   resolve: {
     alias: {
-      'vue$': path.resolve(__dirname, './node_modules/vue/dist/vue.esm.js')
+      'vue$': path.resolve(__dirname, './node_modules/vue/dist/vue.runtime.esm.js'),
+      '@': path.resolve(__dirname, 'src')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
