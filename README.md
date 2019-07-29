@@ -47,6 +47,26 @@ exports.plugins.push(
 )
 ```
 
+Incase of vue-cli
+```js
+// vue.config.js
+
+module.exports = {
+  ...
+  chainWebpack: config => {
+    config
+      .plugin('VuetifyLoaderPlugin')
+      .tap(args => [{
+        match(originalTag, { kebabTag, camelTag, path, component}) {
+          if (kebabTag.startsWith('core-')) {
+            return [camelTag, `import ${camelTag} from '@/components/core/${camelTag.substring(4)}.vue'`];
+          }
+        }
+      }]);
+  }
+```
+
+Example component:
 ```html
 <template>
   <core-form>
