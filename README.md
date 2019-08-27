@@ -88,6 +88,48 @@ Will be compiled into:
 </script>
 ```
 
+## with jsx (tsx)
+
+you want to do tree-shaking with jsx (or tsx)
+
+you need to define a function to options that parse your component and call the callback to pass the tag-name and attributes to the vuetify-loader. (as `treeShakingJsx`)
+
+example using babel:
+
+```js
+// webpack.config.js
+
+const parser = require('@babel/parser')
+const traverse = require('@babel/traverse').default
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+
+const options = {
+  treeShakingJsx(script, setTagName, setAttr) {
+    // you can also customize parser options according to the value of `script.lang`
+    const parseResult = parser.parse(script.content, { sourceType: 'module', plugins: ['jsx'] })
+
+    traverse(parseResult, {
+      JSXOpeningElement: path => {
+        const node = path.get('name').node
+        if ('name' in node) {
+          setTagName(node.name)
+        }
+
+        path.get('attributes').forEach(attr => {
+          if ('name' in attr.node && !('namespace' in attr.node.name)) {
+            setAttr(attr.node.name.name)
+          }
+        })
+      }
+    })
+  }
+}
+
+exports.plugins.push(
+  new VuetifyLoaderPlugin(options)
+)
+```
+
 ## Progressive images
 
 `vuetify-loader` can automatically generate low-res placeholders for the `v-img` component
