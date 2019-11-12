@@ -51,6 +51,11 @@ module.exports = {
           'css-loader',
           { loader: 'sass-loader', options: sassLoaderOptions }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)(\?.*)?$/,
+        loader: 'url-loader',
+        options: { limit: 8000 }
       }
     ]
   },
@@ -63,7 +68,9 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new VuetifyLoaderPlugin(),
+    new VuetifyLoaderPlugin({
+      progressiveImages: true
+    }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false
