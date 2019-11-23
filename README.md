@@ -49,6 +49,8 @@ exports.plugins.push(
 
 or if you're using Vue CLI:
 ```js
+// vue.config.js
+
 module.exports = {
   chainWebpack: config => {
     config.plugin('VuetifyLoaderPlugin').tap(args => [{
