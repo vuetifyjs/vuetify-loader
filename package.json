@@ -1,7 +1,7 @@
 {
   "name": "vuetify-loader",
   "version": "1.4.1",
-  "description": "",
+  "description": "A Webpack plugin for treeshaking Vuetify components and more",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
@@ -13,9 +13,9 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "git+https://github.com/vuetifyjs/vuetify-loader/issues"
+    "url": "https://github.com/vuetifyjs/vuetify-loader/issues"
   },
-  "homepage": "git+https://github.com/vuetifyjs/vuetify-loader#readme",
+  "homepage": "https://github.com/vuetifyjs/vuetify-loader#readme",
   "dependencies": {
     "loader-utils": "^1.2.0"
   },
