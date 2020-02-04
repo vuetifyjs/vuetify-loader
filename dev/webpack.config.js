@@ -6,11 +6,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const sassLoaderOptions = {
-  implementation: require('sass'),
-  fiber: require('fibers'),
-  indentedSyntax: false,
-  data: `@import "~@/_variables.scss"`
+function sassLoaderOptions (indentedSyntax = false) {
+  return {
+    implementation: require('sass'),
+    prependData: `@import "~@/_variables.scss"` + (indentedSyntax ? '' : ';'),
+    sassOptions: { indentedSyntax },
+  }
 }
 
 module.exports = {
@@ -38,10 +39,7 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader',
-          { loader: 'sass-loader', options: {
-            ...sassLoaderOptions,
-            indentedSyntax: true
-          } }
+          { loader: 'sass-loader', options: sassLoaderOptions(true) }
         ]
       },
       {
@@ -49,7 +47,7 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader',
-          { loader: 'sass-loader', options: sassLoaderOptions }
+          { loader: 'sass-loader', options: sassLoaderOptions() }
         ]
       },
       {
