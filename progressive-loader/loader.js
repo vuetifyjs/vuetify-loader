@@ -31,7 +31,6 @@ module.exports = function loader(contentBuffer) {
       const fileLoader = require('file-loader')
       content = fileLoader.call(this, contentBuffer)
     }
-    debugger
     source = content.match(/^module.exports = (.*);/)[1]
   }
 
