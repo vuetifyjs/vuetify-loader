@@ -118,12 +118,23 @@ exports.plugins.push(
     progressiveImages: true
   })
 )
+
+// vue-cli
+module.exports = {
+  chainWebpack: config => {
+    config.plugin('VuetifyLoaderPlugin').tap(args => [{
+      progressiveImages: true
+    }])
+  }
+}
 ```
 
 And away you go!
 ```html
 <v-img src="@/assets/some-image.jpg"></v-img>
 ```
+
+**NOTE:** The src must follow [vue-loader's transform rules](https://vue-loader.vuejs.org/guide/asset-url.html#transform-rules)
 
 ### Loops and dynamic paths
 
