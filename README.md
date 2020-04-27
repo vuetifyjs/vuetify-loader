@@ -200,3 +200,15 @@ Type: `Boolean`
 Default: `false`
 
 Use GraphicsMagic instead of ImageMagick
+
+##### `registerStylesSSR`
+
+Type: `Boolean`
+Default: `false`
+
+Register Vuetify styles in [vue-style-loader](https://github.com/vuejs/vue-style-loader).
+
+This fixes styles not being loaded when doing SSR (for example when using [@nuxtjs/vuetify](https://github.com/nuxt-community/vuetify-module)).
+As Vuetify imports styles with JS, without this option, they do not get picked up by SSR.
+
+⚠️ This option requires having `manualInject` set to `true` in [`vue-style-loader`](https://github.com/vuejs/vue-style-loader#options) config.
