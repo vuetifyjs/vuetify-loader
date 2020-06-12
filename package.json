@@ -1,6 +1,6 @@
 {
   "name": "vuetify-loader",
-  "version": "1.4.4",
+  "version": "1.5.0",
   "description": "A Webpack plugin for treeshaking Vuetify components and more",
   "main": "lib/index.js",
   "repository": {
