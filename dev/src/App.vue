@@ -16,3 +16,7 @@
 <script>
   export default {}
 </script>
+
+<docs>
+This is the documentation for App.vue
+</docs>
