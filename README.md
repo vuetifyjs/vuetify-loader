@@ -12,7 +12,7 @@
 ```js
 // webpack.config.js
 
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const { VuetifyLoaderPlugin } = require('vuetify-loader')
 
 exports.plugins.push(
   new VuetifyLoaderPlugin()
@@ -23,7 +23,7 @@ You can also provide a custom match function to import your own project's compon
 ```js
 // webpack.config.js
 
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const { VuetifyLoaderPlugin } = require('vuetify-loader')
 
 exports.plugins.push(
   new VuetifyLoaderPlugin({
