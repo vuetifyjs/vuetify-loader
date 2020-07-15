@@ -490,6 +490,11 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
+callsite@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/callsite/-/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
+  integrity sha1-KAOY5dZkvXQDi28JBRU+borxvCA=
+
 chokidar@^2.0.2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.4.tgz#356ff4e2b0e8e43e322d18a372460bbcf3accd26"
@@ -711,6 +716,13 @@ debug@^3.1.0:
   integrity sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
   dependencies:
     ms "^2.1.1"
+
+decache@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/decache/-/decache-4.5.1.tgz#94a977a88a4188672c96550ec4889582ceecdf49"
+  integrity sha512-5J37nATc6FmOTLbcsr9qx7Nm28qQyg1SK4xyEHqM0IBkNhWFp0Sm+vKoWYHD8wq+OUEb9jLyaKFfzzd1A9hcoA==
+  dependencies:
+    callsite "^1.0.0"
 
 decode-uri-component@^0.2.0:
   version "0.2.0"
