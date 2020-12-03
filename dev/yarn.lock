@@ -5504,12 +5504,9 @@ vue@^2.6.11:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
 
-vuetify-loader@../:
-  version "1.6.0"
-  dependencies:
-    decache "^4.5.1"
-    file-loader "^4.0.0"
-    loader-utils "^1.2.0"
+"vuetify-loader@link:..":
+  version "0.0.0"
+  uid ""
 
 vuetify@^2.2.8:
   version "2.2.8"
