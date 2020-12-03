@@ -17,16 +17,16 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader#readme",
   "dependencies": {
-    "decache": "^4.5.1",
+    "decache": "^4.6.0",
     "file-loader": "^4.0.0",
-    "loader-utils": "^1.2.0"
+    "loader-utils": "^2.0.0"
   },
   "devDependencies": {
     "gm": "^1.23.1",
-    "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10",
-    "vuetify": "^2.0.0",
-    "webpack": "^4.37.0"
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12",
+    "vuetify": "^2.3.19",
+    "webpack": "^4.44.2"
   },
   "peerDependencies": {
     "vue-template-compiler": "^2.6.10",
