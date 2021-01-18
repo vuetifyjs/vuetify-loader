@@ -9,7 +9,7 @@ const isProd = process.env.NODE_ENV === 'production'
 function sassLoaderOptions (indentedSyntax = false) {
   return {
     implementation: require('sass'),
-    prependData: `@import "~@/_variables.scss"` + (indentedSyntax ? '' : ';'),
+    additionalData: `@import "~@/_variables.scss"` + (indentedSyntax ? '' : ';'),
     sassOptions: { indentedSyntax },
   }
 }
@@ -38,7 +38,7 @@ module.exports = {
         test: /\.sass$/,
         use: [
           'vue-style-loader',
-          'css-loader',
+          { loader: 'css-loader',  options: { esModule: false } },
           { loader: 'sass-loader', options: sassLoaderOptions(true) }
         ]
       },
@@ -46,14 +46,14 @@ module.exports = {
         test: /\.scss$/,
         use: [
           'vue-style-loader',
-          'css-loader',
+          { loader: 'css-loader',  options: { esModule: false } },
           { loader: 'sass-loader', options: sassLoaderOptions() }
         ]
       },
       {
         test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)(\?.*)?$/,
         loader: 'url-loader',
-        options: { limit: 8000 }
+        options: { limit: 1024 }
       }
     ]
   },

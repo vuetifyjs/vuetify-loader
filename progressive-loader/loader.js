@@ -18,20 +18,21 @@ module.exports = function loader(contentBuffer) {
   }
 
   /** @see https://github.com/zouhir/lqip-loader */
-  const contentIsUrlExport = /^module.exports = "data:(.*)base64,(.*)/.test(
+  const contentIsUrlExport = /^export default "data:(.*)base64,(.*)/.test(
     content
   )
-  const contentIsFileExport = /^module.exports = (.*)/.test(content)
+  const contentIsFileExport = /^export default (.*)/.test(content)
   let source = ''
 
   if (contentIsUrlExport) {
-    source = content.match(/^module.exports = (.*)/)[1]
+    callback(null, contentBuffer)
+    return
   } else {
     if (!contentIsFileExport) {
       const fileLoader = require('file-loader')
       content = fileLoader.call(this, contentBuffer)
     }
-    source = content.match(/^module.exports = (.*);/)[1]
+    source = content.match(/^export default (.*);/)[1]
   }
 
   function createModule ({ data, info, type }) {
@@ -41,7 +42,7 @@ module.exports = function loader(contentBuffer) {
     }
     callback(
       null,
-      `module.exports = {src:${source},` + JSON.stringify(result).slice(1)
+      `export default {src:${source},` + JSON.stringify(result).slice(1)
     )
   }
 
@@ -57,7 +58,7 @@ module.exports = function loader(contentBuffer) {
   } else {
     const gm = requirePeer('gm').subClass({ imageMagick: !config.graphicsMagick })
     const extension = path.split('.').pop().toLowerCase()
-    if (!['gif', 'png', 'jpg', 'jpeg'].includes(extension)) {
+    if (!['gif', 'png', 'jpg', 'jpeg', 'webp'].includes(extension)) {
       return callback(new Error('vuetify-loader does not support this file type (' + extension + ')'))
     }
 
