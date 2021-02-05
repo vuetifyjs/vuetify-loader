@@ -29,7 +29,7 @@ function urlToRequire(url) {
       const secondChar = url.charAt(1)
       url = url.slice(secondChar === '/' ? 2 : 1)
     }
-    return `require("${url}?vuetify-preload").default`
+    return `require("${url}?vuetify-preload")`
   } else {
     return `"${url}"`
   }

@@ -18,10 +18,10 @@ module.exports = function loader(contentBuffer) {
   }
 
   /** @see https://github.com/zouhir/lqip-loader */
-  const contentIsUrlExport = /^export default "data:(.*)base64,(.*)/.test(
+  const contentIsUrlExport = /^(export default|module.exports =) "data:(.*)base64,(.*)/.test(
     content
   )
-  const contentIsFileExport = /^export default (.*)/.test(content)
+  const contentIsFileExport = /^(export default|module.exports =) (.*)/.test(content)
   let source = ''
 
   if (contentIsUrlExport) {
@@ -32,7 +32,7 @@ module.exports = function loader(contentBuffer) {
       const fileLoader = require('file-loader')
       content = fileLoader.call(this, contentBuffer)
     }
-    source = content.match(/^export default (.*);/)[1]
+    source = content.match(/^(?:export default|module.exports =) (.*);/)[1]
   }
 
   function createModule ({ data, info, type }) {
@@ -42,7 +42,7 @@ module.exports = function loader(contentBuffer) {
     }
     callback(
       null,
-      `export default {src:${source},` + JSON.stringify(result).slice(1)
+      `module.exports = {src:${source},` + JSON.stringify(result).slice(1)
     )
   }
 
