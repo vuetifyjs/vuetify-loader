@@ -1,8 +1,8 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -75,9 +75,16 @@ module.exports = {
     })
   ],
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [
+        { from: /./, to: '/index.webpack.html' },
+      ],
+    },
+    devMiddleware: {
+      index: 'index.webpack.html',
+    },
     noInfo: true,
-    overlay: true
+    overlay: true,
   },
   performance: {
     hints: false

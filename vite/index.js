@@ -9,7 +9,7 @@ import { stylesPlugin } from './stylesPlugin'
  *   styles: true | 'none' | 'expose'
  * }}
  */
-export function vuetify (_options = {}) {
+export default function vuetify (_options = {}) {
   const options = {
     autoImport: true,
     styles: true,
