@@ -23,5 +23,8 @@
     "vuetify": "^3.0.0-alpha.11",
     "vite": "^2.5.0"
   },
-  "files": ["dist/"]
+  "files": ["dist/"],
+  "publishConfig": {
+    "access": "public"
+  }
 }
