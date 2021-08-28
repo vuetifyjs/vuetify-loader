@@ -7,6 +7,6 @@
     "dev:webpack": "webpack serve --config webpack.config.js --hot"
   },
   "devDependencies": {
-    "@vuetify/vite-plugin": "1.0.0"
+    "@vuetify/vite-plugin": "1.0.0-alpha.0"
   }
 }

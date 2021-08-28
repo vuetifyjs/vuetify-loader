@@ -4,5 +4,19 @@
   ],
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "version": "independent"
+  "version": "independent",
+  "command": {
+    "publish": {
+      "allowBranch": [
+        "master",
+        "next"
+      ],
+      "changelogPreset": "conventional-changelog-conventionalcommits",
+      "conventionalCommits": true,
+      "message": "chore: release"
+    },
+    "version": {
+      "push": true
+    }
+  }
 }

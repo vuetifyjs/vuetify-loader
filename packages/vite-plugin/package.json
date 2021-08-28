@@ -20,7 +20,8 @@
     "mkdirp": "^1.0.4"
   },
   "peerDependencies": {
-    "vuetify": "^3.0.0",
+    "vuetify": "^3.0.0-alpha.11",
     "vite": "^2.5.0"
-  }
+  },
+  "files": ["dist/"]
 }
