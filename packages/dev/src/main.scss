@@ -1,0 +1,5 @@
+@use 'vuetify/lib/styles' with (
+  $color-pack: false,
+  $alert-padding: 24px,
+  $utilities: false,
+);

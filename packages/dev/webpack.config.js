@@ -9,7 +9,7 @@ const isProd = process.env.NODE_ENV === 'production'
 function sassLoaderOptions (indentedSyntax = false) {
   return {
     implementation: require('sass'),
-    additionalData: `@import "~@/_variables.scss"` + (indentedSyntax ? '' : ';'),
+    // additionalData: `@import "~@/_variables.scss"` + (indentedSyntax ? '' : ';'),
     sassOptions: { indentedSyntax },
   }
 }

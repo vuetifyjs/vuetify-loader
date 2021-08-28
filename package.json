@@ -1,41 +1,21 @@
 {
-  "name": "vuetify-loader",
-  "version": "1.7.3",
-  "description": "A Webpack plugin for treeshaking Vuetify components and more",
-  "main": "lib/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
-  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vuetifyjs/vuetify-loader/issues"
-  },
-  "homepage": "https://github.com/vuetifyjs/vuetify-loader#readme",
-  "dependencies": {
-    "decache": "^4.6.0",
-    "file-loader": "^6.2.0",
-    "loader-utils": "^2.0.0",
-    "mkdirp": "^1.0.4"
-  },
-  "peerDependencies": {
-    "@vue/compiler-sfc": "^3.2.6",
-    "vuetify": "^3.0.0",
-    "webpack": "^5.0.0"
-  },
-  "optionalPeerDependencies": {
-    "gm": "^1.23.0",
-    "pug": "^2.0.0",
-    "sharp": "^0.21.0"
+    "dev:vite": "vite dev",
+    "dev:webpack": "webpack"
   },
   "devDependencies": {
+    "@types/mkdirp": "^1.0.2",
+    "@types/node": "^16.7.3",
+    "@vitejs/plugin-vue": "^1.6.0",
     "@vue/compiler-sfc": "^3.2.6",
-    "gm": "^1.23.1",
-    "sharp": "^0.27.0",
+    "lerna": "^3.22.1",
+    "sass": "~1.32",
+    "typescript": "^4.4.2",
+    "vite": "^2.5.1",
     "vue": "^3.2.6",
     "vuetify": "^3.0.0-alpha.10"
   }

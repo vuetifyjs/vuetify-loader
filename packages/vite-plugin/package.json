@@ -1,0 +1,26 @@
+{
+  "name": "@vuetify/vite-plugin",
+  "version": "1.0.0-alpha.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
+  },
+  "scripts": {
+    "build": "tsc --outdir dist"
+  },
+  "author": "Kael Watts-Deuchar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vuetifyjs/vuetify-loader/issues"
+  },
+  "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/vite-plugin",
+  "dependencies": {
+    "mkdirp": "^1.0.4"
+  },
+  "peerDependencies": {
+    "vuetify": "^3.0.0",
+    "vite": "^2.5.0"
+  }
+}

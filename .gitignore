@@ -3,3 +3,4 @@
 .idea
 node_modules
 yarn_error.log
+dist

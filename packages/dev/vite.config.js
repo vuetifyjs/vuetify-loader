@@ -1,10 +1,12 @@
 import vue from '@vitejs/plugin-vue'
-import vuetify from 'vuetify-loader/vite'
+import vuetify from '@vuetify/vite-plugin'
+import path from 'path'
 
 export default {
+  root: path.resolve(__dirname, 'src'),
   plugins: [
     vue(),
-    vuetify(),
+    vuetify({ styles: 'expose' }),
     {
       name: 'configure-server',
       configureServer(server) {

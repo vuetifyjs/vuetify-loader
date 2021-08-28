@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "strict": true,
+    "types": [
+      "node",
+    ]
+  }
+}
