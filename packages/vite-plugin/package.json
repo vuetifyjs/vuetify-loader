@@ -8,7 +8,8 @@
     "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
   },
   "scripts": {
-    "build": "tsc --outdir dist"
+    "build": "tsc --outdir dist",
+    "dev": "yarn run build --watch"
   },
   "author": "Kael Watts-Deuchar",
   "license": "MIT",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/vite-plugin",
   "dependencies": {
+    "@vuetify/loader-shared": "^1.0.0",
     "mkdirp": "^1.0.4"
   },
   "peerDependencies": {

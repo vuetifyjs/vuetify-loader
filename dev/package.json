@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev:vite": "vite",
-    "dev:webpack": "webpack serve --config webpack.config.js --hot"
+    "debug:vite": "node --inspect-brk ../node_modules/.bin/vite --debug",
+    "dev:webpack": "webpack serve --config webpack.config.js --hot",
+    "debug:webpack": "node --inspect-brk ../node_modules/.bin/webpack build --config webpack.config.js"
   },
   "devDependencies": {
     "@vuetify/vite-plugin": "1.0.0-alpha.0"

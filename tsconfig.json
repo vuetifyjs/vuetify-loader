@@ -6,10 +6,13 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "isolatedModules": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "declaration": true,
     "strict": true,
+    "sourceMap": true,
     "types": [
-      "node",
+      "node"
     ]
   }
 }
