@@ -1,8 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+const { VueLoaderPlugin } = require('vue-loader')
+const { VuetifyLoaderPlugin } = require('vuetify-loader')
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -35,6 +35,13 @@ module.exports = {
         exclude: /node_modules\/(?!(vuetify)\/)/
       },
       {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          { loader: 'css-loader',  options: { esModule: false } },
+        ]
+      },
+      {
         test: /\.sass$/,
         use: [
           'vue-style-loader',
@@ -58,23 +65,25 @@ module.exports = {
     ]
   },
   resolve: {
+    symlinks: false,
     alias: {
-      'vue$': path.resolve(__dirname, './node_modules/vue/dist/vue.runtime.esm.js'),
+      'vue$': 'vue/dist/vue.runtime.esm-bundler.js',
       '@': path.resolve(__dirname, 'src')
     },
-    extensions: ['*', '.js', '.vue', '.json']
+    extensions: ['*', '.js', '.mjs', '.cjs', '.vue', '.json']
   },
   plugins: [
     new VueLoaderPlugin(),
     new VuetifyLoaderPlugin({
       progressiveImages: true
     }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false
-    })
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static',
+    //   openAnalyzer: false
+    // })
   ],
   devServer: {
+    static: path.resolve(__dirname, './src'),
     historyApiFallback: {
       rewrites: [
         { from: /./, to: '/index.webpack.html' },
@@ -83,8 +92,6 @@ module.exports = {
     devMiddleware: {
       index: 'index.webpack.html',
     },
-    noInfo: true,
-    overlay: true,
   },
   performance: {
     hints: false

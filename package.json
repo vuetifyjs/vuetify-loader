@@ -5,9 +5,12 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "lerna run dev --parallel",
+    "build": "lerna run build",
     "publish": "lerna run build && lerna version && lerna publish from-git"
   },
   "devDependencies": {
+    "@types/loader-utils": "^2.0.3",
     "@types/mkdirp": "^1.0.2",
     "@types/node": "^16.7.3",
     "@vitejs/plugin-vue": "^1.6.0",
@@ -18,6 +21,8 @@
     "typescript": "^4.4.2",
     "vite": "^2.5.1",
     "vue": "^3.2.6",
-    "vuetify": "^3.0.0-alpha.10"
+    "vue-loader": "^16.5.0",
+    "vuetify": "^3.0.0-alpha.10",
+    "webpack": "^5.51.1"
   }
 }
