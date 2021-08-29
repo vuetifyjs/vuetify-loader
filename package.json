@@ -1,11 +1,11 @@
 {
   "private": true,
   "workspaces": [
+    "dev",
     "packages/*"
   ],
   "scripts": {
-    "dev:vite": "vite dev",
-    "dev:webpack": "webpack"
+    "publish": "lerna run build && lerna version && lerna publish from-git"
   },
   "devDependencies": {
     "@types/mkdirp": "^1.0.2",
