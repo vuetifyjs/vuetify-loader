@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "lerna run dev --parallel",
+    "dev": "lerna run dev --parallel -- --preserveWatchOutput",
     "build": "lerna run build",
     "publish": "lerna run build && lerna version && lerna publish from-git"
   },

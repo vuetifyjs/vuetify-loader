@@ -15,7 +15,7 @@ export default (function VuetifyLoader (content, sourceMap) {
         })
       })
     }).then(source => {
-      content += generateImports(source, 'script')
+      content += generateImports(source, this.resourcePath, 'script').code
 
       this.callback(null, content, sourceMap)
     })

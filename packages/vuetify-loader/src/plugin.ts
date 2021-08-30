@@ -18,16 +18,15 @@ export class VuetifyLoaderPlugin {
       )
     }
 
-    vueRules.forEach(rule => this.updateVueRule.bind(this, rule))
-
     const rules = [...compiler.options.module.rules]
     vueRules.forEach(({ rule, index }) => {
+      this.updateVueRule(rule)
       rules[index] = rule
     })
     compiler.options.module.rules = rules
   }
 
-  updateVueRule ({ rule }: { rule: any }) {
+  updateVueRule (rule: any) {
     rule.oneOf = [
       {
         resourceQuery: '?',

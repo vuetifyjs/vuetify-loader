@@ -9,6 +9,9 @@
         <v-card-text>
           <v-text-field></v-text-field>
           <v-btn></v-btn>
+          <v-list>
+            <v-list-item title="List"></v-list-item>
+          </v-list>
         </v-card-text>
       </v-card>
     </v-container>
@@ -18,7 +21,9 @@
 <script>
   // const img = require('@/vuetify.png?vuetify-preload')
   // console.log(img, img.default)
-  export default {}
+  export default {
+    data: () => ({})
+  }
 </script>
 
 <style lang="scss">

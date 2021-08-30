@@ -1,7 +1,7 @@
 import { getImports } from './getImports'
 
-export function generateImports (source: string, defaultExport: string) {
-  const { imports, components, directives } = getImports(source)
+export function generateImports (source: string, id: string, defaultExport: string) {
+  const { imports, hasNewImports, components, directives } = getImports(source, id)
 
   let content = ''
 
@@ -22,5 +22,5 @@ export function generateImports (source: string, defaultExport: string) {
     }
   }
 
-  return content
+  return { code: content, hasNewImports }
 }

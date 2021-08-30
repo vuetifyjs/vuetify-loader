@@ -12,7 +12,14 @@ export function importPlugin (options: importPluginOptions): PluginOption {
     name: 'vuetify:import',
     transform (code, id) {
       if (path.extname(id) === '.vue') {
-        return code + generateImports(code, '_sfc_main')
+        const { code: imports, hasNewImports } = generateImports(code, id, '_sfc_main')
+
+        const rerenderOnly = /^export const _rerender_only = true$/m.exec(code)
+        if (hasNewImports && rerenderOnly) {
+          code = code.substr(0, rerenderOnly.index) + code.substr(rerenderOnly.index + rerenderOnly[0].length)
+        }
+
+        return code + imports
       }
 
       return null

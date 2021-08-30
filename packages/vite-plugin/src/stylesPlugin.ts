@@ -1,4 +1,4 @@
-import { writeFile } from 'fs/promises'
+import { readFile, writeFile } from 'fs/promises'
 import * as path from 'path'
 
 import mkdirp from 'mkdirp'
@@ -17,9 +17,30 @@ export function stylesPlugin (options: stylesPluginOptions = true): PluginOption
   const vuetifyBase = path.dirname(require.resolve('vuetify/package.json'))
   const files = new Set<string>()
 
-  let resolve: (v: unknown) => void
-  const promise = new Promise((_resolve) => resolve = _resolve)
+  let resolve: (v: any) => void
+  let promise: Promise<any> | null
   let timeout: NodeJS.Timeout
+
+  async function awaitResolve () {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
+      resolve(true)
+    }, 500)
+
+    if (!promise) {
+      promise = new Promise((_resolve) => resolve = _resolve)
+      await promise
+      await mkdirp(path.resolve(process.cwd(), 'node_modules/.cache/vuetify'))
+      await writeFile(
+        path.resolve(process.cwd(), 'node_modules/.cache/vuetify/styles.scss'),
+        ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${v}';`).join('\n'),
+        'utf8'
+      )
+      promise = null
+    }
+
+    return promise
+  }
 
   return {
     name: 'vuetify:styles',
@@ -33,10 +54,7 @@ export function stylesPlugin (options: stylesPluginOptions = true): PluginOption
         if (options === 'none') {
           return '__void__'
         } else if (options === 'expose') {
-          clearTimeout(timeout)
-          timeout = setTimeout(() => {
-            resolve(true)
-          }, 500)
+          awaitResolve()
 
           const resolution = await this.resolve(
             source.replace(/.css$/, '.sass'),
@@ -60,13 +78,9 @@ export function stylesPlugin (options: stylesPluginOptions = true): PluginOption
         id.endsWith('.scss') &&
         styleImportRegexp.test(code)
       ) {
-        await promise
-        await mkdirp(path.resolve(process.cwd(), 'node_modules/.cache/vuetify'))
-        await writeFile(
-          path.resolve(process.cwd(), 'node_modules/.cache/vuetify/styles.scss'),
-          ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${v}';`).join('\n'),
-          'utf8'
-        )
+        await awaitResolve()
+
+        this.addWatchFile(path.resolve(process.cwd(), 'node_modules/.cache/vuetify/styles.scss'))
 
         return code.replace(styleImportRegexp, '@use ".cache/vuetify/styles.scss"')
       }

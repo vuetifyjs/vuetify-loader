@@ -1,1 +1,1 @@
-export { generateImports } from './generateImports'
+export { generateImports } from './imports/generateImports'
