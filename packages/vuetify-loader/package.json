@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/vuetify-loader",
   "dependencies": {
+    "@vuetify/loader-shared": "^1.1.0",
     "decache": "^4.6.0",
     "file-loader": "^6.2.0",
     "loader-utils": "^2.0.0",
