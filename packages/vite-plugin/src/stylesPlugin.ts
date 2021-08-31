@@ -11,7 +11,7 @@ function isSubdir (root: string, test: string) {
 
 export type stylesPluginOptions = true | 'none' | 'expose'
 
-const styleImportRegexp = /@use ['"]vuetify\/lib\/styles['"]/
+const styleImportRegexp = /@use ['"]vuetify\/styles['"]/
 
 export function stylesPlugin (options: stylesPluginOptions = true): PluginOption {
   const vuetifyBase = path.dirname(require.resolve('vuetify/package.json'))
