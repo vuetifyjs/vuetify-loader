@@ -21,7 +21,8 @@
     "vuetify": "^3.0.0-alpha.11"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "runtime.js"
   ],
   "publishConfig": {
     "access": "public"
