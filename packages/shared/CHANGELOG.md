@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.1.1](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.1.0...@vuetify/loader-shared@1.1.1) (2021-08-31)
+
+
+### Bug Fixes
+
+* publish runtime.js ([7528da3](https://github.com/vuetifyjs/vuetify-loader/commit/7528da3f4f225521bcfa8bea7583590be24a7e38))
+
+
+
 ## 1.1.0 (2021-08-30)
 
 
