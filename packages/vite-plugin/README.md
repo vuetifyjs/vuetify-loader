@@ -1,5 +1,15 @@
 # @vuetify/vite-plugin
 
+<div align="center">
+  <a href="https://www.patreon.com/kaelwd">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become a Patron" />
+  </a>
+  <br>
+  <a href="https://opencollective.com/vuetify">
+    <img src="https://opencollective.com/static/images/become_sponsor.svg" alt="Donate to OpenCollective">
+  </a>
+</div>
+
 ## Automatic imports
 ```js
 // vite.config.js
@@ -10,8 +20,8 @@ plugins: [
 ```
 ```js
 // plugins/vuetify.js
-import 'vuetify/lib/styles/main.css'
-import { createVuetify } from 'vuetify/lib/framework'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
 
 export default createVuetify()
 ```
@@ -28,13 +38,13 @@ plugins: [
 ```js
 // plugins/vuetify.js
 import './main.scss'
-import { createVuetify } from 'vuetify/lib/framework'
+import { createVuetify } from 'vuetify'
 
 export default createVuetify()
 ```
 ```scss
 // main.scss
-@use 'vuetify/lib/styles' with (
+@use 'vuetify/styles' with (
   $color-pack: false,
   $utilities: false,
 );
@@ -50,7 +60,7 @@ plugins: [
 ```
 ```js
 // plugins/vuetify.js
-import { createVuetify } from 'vuetify/lib/framework'
+import { createVuetify } from 'vuetify'
 
 export default createVuetify()
 ```
