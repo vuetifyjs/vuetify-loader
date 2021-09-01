@@ -11,7 +11,7 @@ function isSubdir (root: string, test: string) {
 
 export type stylesPluginOptions = true | 'none' | 'expose'
 
-const styleImportRegexp = /@use ['"]vuetify\/styles['"]/
+const styleImportRegexp = /@use ['"]vuetify(\/lib)?\/styles(\/main(\.sass)?)?['"]/
 const cachePath = path.resolve(process.cwd(), 'node_modules/.cache/vuetify/styles.scss')
 
 export function stylesPlugin (options: stylesPluginOptions = true): PluginOption {
@@ -92,7 +92,7 @@ export function stylesPlugin (options: stylesPluginOptions = true): PluginOption
     async transform (code, id) {
       if (
         options === 'expose' &&
-        id.endsWith('.scss') &&
+        ['.scss', '.sass'].some(v => id.endsWith(v)) &&
         styleImportRegexp.test(code)
       ) {
         await awaitResolve()
