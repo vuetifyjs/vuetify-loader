@@ -5,9 +5,11 @@ export default (function VuetifyLoader (content, sourceMap) {
   this.async()
   this.cacheable()
 
-  if (!this.resourceQuery) {
+  const module = /^import { render } from "(.+)"$/m.exec(content)?.[1]
+
+  if (module && !this.resourceQuery) {
     new Promise<string>((resolve, reject) => {
-      this.loadModule(/^import { render } from "(.+)"$/m.exec(content)![1], (err, source) => {
+      this.loadModule(module, (err, source) => {
         if (err) reject(err)
         else this.loadModule(/^export \* from "(.+)"$/.exec(source)![1], (err, source) => {
           if (err) reject(err)
