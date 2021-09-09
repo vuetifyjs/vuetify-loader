@@ -1,5 +1,5 @@
 import { utimes, writeFile } from 'fs/promises'
-import * as path from 'path'
+import { posix as path } from 'path'
 
 import mkdirp from 'mkdirp'
 import { PluginOption, ViteDevServer } from 'vite'
