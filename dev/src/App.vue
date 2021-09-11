@@ -9,9 +9,9 @@
         <v-card-text>
           <v-text-field></v-text-field>
           <v-btn></v-btn>
-          <v-list>
-            <v-list-item title="List"></v-list-item>
-          </v-list>
+<!--          <v-list>-->
+<!--            <v-list-item title="List"></v-list-item>-->
+<!--          </v-list>-->
         </v-card-text>
       </v-card>
     </v-container>

@@ -67,7 +67,49 @@ Will be compiled into:
 ```
 
 ## Style loading
-Coming soon...
+### Customising variables
+```js
+// webpack.config.js
+const { VuetifyLoaderPlugin } = require('vuetify-loader')
+
+module.exports = {
+  plugins: [
+    new VuetifyLoaderPlugin({ styles: 'expose' }),
+  ],
+}
+```
+```js
+// plugins/vuetify.js
+import './main.scss'
+import { createVuetify } from 'vuetify'
+
+export default createVuetify()
+```
+```scss
+// main.scss
+@use 'vuetify/styles' with (
+  $color-pack: false,
+  $utilities: false,
+);
+```
+
+### Remove all style imports
+```js
+// webpack.config.js
+const { VuetifyLoaderPlugin } = require('vuetify-loader')
+
+module.exports = {
+  plugins: [
+    new VuetifyLoaderPlugin({ styles: 'none' }),
+  ],
+}
+```
+```js
+// plugins/vuetify.js
+import { createVuetify } from 'vuetify'
+
+export default createVuetify()
+```
 
 ## Progressive images
 Coming soon...
