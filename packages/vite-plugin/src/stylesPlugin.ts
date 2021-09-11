@@ -3,18 +3,17 @@ import { posix as path } from 'path'
 
 import mkdirp from 'mkdirp'
 import { PluginOption, ViteDevServer } from 'vite'
+import { Options } from '@vuetify/loader-shared'
 
 function isSubdir (root: string, test: string) {
   const relative = path.relative(root, test)
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
 }
 
-export type stylesPluginOptions = true | 'none' | 'expose'
-
 const styleImportRegexp = /@use ['"]vuetify(\/lib)?\/styles(\/main(\.sass)?)?['"]/
 const cachePath = path.resolve(process.cwd(), 'node_modules/.cache/vuetify/styles.scss')
 
-export function stylesPlugin (options: stylesPluginOptions = true): PluginOption {
+export function stylesPlugin (options: Options): PluginOption {
   const vuetifyBase = path.dirname(require.resolve('vuetify/package.json'))
   const files = new Set<string>()
 
@@ -62,16 +61,16 @@ export function stylesPlugin (options: stylesPluginOptions = true): PluginOption
     async resolveId (source, importer, custom) {
       if (
         importer &&
-        ['.css', '.scss', '.sass'].some(v => source.endsWith(v)) &&
+        source.endsWith('.css') &&
         isSubdir(vuetifyBase, importer)
       ) {
-        if (options === 'none') {
+        if (options.styles === 'none') {
           return '__void__'
-        } else if (options === 'expose') {
+        } else if (options.styles === 'expose') {
           awaitResolve()
 
           const resolution = await this.resolve(
-            source.replace(/.css$/, '.sass'),
+            source.replace(/\.css$/, '.sass'),
             importer,
             { skipSelf: true, custom }
           )
@@ -91,7 +90,7 @@ export function stylesPlugin (options: stylesPluginOptions = true): PluginOption
     },
     async transform (code, id) {
       if (
-        options === 'expose' &&
+        options.styles === 'expose' &&
         ['.scss', '.sass'].some(v => id.endsWith(v)) &&
         styleImportRegexp.test(code)
       ) {
