@@ -1,6 +1,6 @@
 {
   "name": "vuetify-loader",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "description": "A Webpack plugin for treeshaking Vuetify components and more",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/vuetify-loader",
   "dependencies": {
-    "@vuetify/loader-shared": "^1.1.1",
+    "@vuetify/loader-shared": "^1.1.2",
     "decache": "^4.6.0",
     "file-loader": "^6.2.0",
     "loader-utils": "^2.0.0",
