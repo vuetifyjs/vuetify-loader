@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.4](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.3...@vuetify/vite-plugin@1.0.0-alpha.4) (2021-09-17)
+
+
+### Bug Fixes
+
+* use find-cache-dir, normalise dos paths ([990ee15](https://github.com/vuetifyjs/vuetify-loader/commit/990ee15ae49f331ff2d59b5cf00829ac32eb4ecd)), closes [#202](https://github.com/vuetifyjs/vuetify-loader/issues/202)
+
+
+
 ## [1.0.0-alpha.3](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.2...@vuetify/vite-plugin@1.0.0-alpha.3) (2021-09-11)
 
 
