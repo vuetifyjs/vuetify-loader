@@ -1,10 +1,27 @@
 import { Compiler } from 'webpack'
 import { Options } from '@vuetify/loader-shared'
 import { getVueRules } from './getVueRules'
-import { posix as path } from 'path'
-import mkdirp from 'mkdirp'
+import * as path from 'upath'
 import { writeFile } from 'fs/promises'
-import type { ResolveContext } from 'enhanced-resolve'
+import findCacheDir from 'find-cache-dir'
+import type { Resolver, ResolveContext } from 'enhanced-resolve'
+
+// Can't use require.resolve() for this, it doesn't work with resolve.symlinks
+let vuetifyBase: string
+async function getVuetifyBase (base: string, context: ResolveContext, resolver: Resolver) {
+  if (!getVuetifyBase.promise) {
+    let resolve: (v: any) => void
+    getVuetifyBase.promise = new Promise((_resolve) => resolve = _resolve)
+    resolver.resolve({}, base, 'vuetify/package.json', context, (err, vuetifyPath) => {
+      if (vuetifyPath) {
+        vuetifyBase = path.dirname(vuetifyPath as string)
+      }
+      resolve(true)
+    })
+  }
+  return getVuetifyBase.promise
+}
+getVuetifyBase.promise = null as Promise<any> | null
 
 export class VuetifyLoaderPlugin {
   options: Required<Options>
@@ -67,8 +84,12 @@ export class VuetifyLoaderPlugin {
         return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
       }
 
-      const cachePath = path.resolve(process.cwd(), 'node_modules/.cache/vuetify/styles.scss')
-      const vuetifyBase = path.dirname(require.resolve('vuetify/package.json'))
+      const cacheDir = findCacheDir({
+        name: 'vuetify',
+        create: true,
+        thunk: true
+      })!
+
       const files = new Set<string>()
       let resolve: (v: any) => void
       let promise: Promise<any> | null
@@ -85,9 +106,8 @@ export class VuetifyLoaderPlugin {
           let start = files.size
           await promise
           if (files.size > start) {
-            await mkdirp(path.dirname(cachePath))
             await writeFile(
-              cachePath,
+              cacheDir('styles.scss'),
               ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${v}';`).join('\n'),
               'utf8'
             )
@@ -108,27 +128,11 @@ export class VuetifyLoaderPlugin {
       compiler.options.resolve.plugins = compiler.options.resolve.plugins || []
       compiler.options.resolve.plugins.push({
         apply (resolver) {
-          let vuetifyBase: string
-          async function getVuetifyBase (base: string, context: ResolveContext) {
-            if (!getVuetifyBase.promise) {
-              let resolve: (v: any) => void
-              getVuetifyBase.promise = new Promise((_resolve) => resolve = _resolve)
-              resolver.resolve({}, base, 'vuetify/package.json', context, (err, vuetifyPath) => {
-                if (vuetifyPath) {
-                  vuetifyBase = path.dirname(vuetifyPath as string)
-                }
-                resolve(true)
-              })
-            }
-            return getVuetifyBase.promise
-          }
-          getVuetifyBase.promise = null as Promise<any> | null
-
           resolver
             .getHook('resolve')
             .tapAsync('vuetify-loader', async (request, context, callback) => {
               if (request.path && !vuetifyBase && request.request !== 'vuetify/package.json') {
-                await getVuetifyBase(request.path, context)
+                await getVuetifyBase(request.path, context, resolver)
               }
 
               if (!(

@@ -1,9 +1,8 @@
 import { utimes, writeFile } from 'fs/promises'
-import { posix as path } from 'path'
-
-import mkdirp from 'mkdirp'
-import { PluginOption, ViteDevServer } from 'vite'
-import { Options } from '@vuetify/loader-shared'
+import * as path from 'upath'
+import type { PluginOption, ViteDevServer } from 'vite'
+import type { Options } from '@vuetify/loader-shared'
+import findCacheDir from 'find-cache-dir'
 
 function isSubdir (root: string, test: string) {
   const relative = path.relative(root, test)
@@ -11,7 +10,6 @@ function isSubdir (root: string, test: string) {
 }
 
 const styleImportRegexp = /@use ['"]vuetify(\/lib)?\/styles(\/main(\.sass)?)?['"]/
-const cachePath = path.resolve(process.cwd(), 'node_modules/.cache/vuetify/styles.scss')
 
 export function stylesPlugin (options: Options): PluginOption {
   const vuetifyBase = path.dirname(require.resolve('vuetify/package.json'))
@@ -23,6 +21,12 @@ export function stylesPlugin (options: Options): PluginOption {
   let timeout: NodeJS.Timeout
   let needsTouch = false
 
+  const cacheDir = findCacheDir({
+    name: 'vuetify',
+    create: true,
+    thunk: true
+  })!
+
   async function awaitResolve () {
     clearTimeout(timeout)
     timeout = setTimeout(() => {
@@ -32,14 +36,13 @@ export function stylesPlugin (options: Options): PluginOption {
     if (!promise) {
       promise = new Promise((_resolve) => resolve = _resolve)
       await promise
-      await mkdirp(path.dirname(cachePath))
       await writeFile(
-        cachePath,
+        cacheDir('styles.scss'),
         ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${v}';`).join('\n'),
         'utf8'
       )
       if (needsTouch) {
-        server.moduleGraph.getModulesByFile(cachePath)?.forEach(module => {
+        server.moduleGraph.getModulesByFile(cacheDir('styles.scss'))?.forEach(module => {
           module.importers.forEach(module => {
             module.file && utimes(module.file, Date.now(), Date.now())
           })

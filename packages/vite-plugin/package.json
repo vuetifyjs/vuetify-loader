@@ -19,7 +19,8 @@
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/vite-plugin",
   "dependencies": {
     "@vuetify/loader-shared": "^1.1.2",
-    "mkdirp": "^1.0.4"
+    "find-cache-dir": "^3.3.2",
+    "upath": "^2.0.1"
   },
   "peerDependencies": {
     "vite": "^2.5.0",
