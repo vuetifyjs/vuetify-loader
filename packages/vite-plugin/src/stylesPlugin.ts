@@ -65,7 +65,7 @@ export function stylesPlugin (options: Options): PluginOption {
       if (
         importer &&
         source.endsWith('.css') &&
-        isSubdir(vuetifyBase, importer)
+        isSubdir(vuetifyBase, path.isAbsolute(source) ? source : importer)
       ) {
         if (options.styles === 'none') {
           return '__void__'
