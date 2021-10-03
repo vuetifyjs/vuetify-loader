@@ -17,6 +17,10 @@
     "url": "https://github.com/vuetifyjs/vuetify-loader/issues"
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/shared",
+  "dependencies": {
+    "find-cache-dir": "^3.3.2",
+    "upath": "^2.0.1"
+  },
   "peerDependencies": {
     "vuetify": "^3.0.0-alpha.11"
   },

@@ -9,3 +9,4 @@ export type importPluginOptions =
 // type replace = { symbol: string, from: string, as?: string }
 
 export { generateImports } from './imports/generateImports'
+export { cacheDir, writeStyles } from './styles/writeStyles'

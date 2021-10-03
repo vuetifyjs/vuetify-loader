@@ -1,9 +1,9 @@
-import { Compiler } from 'webpack'
-import { Options } from '@vuetify/loader-shared'
-import { getVueRules } from './getVueRules'
 import * as path from 'upath'
-import { writeFile } from 'fs/promises'
-import findCacheDir from 'find-cache-dir'
+import { writeStyles } from '@vuetify/loader-shared'
+import { getVueRules } from './getVueRules'
+
+import type { Compiler } from 'webpack'
+import type { Options } from '@vuetify/loader-shared'
 import type { Resolver, ResolveContext } from 'enhanced-resolve'
 
 // Can't use require.resolve() for this, it doesn't work with resolve.symlinks
@@ -84,12 +84,6 @@ export class VuetifyLoaderPlugin {
         return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
       }
 
-      const cacheDir = findCacheDir({
-        name: 'vuetify',
-        create: true,
-        thunk: true
-      })!
-
       const files = new Set<string>()
       let resolve: (v: any) => void
       let promise: Promise<any> | null
@@ -106,11 +100,7 @@ export class VuetifyLoaderPlugin {
           let start = files.size
           await promise
           if (files.size > start) {
-            await writeFile(
-              cacheDir('styles.scss'),
-              ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${path.normalize(v)}';`).join('\n'),
-              'utf8'
-            )
+            await writeStyles(files)
           }
           promise = null
         }
