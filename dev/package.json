@@ -6,7 +6,8 @@
     "dev:vite": "vite",
     "debug:vite": "node --inspect-brk ../node_modules/.bin/vite --debug",
     "dev:webpack": "webpack serve --config webpack.config.js --hot",
-    "debug:webpack": "node --inspect-brk ../node_modules/.bin/webpack serve --config webpack.config.js --hot"
+    "debug:webpack": "node --inspect-brk ../node_modules/.bin/webpack serve --config webpack.config.js --hot",
+    "build:webpack": "NODE_ENV=production webpack --config webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

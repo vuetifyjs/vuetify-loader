@@ -5,13 +5,16 @@ export default (function VuetifyLoader (content, sourceMap) {
   this.async()
   this.cacheable()
 
-  const module = /^import { render } from "(.+)"$/m.exec(content)?.[1]
+  const render = /^import { render } from "(.+)"$/m.exec(content)?.[1]
+  const script = /^import script from "(.+)"$/m.exec(content)?.[1]
+  const module = render || script
 
   if (module && !this.resourceQuery) {
     new Promise<string>((resolve, reject) => {
       this.loadModule(module, (err, source) => {
-        if (err) reject(err)
-        else this.loadModule(/^export \* from "(.+)"$/.exec(source)![1], (err, source) => {
+        if (err) return reject(err)
+        const module = /export \* from "(.+)"/.exec(source)?.[1]
+        module && this.loadModule(module, (err, source) => {
           if (err) reject(err)
           else resolve(source)
         })
