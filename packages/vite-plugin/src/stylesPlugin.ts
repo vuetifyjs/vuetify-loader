@@ -38,7 +38,7 @@ export function stylesPlugin (options: Options): PluginOption {
       await promise
       await writeFile(
         cacheDir('styles.scss'),
-        ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${v}';`).join('\n'),
+        ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${path.normalize(v)}';`).join('\n'),
         'utf8'
       )
       if (needsTouch) {

@@ -73,8 +73,8 @@ export class VuetifyLoaderPlugin {
       compiler.options.module.rules.push({
         enforce: 'pre',
         test: /\.css$/,
-        include: /node_modules\/vuetify\//,
-        issuer: /node_modules\/vuetify\//,
+        include: /node_modules[/\\]vuetify[/\\]/,
+        issuer: /node_modules[/\\]vuetify[/\\]/,
         loader: 'null-loader',
       })
     }
@@ -108,7 +108,7 @@ export class VuetifyLoaderPlugin {
           if (files.size > start) {
             await writeFile(
               cacheDir('styles.scss'),
-              ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${v}';`).join('\n'),
+              ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${path.normalize(v)}';`).join('\n'),
               'utf8'
             )
           }

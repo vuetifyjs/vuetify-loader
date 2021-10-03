@@ -32,7 +32,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules\/(?!(vuetify)\/)/
+        exclude: /node_modules[/\\](?!(vuetify)[/\\])/
       },
       {
         test: /\.css$/,
