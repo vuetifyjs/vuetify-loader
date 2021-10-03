@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0-alpha.5](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.4...vuetify-loader@2.0.0-alpha.5) (2021-10-03)
+
+
+### Bug Fixes
+
+* normalise windows paths ([706913d](https://github.com/vuetifyjs/vuetify-loader/commit/706913da0a865643019db9b2ee627c0400d9cbaa)), closes [#205](https://github.com/vuetifyjs/vuetify-loader/issues/205)
+* resolve script setup in production ([a9fe02a](https://github.com/vuetifyjs/vuetify-loader/commit/a9fe02acfacf5f7474096370315e53c9501a9721)), closes [#199](https://github.com/vuetifyjs/vuetify-loader/issues/199)
+
+
+
 ## [2.0.0-alpha.4](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.3...vuetify-loader@2.0.0-alpha.4) (2021-09-17)
 
 

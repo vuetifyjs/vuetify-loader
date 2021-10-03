@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.5](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.4...@vuetify/vite-plugin@1.0.0-alpha.5) (2021-10-03)
+
+
+### Bug Fixes
+
+* normalise windows paths ([706913d](https://github.com/vuetifyjs/vuetify-loader/commit/706913da0a865643019db9b2ee627c0400d9cbaa)), closes [#205](https://github.com/vuetifyjs/vuetify-loader/issues/205)
+* resolve absolute style imports ([199a5bf](https://github.com/vuetifyjs/vuetify-loader/commit/199a5bf6fd75dc5f1be21a88ca300bf403eac397)), closes [#206](https://github.com/vuetifyjs/vuetify-loader/issues/206)
+
+
+
 ## [1.0.0-alpha.4](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.3...@vuetify/vite-plugin@1.0.0-alpha.4) (2021-09-17)
 
 
