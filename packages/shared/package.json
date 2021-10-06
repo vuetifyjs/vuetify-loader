@@ -28,6 +28,10 @@
     "dist/",
     "runtime.js"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./": "./"
+  },
   "publishConfig": {
     "access": "public"
   }
