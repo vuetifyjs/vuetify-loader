@@ -24,6 +24,9 @@
     "vite": "^2.5.0",
     "vuetify": "^3.0.0-alpha.11"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "files": [
     "dist/"
   ],
