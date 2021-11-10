@@ -19,4 +19,11 @@ export default {
       }
     }
   ],
+  build: {
+    outDir: '../dist',
+    emptyOutDir: true,
+    rollupOptions: {
+      input: 'src/index.vite.html'
+    }
+  }
 }

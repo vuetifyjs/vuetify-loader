@@ -32,7 +32,7 @@ export function stylesPlugin (options: Options): PluginOption {
       promise = new Promise((_resolve) => resolve = _resolve)
       await promise
       await writeStyles(files)
-      if (needsTouch) {
+      if (server && needsTouch) {
         server.moduleGraph.getModulesByFile(cacheDir('styles.scss'))?.forEach(module => {
           module.importers.forEach(module => {
             module.file && utimes(module.file, Date.now(), Date.now())
