@@ -1,6 +1,5 @@
 import * as path from 'upath'
 import { writeStyles } from '@vuetify/loader-shared'
-import { getVueRules } from './getVueRules'
 
 import type { Compiler } from 'webpack'
 import type { Options } from '@vuetify/loader-shared'
@@ -36,34 +35,10 @@ export class VuetifyLoaderPlugin {
 
   apply (compiler: Compiler) {
     if (this.options.autoImport) {
-      const vueRules = getVueRules(compiler)
-
-      if (!vueRules.length) {
-        throw new Error(
-          `[VuetifyLoaderPlugin Error] No matching rule for vue-loader found.\n` +
-          `Make sure there is at least one root-level rule that uses vue-loader and VuetifyLoaderPlugin is applied after VueLoaderPlugin.`
-        )
-      }
-
-      const rules = [...compiler.options.module.rules]
-      vueRules.forEach(({ rule, index }) => {
-        rule.oneOf = [
-          {
-            resourceQuery: '?',
-            use: rule.use
-          },
-          {
-            use: [
-              { loader: require.resolve('./scriptLoader') },
-              ...rule.use
-            ]
-          },
-        ]
-        delete rule.use
-
-        rules[index] = rule
+      compiler.options.module.rules.unshift({
+        resourceQuery: '?vue&type=template',
+        use: { loader: require.resolve('./scriptLoader') },
       })
-      compiler.options.module.rules = rules
     }
 
     if (

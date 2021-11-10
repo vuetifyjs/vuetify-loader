@@ -61,7 +61,11 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)(\?.*)?$/,
         loader: 'url-loader',
         options: { limit: 1024 }
-      }
+      },
+      {
+        test: /\.pug$/,
+        loader: 'pug-plain-loader'
+      },
     ]
   },
   resolve: {

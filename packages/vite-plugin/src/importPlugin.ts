@@ -1,20 +1,32 @@
-import path from 'path'
+import { extname } from 'path'
 import { PluginOption } from 'vite'
 import { generateImports } from '@vuetify/loader-shared'
+import { parse as parseUrl, URLSearchParams } from 'url'
+
+function parseId (id: string) {
+  const { query, pathname } = parseUrl(id)
+
+  return {
+    query: query ? Object.fromEntries(new URLSearchParams(query)) : null,
+    path: pathname!
+  }
+}
 
 export function importPlugin (): PluginOption {
   return {
     name: 'vuetify:import',
-    transform (code, id) {
-      if (path.extname(id) === '.vue') {
-        const { code: imports, hasNewImports } = generateImports(code, id, '_sfc_main')
-
-        const rerenderOnly = /^export const _rerender_only = true$/m.exec(code)
-        if (hasNewImports && rerenderOnly) {
-          code = code.substr(0, rerenderOnly.index) + code.substr(rerenderOnly.index + rerenderOnly[0].length)
+    async transform (code, id) {
+      const { query, path } = parseId(id)
+      if (extname(path) === '.vue' && !query) {
+        if (/^import { render as _sfc_render } from ".*"$/m.test(code)) {
+          return null
         }
 
-        return code + imports
+        const { code: imports, source } = generateImports(code)
+        return source + imports
+      } else if (query && 'vue' in query && query.type === 'template') {
+        const { code: imports, source } = generateImports(code)
+        return source + imports
       }
 
       return null

@@ -1,55 +1,42 @@
-import { parseTemplate } from './parseTemplate'
+import { parseTemplate, TemplateMatch } from './parseTemplate'
 import importMap from 'vuetify/dist/json/importMap.json'
 
-/** key: module ID, value: resolved components */
-const componentsMap = new Map<string, Set<string>>()
-const directivesMap = new Map<string, Set<string>>()
-
-export function getImports (source: string, id: string) {
+export function getImports (source: string) {
   const { components, directives } = parseTemplate(source)
-  const resolvedComponents = componentsMap.get(id) || (componentsMap.set(id, new Set()), componentsMap.get(id)!)
-  const resolvedDirectives = directivesMap.get(id) || (directivesMap.set(id, new Set()), directivesMap.get(id)!)
+  const resolvedComponents: TemplateMatch[] = []
+  const resolvedDirectives: TemplateMatch[] = []
   const imports = new Map<string, string[]>()
 
-  const componentsStart = resolvedComponents.size
-  const directivesStart = resolvedDirectives.size
-
   if (components.size || directives.size) {
-    addImport(imports, 'installAssets', '@vuetify/loader-shared/runtime')
-    components.forEach(name => {
-      if (name in importMap.components) {
-        resolvedComponents.add(name)
+    components.forEach(component => {
+      if (component.name in importMap.components) {
+        resolvedComponents.push(component)
       }
     })
-    directives.forEach(name => {
-      if (importMap.directives.includes(name)) {
-        resolvedDirectives.add(name)
+    directives.forEach(directive => {
+      if (importMap.directives.includes(directive.name)) {
+        resolvedDirectives.push(directive)
       }
     })
   }
 
-  resolvedComponents.forEach(name => {
-    addImport(imports, name, 'vuetify/lib/' + (importMap.components as any)[name].from)
+  resolvedComponents.forEach(component => {
+    addImport(imports, component.name, component.symbol, 'vuetify/lib/' + (importMap.components as any)[component.name].from)
   })
-  resolvedDirectives.forEach(name => {
-    addImport(imports, name, 'vuetify/lib/directives/index.mjs')
+  resolvedDirectives.forEach(directive => {
+    addImport(imports, directive.name, directive.symbol, 'vuetify/lib/directives/index.mjs')
   })
-
-  const hasNewImports =
-    resolvedComponents.size > componentsStart ||
-    resolvedDirectives.size > directivesStart
 
   return {
     imports,
-    hasNewImports,
-    components: Array.from(resolvedComponents),
-    directives: Array.from(resolvedDirectives),
+    components: resolvedComponents,
+    directives: resolvedDirectives,
   }
 }
 
-function addImport (imports: Map<string, string[]>, name: string, from: string) {
+function addImport (imports: Map<string, string[]>, name: string, as: string, from: string) {
   if (!imports.has(from)) {
     imports.set(from, [])
   }
-  imports.get(from)!.push(name)
+  imports.get(from)!.push(`${name} as ${as}`)
 }

@@ -16,6 +16,8 @@
     "@vuetify/vite-plugin": "^1.0.0-alpha.1",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
     "sass-loader": "^12.1.0",
     "url-loader": "^4.1.1",
     "vue-style-loader": "^4.1.3",

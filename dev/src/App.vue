@@ -14,14 +14,21 @@
 <!--          </v-list>-->
         </v-card-text>
       </v-card>
+
+      <Pug />
+      <External />
     </v-container>
   </v-app>
 </template>
 
 <script>
+  import Pug from './pug.vue'
+  import External from './external.vue'
   // const img = require('@/vuetify.png?vuetify-preload')
   // console.log(img, img.default)
+
   export default {
+    components: { Pug, External },
     data: () => ({})
   }
 </script>
