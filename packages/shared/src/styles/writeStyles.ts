@@ -8,10 +8,14 @@ export const cacheDir = findCacheDir({
   thunk: true
 })!
 
+function normalize (p: string) {
+  return path.normalize(/^[a-z]:\//i.test(p) ? '/' + p : p)
+}
+
 export function writeStyles (files: Set<string>) {
   return writeFile(
     cacheDir('styles.scss'),
-    ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${path.normalize(v)}';`).join('\n'),
+    ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${normalize(v)}';`).join('\n'),
     'utf8'
   )
 }
