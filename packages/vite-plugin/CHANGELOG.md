@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.6](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.5...@vuetify/vite-plugin@1.0.0-alpha.6) (2021-11-11)
+
+
+### Features
+
+* support external templates ([8b7fc70](https://github.com/vuetifyjs/vuetify-loader/commit/8b7fc7082cf177e122d83b97ec0521092c044a77)), closes [#215](https://github.com/vuetifyjs/vuetify-loader/issues/215)
+
+
+### Bug Fixes
+
+* support node 12 ([9ddf99b](https://github.com/vuetifyjs/vuetify-loader/commit/9ddf99b3a3222d86cf9dc5b8a7561bc0131d6832)), closes [#212](https://github.com/vuetifyjs/vuetify-loader/issues/212)
+* support production mode ([1cfaf2e](https://github.com/vuetifyjs/vuetify-loader/commit/1cfaf2efb64b8b65c54c1948a00bd81508db9a13)), closes [#213](https://github.com/vuetifyjs/vuetify-loader/issues/213)
+
+
+
 ## [1.0.0-alpha.5](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.4...@vuetify/vite-plugin@1.0.0-alpha.5) (2021-10-03)
 
 

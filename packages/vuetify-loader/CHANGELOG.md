@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0-alpha.6](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.5...vuetify-loader@2.0.0-alpha.6) (2021-11-11)
+
+
+### Features
+
+* support external templates ([8b7fc70](https://github.com/vuetifyjs/vuetify-loader/commit/8b7fc7082cf177e122d83b97ec0521092c044a77)), closes [#215](https://github.com/vuetifyjs/vuetify-loader/issues/215)
+
+
+### Bug Fixes
+
+* support node 12 ([9ddf99b](https://github.com/vuetifyjs/vuetify-loader/commit/9ddf99b3a3222d86cf9dc5b8a7561bc0131d6832)), closes [#212](https://github.com/vuetifyjs/vuetify-loader/issues/212)
+
+
+
 ## [2.0.0-alpha.5](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.4...vuetify-loader@2.0.0-alpha.5) (2021-10-03)
 
 
