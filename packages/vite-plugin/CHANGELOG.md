@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.7](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.6...@vuetify/vite-plugin@1.0.0-alpha.7) (2021-11-11)
+
+
+### Bug Fixes
+
+* ignore non-url ids ([774f264](https://github.com/vuetifyjs/vuetify-loader/commit/774f264e22b8df6933fbcff1f51a4e4b50a1cb2d))
+
+
+
 ## [1.0.0-alpha.6](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.5...@vuetify/vite-plugin@1.0.0-alpha.6) (2021-11-11)
 
 
