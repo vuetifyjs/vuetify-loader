@@ -9,7 +9,8 @@ export const cacheDir = findCacheDir({
 })!
 
 function normalize (p: string) {
-  return path.normalize(/^[a-z]:\//i.test(p) ? '/' + p : p)
+  p = path.normalize(p)
+  return /^[a-z]:\//i.test(p) ? '/' + p : p
 }
 
 export function writeStyles (files: Set<string>) {
