@@ -17,6 +17,7 @@
 
       <Pug />
       <External />
+      <Setup />
     </v-container>
   </v-app>
 </template>
@@ -24,11 +25,12 @@
 <script>
   import Pug from './pug.vue'
   import External from './external.vue'
+  import Setup from './setup.vue'
   // const img = require('@/vuetify.png?vuetify-preload')
   // console.log(img, img.default)
 
   export default {
-    components: { Pug, External },
+    components: { Pug, External, Setup },
     data: () => ({})
   }
 </script>

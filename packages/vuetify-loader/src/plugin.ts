@@ -1,4 +1,5 @@
 import * as path from 'upath'
+import { URLSearchParams } from 'url'
 import { writeStyles } from '@vuetify/loader-shared'
 
 import type { Compiler } from 'webpack'
@@ -36,7 +37,14 @@ export class VuetifyLoaderPlugin {
   apply (compiler: Compiler) {
     if (this.options.autoImport) {
       compiler.options.module.rules.unshift({
-        resourceQuery: '?vue&type=template',
+        resourceQuery: query => {
+          if (!query) return false
+          const qs = new URLSearchParams(query)
+          return qs.has('vue') && (
+            qs.get('type') === 'template' ||
+            (qs.get('type') === 'script' && qs.has('setup'))
+          )
+        },
         use: { loader: require.resolve('./scriptLoader') },
       })
     }
