@@ -1,6 +1,6 @@
 {
   "name": "@vuetify/vite-plugin",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/vite-plugin",
   "dependencies": {
-    "@vuetify/loader-shared": "^1.2.0"
+    "@vuetify/loader-shared": "^1.2.1"
   },
   "peerDependencies": {
     "vite": "^2.5.0",

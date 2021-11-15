@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0-alpha.7](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.6...vuetify-loader@2.0.0-alpha.7) (2021-11-15)
+
+
+### Bug Fixes
+
+* collect imports from script setup in prod build ([7d9b26e](https://github.com/vuetifyjs/vuetify-loader/commit/7d9b26e3ade6b71af71bc085cfbb881e8ae114bd))
+
+
+
 ## [2.0.0-alpha.6](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.5...vuetify-loader@2.0.0-alpha.6) (2021-11-11)
 
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.2.1](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.2.0...@vuetify/loader-shared@1.2.1) (2021-11-15)
+
+
+### Bug Fixes
+
+* add leading slash to absolute paths on windows ([1128c72](https://github.com/vuetifyjs/vuetify-loader/commit/1128c721d87ba64a4143c6a7f6fbeb86ac3aa25a)), closes [#204](https://github.com/vuetifyjs/vuetify-loader/issues/204)
+
+
+
 ## [1.2.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.1.3...@vuetify/loader-shared@1.2.0) (2021-11-11)
 
 
