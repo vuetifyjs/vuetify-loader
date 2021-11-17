@@ -1,8 +1,8 @@
 import { camelize, capitalize } from 'vue'
 
 export function parseTemplate (source: string) {
-  const components = createSet(source.matchAll(/const (\w+) = _resolveComponent\("([\w-.]+)"\)/gm))
-  const directives = createSet(source.matchAll(/const (\w+) = _resolveDirective\("([\w-.]+)"\)/gm))
+  const components = createSet(source.matchAll(/(?:var|const) (\w+) = _resolveComponent\("([\w-.]+)"\);?/gm))
+  const directives = createSet(source.matchAll(/(?:var|const) (\w+) = _resolveDirective\("([\w-.]+)"\);?/gm))
 
   return { components, directives }
 }
