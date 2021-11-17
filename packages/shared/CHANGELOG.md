@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.2.2](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.2.1...@vuetify/loader-shared@1.2.2) (2021-11-17)
+
+
+### Bug Fixes
+
+* match resolveComponent with var or const ([5f83f21](https://github.com/vuetifyjs/vuetify-loader/commit/5f83f215e82b6637230ac3808d09c1e106d892ec))
+
+
+
 ### [1.2.1](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.2.0...@vuetify/loader-shared@1.2.1) (2021-11-15)
 
 
