@@ -10,6 +10,7 @@
     "publish": "lerna run build && lerna version --no-private && lerna publish from-git"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.7",
     "@types/find-cache-dir": "^3.2.1",
     "@types/loader-utils": "^2.0.3",
     "@types/node": "^16.11.12",

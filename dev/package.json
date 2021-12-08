@@ -6,9 +6,11 @@
     "dev:vite": "vite",
     "build:vite": "NODE_ENV=production vite build",
     "debug:vite": "node --inspect-brk ../node_modules/.bin/vite --debug",
+    "debug:vite-build": "NODE_ENV=production node --inspect-brk ../node_modules/.bin/vite build --debug",
     "dev:webpack": "webpack serve --config webpack.config.js --hot",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
-    "debug:webpack": "node --inspect-brk ../node_modules/.bin/webpack serve --config webpack.config.js --hot"
+    "debug:webpack": "node --inspect-brk ../node_modules/.bin/webpack serve --config webpack.config.js --hot",
+    "debug:webpack-build": "NODE_ENV=production node --inspect-brk ../node_modules/.bin/webpack --config webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

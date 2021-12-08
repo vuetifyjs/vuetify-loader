@@ -8,9 +8,9 @@ export default (function VuetifyLoader (content, sourceMap) {
   }
 
   this.async()
-  const options = this.getOptions() as { awaitResolve(): Promise<void> }
+  const options = this.getOptions() as { awaitResolve(id?: string): Promise<void> }
 
-  options.awaitResolve().then(() => {
+  options.awaitResolve(this.request).then(() => {
     this.callback(null, content.replace(styleImportRegexp, '@use ".cache/vuetify/styles.scss"'), sourceMap)
   })
 } as LoaderDefinitionFunction)

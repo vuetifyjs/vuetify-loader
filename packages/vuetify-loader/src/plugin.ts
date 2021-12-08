@@ -2,9 +2,9 @@ import * as path from 'upath'
 import { URLSearchParams } from 'url'
 import { writeStyles } from '@vuetify/loader-shared'
 
-import type { Compiler } from 'webpack'
-import type { Options } from '@vuetify/loader-shared'
+import type { Compiler, NormalModule, Module } from 'webpack'
 import type { Resolver, ResolveContext } from 'enhanced-resolve'
+import type { Options } from '@vuetify/loader-shared'
 
 // Can't use require.resolve() for this, it doesn't work with resolve.symlinks
 let vuetifyBase: string
@@ -22,6 +22,11 @@ async function getVuetifyBase (base: string, context: ResolveContext, resolver: 
   return getVuetifyBase.promise
 }
 getVuetifyBase.promise = null as Promise<any> | null
+
+function isSubdir (root: string, test: string) {
+  const relative = path.relative(root, test)
+  return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
+}
 
 export class VuetifyLoaderPlugin {
   options: Required<Options>
@@ -62,26 +67,55 @@ export class VuetifyLoaderPlugin {
       })
     }
     if (this.options.styles === 'expose') {
-      function isSubdir (root: string, test: string) {
-        const relative = path.relative(root, test)
-        return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
-      }
-
       const files = new Set<string>()
-      let resolve: (v: any) => void
-      let promise: Promise<any> | null
+      let resolve: (v: boolean) => void
+      let promise: Promise<boolean> | null
       let timeout: NodeJS.Timeout
 
-      async function awaitResolve () {
-        clearTimeout(timeout)
-        timeout = setTimeout(() => {
-          resolve(true)
-        }, 500)
+      const blockingModules = new Set<string>()
+      const pendingModules = new Map<string, Module>()
+      compiler.hooks.compilation.tap('vuetify-loader', (compilation, params) => {
+        compilation.hooks.buildModule.tap('vuetify-loader', (module) => {
+          pendingModules.set((module as NormalModule).request, module)
+        })
+        compilation.hooks.succeedModule.tap('vuetify-loader', (module) => {
+          pendingModules.delete((module as NormalModule).request)
+          if (
+            resolve &&
+            !Array.from(pendingModules.keys()).filter(k => !blockingModules.has(k)).length
+          ) {
+            resolve(false)
+          }
+        })
+      })
+
+      const logger = compiler.getInfrastructureLogger('vuetify-loader')
+      async function awaitResolve (id?: string) {
+        if (id) {
+          blockingModules.add(id)
+        }
 
         if (!promise) {
           promise = new Promise((_resolve) => resolve = _resolve)
+
+          clearTimeout(timeout)
+          timeout = setTimeout(() => {
+            logger.error('styles fallback timeout hit', {
+              blockingModules: Array.from(blockingModules.values()),
+              pendingModules: Array.from(pendingModules.values(), module => (module as NormalModule).resource),
+            })
+            resolve(false)
+          }, 10000)
+
+          if (!Array.from(pendingModules.keys()).filter(k => !blockingModules.has(k)).length) {
+            resolve(false)
+          }
+
           let start = files.size
           await promise
+          clearTimeout(timeout)
+          blockingModules.clear()
+
           if (files.size > start) {
             await writeStyles(files)
           }
