@@ -1,5 +1,5 @@
 import { parseTemplate, TemplateMatch } from './parseTemplate'
-import importMap from 'vuetify/dist/json/importMap.json'
+import * as importMap from 'vuetify/dist/json/importMap.json'
 
 export function getImports (source: string) {
   const { components, directives } = parseTemplate(source)

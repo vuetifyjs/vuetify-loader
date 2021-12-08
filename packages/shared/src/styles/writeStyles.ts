@@ -1,5 +1,5 @@
 import { writeFile } from 'fs/promises'
-import findCacheDir from 'find-cache-dir'
+import * as findCacheDir from 'find-cache-dir'
 import * as path from 'upath'
 
 export const cacheDir = findCacheDir({

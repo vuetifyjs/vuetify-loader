@@ -4,7 +4,7 @@ import { Options } from '@vuetify/loader-shared'
 import { importPlugin } from './importPlugin'
 import { stylesPlugin } from './stylesPlugin'
 
-export default function vuetify (_options: Options = {}) {
+export = function vuetify (_options: Options = {}) {
   const options: Options = {
     autoImport: true,
     styles: true,
