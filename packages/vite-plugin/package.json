@@ -21,7 +21,7 @@
     "@vuetify/loader-shared": "^1.2.2"
   },
   "peerDependencies": {
-    "vite": "^2.5.0",
+    "vite": "^2.7.0",
     "vuetify": "^3.0.0-alpha.11"
   },
   "engines": {

@@ -23,7 +23,7 @@ export default {
     outDir: '../dist',
     emptyOutDir: true,
     rollupOptions: {
-      input: 'src/index.vite.html'
+      input: 'index.vite.html'
     }
   }
 }
