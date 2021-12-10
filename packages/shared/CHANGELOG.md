@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.2.2...@vuetify/loader-shared@1.3.0) (2021-12-10)
+
+
+### Features
+
+* add stylesTimeout option ([93e830d](https://github.com/vuetifyjs/vuetify-loader/commit/93e830dd728610bfa83c5a93f85fcca6acb4f59d))
+
+
+### Bug Fixes
+
+* disable esModuleInterop ([b3ae4d1](https://github.com/vuetifyjs/vuetify-loader/commit/b3ae4d17e4319ab1b8c550d50b0cc2737a8d0719)), closes [#222](https://github.com/vuetifyjs/vuetify-loader/issues/222)
+
+
+
 ### [1.2.2](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.2.1...@vuetify/loader-shared@1.2.2) (2021-11-17)
 
 

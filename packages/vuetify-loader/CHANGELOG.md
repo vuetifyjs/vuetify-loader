@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0-alpha.9](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.8...vuetify-loader@2.0.0-alpha.9) (2021-12-10)
+
+
+### Features
+
+* add stylesTimeout option ([93e830d](https://github.com/vuetifyjs/vuetify-loader/commit/93e830dd728610bfa83c5a93f85fcca6acb4f59d))
+
+
+### Bug Fixes
+
+* wait for all other modules to resolve before writing styles ([274ce9c](https://github.com/vuetifyjs/vuetify-loader/commit/274ce9ced8da65107b7544f9cdb2d82d463be313)), closes [#225](https://github.com/vuetifyjs/vuetify-loader/issues/225)
+
+
+
 ## [2.0.0-alpha.8](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.7...vuetify-loader@2.0.0-alpha.8) (2021-11-17)
 
 **Note:** Version bump only for package vuetify-loader

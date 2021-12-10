@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.10](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.9...@vuetify/vite-plugin@1.0.0-alpha.10) (2021-12-10)
+
+
+### Features
+
+* add stylesTimeout option ([93e830d](https://github.com/vuetifyjs/vuetify-loader/commit/93e830dd728610bfa83c5a93f85fcca6acb4f59d))
+
+
+### Bug Fixes
+
+* disable esModuleInterop ([b3ae4d1](https://github.com/vuetifyjs/vuetify-loader/commit/b3ae4d17e4319ab1b8c550d50b0cc2737a8d0719)), closes [#222](https://github.com/vuetifyjs/vuetify-loader/issues/222)
+* wait for all other modules to resolve before writing styles ([274ce9c](https://github.com/vuetifyjs/vuetify-loader/commit/274ce9ced8da65107b7544f9cdb2d82d463be313)), closes [#225](https://github.com/vuetifyjs/vuetify-loader/issues/225)
+
+
+
 ## [1.0.0-alpha.9](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.8...@vuetify/vite-plugin@1.0.0-alpha.9) (2021-11-17)
 
 **Note:** Version bump only for package @vuetify/vite-plugin
