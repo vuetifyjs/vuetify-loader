@@ -57,7 +57,7 @@ export function stylesPlugin (options: Options): PluginOption {
     timeout = setTimeout(() => {
       console.error('vuetify:styles fallback timeout hit', {
         blockingModules: Array.from(blockingModules.values()),
-        pendingModules,
+        pendingModules: server ? Array.from(server._pendingRequests.keys()) : pendingModules,
       })
       resolve(false)
     }, 10000)
