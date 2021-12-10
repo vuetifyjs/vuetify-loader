@@ -8,6 +8,7 @@ export = function vuetify (_options: Options = {}) {
   const options: Options = {
     autoImport: true,
     styles: true,
+    stylesTimeout: 10000,
     ..._options,
   }
 

@@ -60,7 +60,7 @@ export function stylesPlugin (options: Options): PluginOption {
         pendingModules: server ? Array.from(server._pendingRequests.keys()) : pendingModules,
       })
       resolve(false)
-    }, 10000)
+    }, options.stylesTimeout)
 
     let pending
     do {

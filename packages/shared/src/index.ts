@@ -1,6 +1,8 @@
 export interface Options {
   autoImport?: importPluginOptions,
-  styles?: true | 'none' | 'expose'
+  styles?: true | 'none' | 'expose',
+  /** @internal Only for testing */
+  stylesTimeout?: number
 }
 
 export type importPluginOptions =

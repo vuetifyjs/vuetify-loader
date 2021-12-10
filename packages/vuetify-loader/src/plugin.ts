@@ -35,6 +35,7 @@ export class VuetifyLoaderPlugin {
     this.options = {
       autoImport: true,
       styles: true,
+      stylesTimeout: 10000,
       ...options,
     }
   }
@@ -90,7 +91,7 @@ export class VuetifyLoaderPlugin {
       })
 
       const logger = compiler.getInfrastructureLogger('vuetify-loader')
-      async function awaitResolve (id?: string) {
+      const awaitResolve = async (id?: string) => {
         if (id) {
           blockingModules.add(id)
         }
@@ -105,7 +106,7 @@ export class VuetifyLoaderPlugin {
               pendingModules: Array.from(pendingModules.values(), module => (module as NormalModule).resource),
             })
             resolve(false)
-          }, 10000)
+          }, this.options.stylesTimeout)
 
           if (!Array.from(pendingModules.keys()).filter(k => !blockingModules.has(k)).length) {
             resolve(false)
