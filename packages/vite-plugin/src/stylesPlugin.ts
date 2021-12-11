@@ -27,50 +27,54 @@ export function stylesPlugin (options: Options): PluginOption {
   let needsTouch = false
   const blockingModules = new Set<string>()
 
+  let pendingModules: string[]
   async function getPendingModules () {
     if (!server) {
-      await new Promise(resolve => setTimeout(resolve, 50))
+      await new Promise(resolve => setTimeout(resolve, 0))
+      const modules = Array.from(context.getModuleIds())
+        .filter(id => !blockingModules.has(id)) // Ignore the current file
+        .map(id => context.getModuleInfo(id)!)
+        .filter(module => module.code == null) // Ignore already loaded modules
+
+      pendingModules = modules.map(module => module.id)
+
       return (await Promise.all(
-        Array.from(context.getModuleIds())
-          .filter(id => !blockingModules.has(id)) // Ignore the current file
-          .map(id => context.getModuleInfo(id)!)
-          .filter(module => module.code == null) // Ignore already loaded modules
-          .map(module => context.load(module))
-      )).filter(module => module.code == null)
-        .map(module => module.id)
+        modules.map(module => context.load(module))
+      )).map(module => module.id)
     } else {
+      const modules = Array.from(server.moduleGraph.urlToModuleMap.entries())
+        .filter(([k, v]) => (
+          v.transformResult == null &&
+          !k.startsWith('/@id/') &&
+          !blockingModules.has(v.id!)
+        ))
+
+      pendingModules = modules.map(([k, v]) => v.id!)
+
       return (await Promise.all(
-        Array.from(server._pendingRequests, ([k, v]) => {
-          const module = server.moduleGraph.urlToModuleMap.get(k)
-          return module?.id && !blockingModules.has(module.id)
-            ? v.then(() => module.id)
-            : null
-        }).filter(v => v != null)
-      )) as string[]
+        modules.map(([k, v]) => server.transformRequest(k).then(() => v))
+      )).map(module => module.id!)
     }
   }
 
-  let pendingModules: string[]
   let timeout: NodeJS.Timeout
   async function awaitBlocking () {
     clearTimeout(timeout)
     timeout = setTimeout(() => {
       console.error('vuetify:styles fallback timeout hit', {
         blockingModules: Array.from(blockingModules.values()),
-        pendingModules: server ? Array.from(server._pendingRequests.keys()) : pendingModules,
+        pendingModules,
       })
       resolve(false)
     }, options.stylesTimeout)
 
     let pending
     do {
-      pending = await Promise.any([
+      pending = await Promise.any<boolean | number | null>([
         promise,
-        getPendingModules().then(v => {
-          pendingModules = v
-          return !!v.length
-        })
+        getPendingModules().then(v => v.length)
       ])
+      debug(pending, 'pending modules', pendingModules)
     } while (pending)
 
     resolve(false)
@@ -127,7 +131,7 @@ export function stylesPlugin (options: Options): PluginOption {
         isSubdir(vuetifyBase, path.isAbsolute(source) ? source : importer)
       ) {
         if (options.styles === 'none') {
-          return '__void__'
+          return '\0__void__'
         } else if (options.styles === 'expose') {
           awaitResolve()
 
@@ -143,7 +147,7 @@ export function stylesPlugin (options: Options): PluginOption {
               files.add(resolution.id)
             }
 
-            return '__void__'
+            return '\0__void__'
           }
         }
       }
@@ -158,12 +162,13 @@ export function stylesPlugin (options: Options): PluginOption {
       ) {
         debug(`awaiting ${id}`)
         await awaitResolve(id)
+        debug(`returning ${id}`)
 
         return code.replace(styleImportRegexp, '@use ".cache/vuetify/styles.scss"')
       }
     },
     load (id) {
-      if (id === '__void__') {
+      if (id === '__void__' || id === '\0__void__') {
         return ''
       }
 
