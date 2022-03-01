@@ -18,12 +18,12 @@
     "@vue/compiler-sfc": "^3.2.24",
     "conventional-changelog-conventionalcommits": "^4.6.1",
     "lerna": "^3.22.1",
-    "sass": "^1.44.0",
+    "sass": "^1.49.9",
     "typescript": "^4.4.2",
     "vite": "^2.7.1",
     "vue": "^3.2.19",
     "vue-loader": "^16.5.0",
-    "vuetify": "^3.0.0-alpha.11",
+    "vuetify": "npm:@vuetify/nightly@next",
     "webpack": "^5.65.0"
   }
 }

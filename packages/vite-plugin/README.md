@@ -64,3 +64,14 @@ import { createVuetify } from 'vuetify'
 
 export default createVuetify()
 ```
+
+### Import sass from source
+Vuetify 3 uses precompiled css by default, these imports can optionally be modified to point to sass files instead:
+
+```js
+// vite.config.js
+plugins: [
+  vue(),
+  vuetify({ styles: 'sass' }),
+]
+```

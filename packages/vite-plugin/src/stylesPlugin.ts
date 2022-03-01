@@ -132,6 +132,8 @@ export function stylesPlugin (options: Options): PluginOption {
       ) {
         if (options.styles === 'none') {
           return '\0__void__'
+        } else if (options.styles === 'sass') {
+          return source.replace(/\.css$/, '.sass')
         } else if (options.styles === 'expose') {
           awaitResolve()
 

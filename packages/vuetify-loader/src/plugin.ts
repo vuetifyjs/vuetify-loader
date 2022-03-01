@@ -66,7 +66,24 @@ export class VuetifyLoaderPlugin {
         issuer: /node_modules[/\\]vuetify[/\\]/,
         loader: 'null-loader',
       })
+    } else if (this.options.styles === 'sass') {
+      compiler.hooks.normalModuleFactory.tap('vuetify-loader', factory => {
+        factory.hooks.beforeResolve.tap('vuetify-loader', resolveData => {
+          if (
+            resolveData.request.endsWith('.css') &&
+            isSubdir(path.dirname(require.resolve('vuetify/package.json')), resolveData.context)
+          ) {
+            const match = resolveData.request.match(/.*!(.+\.css)$/)
+            if (match) {
+              resolveData.request = match[1].replace(/\.css$/, '.sass')
+            } else {
+              resolveData.request = resolveData.request.replace(/\.css$/, '.sass')
+            }
+          }
+        })
+      })
     }
+
     if (this.options.styles === 'expose') {
       const files = new Set<string>()
       let resolve: (v: boolean) => void

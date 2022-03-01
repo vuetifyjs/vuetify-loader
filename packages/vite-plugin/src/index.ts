@@ -16,7 +16,7 @@ export = function vuetify (_options: Options = {}) {
   if (options.autoImport) {
     plugins.push(importPlugin())
   }
-  if (options.styles === 'none' || options.styles === 'expose') {
+  if (options.styles === 'none' || options.styles === 'expose' || options.styles === 'sass') {
     plugins.push(stylesPlugin(options))
   }
 

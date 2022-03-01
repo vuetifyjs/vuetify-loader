@@ -1,6 +1,6 @@
 export interface Options {
   autoImport?: importPluginOptions,
-  styles?: true | 'none' | 'expose',
+  styles?: true | 'none' | 'expose' | 'sass',
   /** @internal Only for testing */
   stylesTimeout?: number
 }

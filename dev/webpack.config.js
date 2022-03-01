@@ -10,7 +10,19 @@ function sassLoaderOptions (indentedSyntax = false) {
   return {
     // implementation: require('sass'),
     // additionalData: `@import "~@/_variables.scss"` + (indentedSyntax ? '' : ';'),
-    sassOptions: { indentedSyntax },
+    api: 'modern',
+    sassOptions: {
+      indentedSyntax,
+      // importers: [{
+      //   canonicalize (url) {
+      //     console.log(url)
+      //     return new URL(url)
+      //   },
+      //   load (url) {
+      //     console.log(url)
+      //   }
+      // }]
+    },
   }
 }
 
