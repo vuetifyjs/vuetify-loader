@@ -25,7 +25,6 @@
     "find-cache-dir": "^3.3.2",
     "loader-utils": "^2.0.0",
     "null-loader": "^4.0.1",
-    "querystring": "^0.2.1",
     "upath": "^2.0.1"
   },
   "peerDependencies": {
