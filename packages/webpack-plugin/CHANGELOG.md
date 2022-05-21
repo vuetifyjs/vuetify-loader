@@ -9,6 +9,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * rename packages ([c64493d](https://github.com/vuetifyjs/vuetify-loader/commit/c64493d2d9d68338b23d302a3467c1058cd055f1)), closes [#236](https://github.com/vuetifyjs/vuetify-loader/issues/236)
+* **styles:** add sass option ([ddd68d9](https://github.com/vuetifyjs/vuetify-loader/commit/ddd68d99aedaa0088c5d89740d1a9b9c1bb74808))
 
 
 
