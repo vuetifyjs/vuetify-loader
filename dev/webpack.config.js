@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
-const { VuetifyLoaderPlugin } = require('vuetify-loader')
+const { VuetifyPlugin } = require('webpack-plugin-vuetify')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -90,7 +90,7 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new VuetifyLoaderPlugin({
+    new VuetifyPlugin({
       styles: 'expose',
       // progressiveImages: true
     }),

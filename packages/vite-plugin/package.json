@@ -1,6 +1,7 @@
 {
-  "name": "@vuetify/vite-plugin",
+  "name": "vite-plugin-vuetify",
   "version": "1.0.0-alpha.10",
+  "description": "A Vite plugin for treeshaking Vuetify components and more",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {

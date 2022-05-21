@@ -1,4 +1,4 @@
-# vuetify-loader
+# webpack-plugin-vuetify
 
 <div align="center">
   <a href="https://www.patreon.com/kaelwd">
@@ -11,15 +11,15 @@
 </div>
 
 ## Automatic Imports
-`vuetify-loader` will automatically import all Vuetify components as you use them
+`webpack-plugin-vuetify` will automatically import all Vuetify components as you use them
 
 ```js
 // webpack.config.js
-const { VuetifyLoaderPlugin } = require('vuetify-loader')
+const { VuetifyPlugin } = require('webpack-plugin-vuetify')
 
 module.exports = {
   plugins: [
-    new VuetifyLoaderPlugin({ autoImport: true }), // Enabled by default
+    new VuetifyPlugin({ autoImport: true }), // Enabled by default
   ],
 }
 ```
@@ -70,11 +70,11 @@ Will be compiled into:
 ### Customising variables
 ```js
 // webpack.config.js
-const { VuetifyLoaderPlugin } = require('vuetify-loader')
+const { VuetifyPlugin } = require('webpack-plugin-vuetify')
 
 module.exports = {
   plugins: [
-    new VuetifyLoaderPlugin({ styles: 'expose' }),
+    new VuetifyPlugin({ styles: 'expose' }),
   ],
 }
 ```
@@ -96,11 +96,11 @@ export default createVuetify()
 ### Remove all style imports
 ```js
 // webpack.config.js
-const { VuetifyLoaderPlugin } = require('vuetify-loader')
+const { VuetifyPlugin } = require('webpack-plugin-vuetify')
 
 module.exports = {
   plugins: [
-    new VuetifyLoaderPlugin({ styles: 'none' }),
+    new VuetifyPlugin({ styles: 'none' }),
   ],
 }
 ```
@@ -116,11 +116,11 @@ Vuetify 3 uses precompiled css by default, these imports can optionally be modif
 
 ```js
 // webpack.config.js
-const { VuetifyLoaderPlugin } = require('vuetify-loader')
+const { VuetifyPlugin } = require('webpack-plugin-vuetify')
 
 module.exports = {
   plugins: [
-    new VuetifyLoaderPlugin({ styles: 'sass' }),
+    new VuetifyPlugin({ styles: 'sass' }),
   ],
 }
 ```

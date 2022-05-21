@@ -28,7 +28,7 @@ function isSubdir (root: string, test: string) {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
 }
 
-export class VuetifyLoaderPlugin {
+export class VuetifyPlugin {
   options: Required<Options>
 
   constructor (options: Options) {
