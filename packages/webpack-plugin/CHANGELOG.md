@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.0-alpha.10 (2022-05-21)
+
+
+### Features
+
+* rename packages ([c64493d](https://github.com/vuetifyjs/vuetify-loader/commit/c64493d2d9d68338b23d302a3467c1058cd055f1)), closes [#236](https://github.com/vuetifyjs/vuetify-loader/issues/236)
+
+
+
 ## [2.0.0-alpha.9](https://github.com/vuetifyjs/vuetify-loader/compare/vuetify-loader@2.0.0-alpha.8...vuetify-loader@2.0.0-alpha.9) (2021-12-10)
 
 

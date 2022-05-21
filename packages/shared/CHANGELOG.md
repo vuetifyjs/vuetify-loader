@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.3.0...@vuetify/loader-shared@1.4.0) (2022-05-21)
+
+
+### Features
+
+* **styles:** add sass option ([ddd68d9](https://github.com/vuetifyjs/vuetify-loader/commit/ddd68d99aedaa0088c5d89740d1a9b9c1bb74808))
+
+
+
 ## [1.3.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.2.2...@vuetify/loader-shared@1.3.0) (2021-12-10)
 
 

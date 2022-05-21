@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.11 (2022-05-21)
+
+
+### Features
+
+* rename packages ([c64493d](https://github.com/vuetifyjs/vuetify-loader/commit/c64493d2d9d68338b23d302a3467c1058cd055f1)), closes [#236](https://github.com/vuetifyjs/vuetify-loader/issues/236)
+* **styles:** add sass option ([ddd68d9](https://github.com/vuetifyjs/vuetify-loader/commit/ddd68d99aedaa0088c5d89740d1a9b9c1bb74808))
+* add auto-loading to webpack plugin ([59f1b1f](https://github.com/vuetifyjs/vuetify-loader/commit/59f1b1f6f805cdab9cacd0372b394df3dafb4698))
+* add stylesTimeout option ([93e830d](https://github.com/vuetifyjs/vuetify-loader/commit/93e830dd728610bfa83c5a93f85fcca6acb4f59d))
+* implement autoImport plugin ([163ff7f](https://github.com/vuetifyjs/vuetify-loader/commit/163ff7f25c2e8cb65bc6461f4399b52e53b77612))
+* support external templates ([8b7fc70](https://github.com/vuetifyjs/vuetify-loader/commit/8b7fc7082cf177e122d83b97ec0521092c044a77)), closes [#215](https://github.com/vuetifyjs/vuetify-loader/issues/215)
+* support HMR ([39baa9d](https://github.com/vuetifyjs/vuetify-loader/commit/39baa9dd70a52656af8f7508a1e095a468483d19))
+
+
+### Bug Fixes
+
+* add plugin order warning ([1957398](https://github.com/vuetifyjs/vuetify-loader/commit/1957398cd199bfde3bf1debb4f3abd6e474b0389))
+* always use posix paths ([7393eef](https://github.com/vuetifyjs/vuetify-loader/commit/7393eefbb6a8a79de3b265c335ab5d238d4fe95e))
+* disable esModuleInterop ([b3ae4d1](https://github.com/vuetifyjs/vuetify-loader/commit/b3ae4d17e4319ab1b8c550d50b0cc2737a8d0719)), closes [#222](https://github.com/vuetifyjs/vuetify-loader/issues/222)
+* ignore non-url ids ([774f264](https://github.com/vuetifyjs/vuetify-loader/commit/774f264e22b8df6933fbcff1f51a4e4b50a1cb2d))
+* normalise windows paths ([706913d](https://github.com/vuetifyjs/vuetify-loader/commit/706913da0a865643019db9b2ee627c0400d9cbaa)), closes [#205](https://github.com/vuetifyjs/vuetify-loader/issues/205)
+* resolve absolute style imports ([199a5bf](https://github.com/vuetifyjs/vuetify-loader/commit/199a5bf6fd75dc5f1be21a88ca300bf403eac397)), closes [#206](https://github.com/vuetifyjs/vuetify-loader/issues/206)
+* support more import paths ([4253e7b](https://github.com/vuetifyjs/vuetify-loader/commit/4253e7b7224393adae8a5bccec650d70fb8a9cde))
+* support node 12 ([9ddf99b](https://github.com/vuetifyjs/vuetify-loader/commit/9ddf99b3a3222d86cf9dc5b8a7561bc0131d6832)), closes [#212](https://github.com/vuetifyjs/vuetify-loader/issues/212)
+* support production mode ([1cfaf2e](https://github.com/vuetifyjs/vuetify-loader/commit/1cfaf2efb64b8b65c54c1948a00bd81508db9a13)), closes [#213](https://github.com/vuetifyjs/vuetify-loader/issues/213)
+* trigger HMR when adding new style imports ([ad1637b](https://github.com/vuetifyjs/vuetify-loader/commit/ad1637b516a6d873927098f973d339710092582b)), closes [#196](https://github.com/vuetifyjs/vuetify-loader/issues/196)
+* update style import regexp ([a6b5e26](https://github.com/vuetifyjs/vuetify-loader/commit/a6b5e269225c4a0577b30f59b208629d30fc934f))
+* use find-cache-dir, normalise dos paths ([990ee15](https://github.com/vuetifyjs/vuetify-loader/commit/990ee15ae49f331ff2d59b5cf00829ac32eb4ecd)), closes [#202](https://github.com/vuetifyjs/vuetify-loader/issues/202)
+* wait for all other modules to resolve before writing styles ([274ce9c](https://github.com/vuetifyjs/vuetify-loader/commit/274ce9ced8da65107b7544f9cdb2d82d463be313)), closes [#225](https://github.com/vuetifyjs/vuetify-loader/issues/225)
+
+
+
 ## [1.0.0-alpha.10](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/vite-plugin@1.0.0-alpha.9...@vuetify/vite-plugin@1.0.0-alpha.10) (2021-12-10)
 
 
