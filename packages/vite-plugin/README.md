@@ -1,4 +1,4 @@
-# @vuetify/vite-plugin
+# vite-plugin-vuetify
 
 <div align="center">
   <a href="https://www.patreon.com/kaelwd">
