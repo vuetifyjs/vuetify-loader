@@ -39,5 +39,8 @@ export default {
         // additionalData: `@forward '@/src/_variables'\n`,
       }
     }
+  },
+  optimizeDeps: {
+    exclude: ['vuetify']
   }
 }

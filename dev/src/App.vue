@@ -11,6 +11,12 @@
           <v-btn></v-btn>
 <!--          <v-list>-->
 <!--            <v-list-item title="List"></v-list-item>-->
+<!--            <v-list-group>-->
+<!--              <template #activator="{ props }">-->
+<!--                <v-list-item title="Group" v-bind="props"></v-list-item>-->
+<!--              </template>-->
+<!--              <v-list-item title="Sub item"></v-list-item>-->
+<!--            </v-list-group>-->
 <!--          </v-list>-->
         </v-card-text>
       </v-card>

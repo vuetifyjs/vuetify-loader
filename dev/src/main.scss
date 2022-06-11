@@ -1,5 +1,12 @@
 @use 'vuetify/styles' with (
   $color-pack: false,
-  $alert-padding: 24px,
   $utilities: false,
+  $alert-padding: 24px,
 );
+
+//@use 'sass:meta';
+//@include meta.load-css('vuetify/styles', (
+//        color-pack: false,
+//        utilities: false,
+//        alert-padding: 24px,
+//));

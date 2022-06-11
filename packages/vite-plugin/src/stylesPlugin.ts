@@ -14,7 +14,7 @@ function isSubdir (root: string, test: string) {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
 }
 
-const styleImportRegexp = /@use ['"]vuetify(\/lib)?\/styles(\/main(\.sass)?)?['"]/
+const styleImportRegexp = /(@use |meta\.load-css\()['"](vuetify(?:\/lib)?\/styles(?:\/main(?:\.sass)?)?)['"]/
 
 export function stylesPlugin (options: Options): PluginOption {
   const vuetifyBase = path.dirname(require.resolve('vuetify/package.json'))
@@ -166,7 +166,7 @@ export function stylesPlugin (options: Options): PluginOption {
         await awaitResolve(id)
         debug(`returning ${id}`)
 
-        return code.replace(styleImportRegexp, '@use ".cache/vuetify/styles.scss"')
+        return code.replace(styleImportRegexp, '$1".cache/vuetify/styles.scss"')
       }
     },
     load (id) {
