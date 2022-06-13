@@ -22,7 +22,7 @@
     "upath": "^2.0.1"
   },
   "peerDependencies": {
-    "vuetify": "^3.0.0-alpha.11"
+    "vuetify": "^3.0.0-beta.4"
   },
   "files": [
     "dist/"

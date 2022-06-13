@@ -16,7 +16,11 @@ function normalize (p: string) {
 export function writeStyles (files: Set<string>) {
   return writeFile(
     cacheDir('styles.scss'),
-    ['vuetify/lib/styles/main.sass', ...files.values()].map(v => `@forward '${normalize(v)}';`).join('\n'),
+    [
+      'vuetify/lib/styles/main.sass',
+      'vuetify/dist/_component-variables.sass',
+      ...files.values()
+    ].map(v => `@forward '${normalize(v)}';`).join('\n'),
     'utf8'
   )
 }
