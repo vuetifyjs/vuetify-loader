@@ -19,7 +19,7 @@ export function writeStyles (files: Set<string>) {
     [
       'vuetify/lib/styles/main.sass',
       'vuetify/dist/_component-variables.sass',
-      ...files.values()
+      ...[...files.values()].sort()
     ].map(v => `@forward '${normalize(v)}';`).join('\n'),
     'utf8'
   )
