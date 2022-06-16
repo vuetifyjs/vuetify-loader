@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.12](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.11...vite-plugin-vuetify@1.0.0-alpha.12) (2022-06-16)
+
+
+### Features
+
+* support meta.load-css() ([29039f3](https://github.com/vuetifyjs/vuetify-loader/commit/29039f37eca66c8c46744fd87c6d181af9e9d64b))
+* support vuetify beta.4 ([f1a0976](https://github.com/vuetifyjs/vuetify-loader/commit/f1a09765e568c7ee5481dd576765939ffc1fe534))
+
+
+
 ## 1.0.0-alpha.11 (2022-05-21)
 
 

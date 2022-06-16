@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0-alpha.11](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0-alpha.10...webpack-plugin-vuetify@2.0.0-alpha.11) (2022-06-16)
+
+
+### Features
+
+* support vuetify beta.4 ([f1a0976](https://github.com/vuetifyjs/vuetify-loader/commit/f1a09765e568c7ee5481dd576765939ffc1fe534))
+
+
+
 ## 2.0.0-alpha.10 (2022-05-21)
 
 
