@@ -20,7 +20,8 @@
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/vite-plugin",
   "dependencies": {
     "@vuetify/loader-shared": "^1.5.0",
-    "debug": "^4.3.3"
+    "debug": "^4.3.3",
+    "upath": "^2.0.1"
   },
   "peerDependencies": {
     "vite": "^2.7.0",

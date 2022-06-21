@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "lint": "eslint packages/*/src/**/*",
     "dev": "lerna run dev --parallel -- --preserveWatchOutput",
     "build": "lerna run build",
     "publish": "lerna run build && lerna version --no-private && lerna publish from-git"
@@ -14,9 +15,13 @@
     "@types/find-cache-dir": "^3.2.1",
     "@types/loader-utils": "^2.0.3",
     "@types/node": "^16.11.12",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
     "@vitejs/plugin-vue": "^1.10.2",
     "@vue/compiler-sfc": "^3.2.24",
     "conventional-changelog-conventionalcommits": "^4.6.1",
+    "eslint": "^8.18.0",
+    "eslint-plugin-import": "^2.26.0",
     "lerna": "^3.22.1",
     "sass": "^1.52.3",
     "typescript": "^4.4.2",

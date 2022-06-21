@@ -92,7 +92,7 @@ export class VuetifyPlugin {
 
       const blockingModules = new Set<string>()
       const pendingModules = new Map<string, Module>()
-      compiler.hooks.compilation.tap('vuetify-loader', (compilation, params) => {
+      compiler.hooks.compilation.tap('vuetify-loader', (compilation) => {
         compilation.hooks.buildModule.tap('vuetify-loader', (module) => {
           pendingModules.set((module as NormalModule).request, module)
         })
@@ -129,7 +129,7 @@ export class VuetifyPlugin {
             resolve(false)
           }
 
-          let start = files.size
+          const start = files.size
           await promise
           clearTimeout(timeout)
           blockingModules.clear()
