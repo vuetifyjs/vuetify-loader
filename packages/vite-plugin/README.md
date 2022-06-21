@@ -25,6 +25,12 @@ import { createVuetify } from 'vuetify'
 
 export default createVuetify()
 ```
+```js
+// src/main.ts
+import vuetify from '../plugins/vuetify'
+
+createApp(App).use(vuetify).mount('#app')
+```
 
 ## Style loading
 ### Customising variables
