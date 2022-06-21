@@ -1,6 +1,6 @@
 {
   "name": "vuetify-loader",
-  "version": "1.7.3",
+  "version": "1.8.0",
   "description": "A Webpack plugin for treeshaking Vuetify components and more",
   "main": "lib/index.js",
   "repository": {
@@ -30,10 +30,18 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "peerDependenciesMeta": {
-    "gm": { "optional": true },
-    "pug": { "optional": true },
-    "sharp": { "optional": true },
-    "vue-template-compiler": { "optional": true }
+    "gm": {
+      "optional": true
+    },
+    "pug": {
+      "optional": true
+    },
+    "sharp": {
+      "optional": true
+    },
+    "vue-template-compiler": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "gm": "^1.23.1",
