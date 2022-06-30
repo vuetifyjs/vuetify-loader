@@ -14,10 +14,21 @@ function isSubdir (root: string, test: string) {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
 }
 
+function getVuetifyBaseDir () {
+  // If this plugin is `npm link` under another project (e.g. for development
+  // purpose), then multiple Vuetify modules exist. So make sure to pick the
+  // one under the current working directory (i.e. where `npm run` is executed).
+  return path.dirname(
+    require.resolve("vuetify/package.json", {
+      paths: [process.cwd()],
+    })
+  )
+}
+
 const styleImportRegexp = /(@use |meta\.load-css\()['"](vuetify(?:\/lib)?\/styles(?:\/main(?:\.sass)?)?)['"]/
 
 export function stylesPlugin (options: Options): PluginOption {
-  const vuetifyBase = path.dirname(require.resolve('vuetify/package.json'))
+  const vuetifyBase = getVuetifyBaseDir()
   const files = new Set<string>()
 
   let server: ViteDevServer
