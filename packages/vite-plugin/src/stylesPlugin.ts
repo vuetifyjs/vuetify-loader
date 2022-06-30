@@ -133,7 +133,11 @@ export function stylesPlugin (options: Options): PluginOption {
         if (options.styles === 'none') {
           return '\0__void__'
         } else if (options.styles === 'sass') {
-          return source.replace(/\.css$/, '.sass')
+          const target = source.replace(/\.css$/, '.sass')
+          return this.resolve(target, importer, {
+            skipSelf: true,
+            ...custom
+          })
         } else if (options.styles === 'expose') {
           awaitResolve()
 
