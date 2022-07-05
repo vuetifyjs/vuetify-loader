@@ -12,10 +12,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
   integrity sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
 
-"@vue/compiler-sfc@2.7.0-beta.5":
-  version "2.7.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-2.7.0-beta.5.tgz#c771bbe8f50db4eebe2eea32490c9538abbb163e"
-  integrity sha512-pBHd7DqWv+r2h+0FUJstd3QhDAhImRSRDGQaetc4EYV3R36l9UDVplmvipwODbM+06zIIW3C9tonXO67S5YixA==
+"@vue/compiler-sfc@2.7.2":
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-2.7.2.tgz#15ec0a39c81dad831add7da45d28de37e75fa577"
+  integrity sha512-khG5m63A4DSeHEOe5yyjHQY2TAE0pUXqKqxgauNUcFaa8M4+J55OWhagy8Bk8O6cO4GhKbQf2NDYzceijmOy8A==
   dependencies:
     "@babel/parser" "^7.18.4"
     postcss "^8.4.14"
@@ -733,12 +733,12 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-vue@^2.7.0-beta.5:
-  version "2.7.0-beta.5"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.7.0-beta.5.tgz#56d69b89ae4066d10331e5c8453da5f57b3b142a"
-  integrity sha512-fBO2u/yNb6pSLDySbGdOKJj0vo+GzB3oMNMqYa4L1MzBD+Dfsau1ZuHsz34v4xdZ3k/0+Ca0voSCmNSeGSUkuw==
+vue@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.7.2.tgz#d42aba8d03c4e82d4b127f7b764a822cf19f9cdc"
+  integrity sha512-fQPKEfdiUP4bDlrGEjI5MOTkC5s/XIbnfKAx0B3MxJHI4qwh8FPLSo8/9tFkgFiRH3HwvcHjZQ1tCTifOUH0tg==
   dependencies:
-    "@vue/compiler-sfc" "2.7.0-beta.5"
+    "@vue/compiler-sfc" "2.7.2"
     csstype "^3.1.0"
 
 vuetify@^2.6.6:

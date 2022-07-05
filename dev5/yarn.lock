@@ -1001,10 +1001,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.10.tgz#5958a82e41863cfc71f2307b3748e3491ba03785"
   integrity sha512-J32dgx2hw8vXrSbu4ZlVhn1Nm3GbeCFNw2FWL8S5QKucHGY0cyNwjdQdO+KMBZ4wpmC7KhLCiNsdk1RFRIYUQQ==
 
-"@vue/compiler-sfc@2.7.0-beta.8":
-  version "2.7.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-2.7.0-beta.8.tgz#ef7e95e66d2b7f9a6a4b3ea9bbac0f9cd5c11d49"
-  integrity sha512-Y4JlnxL2CLntIdWM7zQ8GIUOAPSb47ScCsAPLDud4Qhh0N/65fQBNZRts8+jQ4beL+GL+lZ6dQmruIBY9bVy8w==
+"@vue/compiler-sfc@2.7.2":
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-2.7.2.tgz#15ec0a39c81dad831add7da45d28de37e75fa577"
+  integrity sha512-khG5m63A4DSeHEOe5yyjHQY2TAE0pUXqKqxgauNUcFaa8M4+J55OWhagy8Bk8O6cO4GhKbQf2NDYzceijmOy8A==
   dependencies:
     "@babel/parser" "^7.18.4"
     postcss "^8.4.14"
@@ -4594,10 +4594,10 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
 
-vue-loader@^15.10.0-beta.6:
-  version "15.10.0-beta.6"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.10.0-beta.6.tgz#61776403af172be7e17b3161bc44e88e7a6bd88b"
-  integrity sha512-AlngnXzFec+jU//Do/VCcMJN8OZ8tYxBRidmQvQABZnWPvYKN28Ac7aQjUg6GH7+Rr6Hs0WPfw/W8+LdQtWzjQ==
+vue-loader@^15.10.0:
+  version "15.10.0"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.10.0.tgz#2a12695c421a2a2cc2138f05a949d04ed086e38b"
+  integrity sha512-VU6tuO8eKajrFeBzMssFUP9SvakEeeSi1BxdTH5o3+1yUyrldp8IERkSdXlMI2t4kxF2sqYUDsQY+WJBxzBmZg==
   dependencies:
     "@vue/component-compiler-utils" "^3.1.0"
     hash-sum "^1.0.2"
@@ -4618,12 +4618,12 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.7.0-beta.8:
-  version "2.7.0-beta.8"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.7.0-beta.8.tgz#b4c3b55cbe88041f212f9e50082386cef5354901"
-  integrity sha512-GiksdE69rKO9DC5ZRoI6bSsp4VXH8uwBpov/1trVO+D9vy95LEiT22d8fups1JrYlMQPUkeWw+NBJwN4inIj0Q==
+vue@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.7.2.tgz#d42aba8d03c4e82d4b127f7b764a822cf19f9cdc"
+  integrity sha512-fQPKEfdiUP4bDlrGEjI5MOTkC5s/XIbnfKAx0B3MxJHI4qwh8FPLSo8/9tFkgFiRH3HwvcHjZQ1tCTifOUH0tg==
   dependencies:
-    "@vue/compiler-sfc" "2.7.0-beta.8"
+    "@vue/compiler-sfc" "2.7.2"
     csstype "^3.1.0"
 
 "vuetify-loader@link:..":
