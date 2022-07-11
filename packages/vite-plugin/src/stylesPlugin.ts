@@ -173,7 +173,7 @@ export function stylesPlugin (options: Options): PluginOption {
     load (id) {
       // When Vite is configured with `optimizeDeps.exclude: ['vuetify']`, the
       // received id contains a version hash (e.g. \0__void__?v=893fa859).
-      if (/^\0?__void__(\?.*)?$/.test(id)) {
+      if (/^\0__void__(\?.*)?$/.test(id)) {
         return ''
       }
 
