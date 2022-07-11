@@ -1,27 +1,9 @@
 import * as path from 'upath'
 import { URLSearchParams } from 'url'
-import { writeStyles } from '@vuetify/loader-shared'
+import { resolveVuetifyBase, writeStyles } from '@vuetify/loader-shared'
 
 import type { Compiler, NormalModule, Module } from 'webpack'
-import type { Resolver, ResolveContext } from 'enhanced-resolve'
 import type { Options } from '@vuetify/loader-shared'
-
-// Can't use require.resolve() for this, it doesn't work with resolve.symlinks
-let vuetifyBase: string
-async function getVuetifyBase (base: string, context: ResolveContext, resolver: Resolver) {
-  if (!getVuetifyBase.promise) {
-    let resolve: (v: any) => void
-    getVuetifyBase.promise = new Promise((_resolve) => resolve = _resolve)
-    resolver.resolve({}, base, 'vuetify/package.json', context, (err, vuetifyPath) => {
-      if (vuetifyPath) {
-        vuetifyBase = path.dirname(vuetifyPath as string)
-      }
-      resolve(true)
-    })
-  }
-  return getVuetifyBase.promise
-}
-getVuetifyBase.promise = null as Promise<any> | null
 
 function isSubdir (root: string, test: string) {
   const relative = path.relative(root, test)
@@ -55,6 +37,8 @@ export class VuetifyPlugin {
       })
     }
 
+    const vuetifyBase = resolveVuetifyBase()
+
     if (
       this.options.styles === 'none' ||
       this.options.styles === 'expose'
@@ -71,7 +55,7 @@ export class VuetifyPlugin {
         factory.hooks.beforeResolve.tap('vuetify-loader', resolveData => {
           if (
             resolveData.request.endsWith('.css') &&
-            isSubdir(path.dirname(require.resolve('vuetify/package.json')), resolveData.context)
+            isSubdir(vuetifyBase, resolveData.context)
           ) {
             const match = resolveData.request.match(/.*!(.+\.css)$/)
             if (match) {
@@ -156,10 +140,6 @@ export class VuetifyPlugin {
           resolver
             .getHook('resolve')
             .tapAsync('vuetify-loader', async (request, context, callback) => {
-              if (request.path && !vuetifyBase && request.request !== 'vuetify/package.json') {
-                await getVuetifyBase(request.path, context, resolver)
-              }
-
               if (!(
                 request.path &&
                 request.request?.endsWith('.css') &&

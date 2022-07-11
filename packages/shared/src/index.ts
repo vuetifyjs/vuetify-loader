@@ -1,3 +1,5 @@
+import * as path from 'upath'
+
 export interface Options {
   autoImport?: importPluginOptions,
   styles?: true | 'none' | 'expose' | 'sass',
@@ -12,3 +14,7 @@ export type importPluginOptions =
 
 export { generateImports } from './imports/generateImports'
 export { cacheDir, writeStyles } from './styles/writeStyles'
+
+export function resolveVuetifyBase () {
+  return path.dirname(require.resolve('vuetify/package.json', { paths: [process.cwd()] }))
+}

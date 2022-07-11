@@ -1,7 +1,7 @@
 import { utimes } from 'fs/promises'
 import * as path from 'upath'
 import _debug from 'debug'
-import { cacheDir, writeStyles } from '@vuetify/loader-shared'
+import { cacheDir, writeStyles, resolveVuetifyBase } from '@vuetify/loader-shared'
 
 import type { PluginOption, ViteDevServer } from 'vite'
 import type { Options } from '@vuetify/loader-shared'
@@ -17,7 +17,7 @@ function isSubdir (root: string, test: string) {
 const styleImportRegexp = /(@use |meta\.load-css\()['"](vuetify(?:\/lib)?\/styles(?:\/main(?:\.sass)?)?)['"]/
 
 export function stylesPlugin (options: Options): PluginOption {
-  const vuetifyBase = path.dirname(require.resolve('vuetify/package.json'))
+  const vuetifyBase = resolveVuetifyBase()
   const files = new Set<string>()
 
   let server: ViteDevServer
