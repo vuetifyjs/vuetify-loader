@@ -1,10 +1,10 @@
-import { PluginOption } from 'vite'
+import { Plugin } from 'vite'
 import { Options } from '@vuetify/loader-shared'
 
 import { importPlugin } from './importPlugin'
 import { stylesPlugin } from './stylesPlugin'
 
-export = function vuetify (_options: Options = {}) {
+function vuetify (_options: Options = {}): Plugin[] {
   const options: Options = {
     autoImport: true,
     styles: true,
@@ -12,7 +12,7 @@ export = function vuetify (_options: Options = {}) {
     ..._options,
   }
 
-  const plugins: PluginOption[] = []
+  const plugins: Plugin[] = []
   if (options.autoImport) {
     plugins.push(importPlugin())
   }
@@ -22,3 +22,6 @@ export = function vuetify (_options: Options = {}) {
 
   return plugins
 }
+
+module.exports = vuetify
+export default vuetify

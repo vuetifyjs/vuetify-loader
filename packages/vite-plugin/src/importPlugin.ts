@@ -1,5 +1,5 @@
 import { extname } from 'path'
-import { Plugin, PluginOption } from 'vite'
+import { Plugin } from 'vite'
 import { generateImports } from '@vuetify/loader-shared'
 import { parse as parseUrl, URLSearchParams } from 'url'
 
@@ -12,7 +12,7 @@ function parseId (id: string) {
   }
 }
 
-export function importPlugin (): PluginOption {
+export function importPlugin (): Plugin {
   return {
     name: 'vuetify:import',
     configResolved (this: Plugin, config) {
