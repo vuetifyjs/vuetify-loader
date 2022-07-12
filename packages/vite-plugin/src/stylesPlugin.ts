@@ -2,6 +2,7 @@ import { utimes } from 'fs/promises'
 import * as path from 'upath'
 import _debug from 'debug'
 import { cacheDir, writeStyles, resolveVuetifyBase } from '@vuetify/loader-shared'
+import { normalizePath } from 'vite'
 
 import type { Plugin, ViteDevServer } from 'vite'
 import type { Options } from '@vuetify/loader-shared'
@@ -98,11 +99,13 @@ export function stylesPlugin (options: Options): Plugin {
       await writeStyles(files)
 
       if (server && needsTouch) {
-        server.moduleGraph.getModulesByFile(cacheDir('styles.scss'))?.forEach(module => {
+        const cacheFile = normalizePath(cacheDir('styles.scss'))
+        server.moduleGraph.getModulesByFile(cacheFile)?.forEach(module => {
           module.importers.forEach(module => {
             if (module.file) {
+              const now = new Date()
               debug(`touching ${module.file}`)
-              utimes(module.file, Date.now(), Date.now())
+              utimes(module.file, now, now)
             }
           })
         })
