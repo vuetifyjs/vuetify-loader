@@ -49,7 +49,7 @@ export function stylesPlugin (options: Options): PluginOption {
           !blockingModules.has(v.id!)
         ))
 
-      pendingModules = modules.map(([k, v]) => v.id!)
+      pendingModules = modules.map(([, v]) => v.id!)
 
       return (await Promise.all(
         modules.map(([k, v]) => server.transformRequest(k).then(() => v))
@@ -64,6 +64,7 @@ export function stylesPlugin (options: Options): PluginOption {
       console.error('vuetify:styles fallback timeout hit', {
         blockingModules: Array.from(blockingModules.values()),
         pendingModules,
+        pendingRequests: server._pendingRequests.keys()
       })
       resolve(false)
     }, options.stylesTimeout)
