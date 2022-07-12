@@ -17,18 +17,18 @@
     "@types/node": "^16.11.12",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
-    "@vitejs/plugin-vue": "^1.10.2",
-    "@vue/compiler-sfc": "^3.2.24",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/compiler-sfc": "^3.2.37",
     "conventional-changelog-conventionalcommits": "^4.6.1",
     "eslint": "^8.18.0",
     "eslint-plugin-import": "^2.26.0",
     "lerna": "^3.22.1",
     "sass": "^1.52.3",
     "typescript": "^4.4.2",
-    "vite": "^2.7.1",
-    "vue": "^3.2.19",
+    "vite": "^2.9.14",
+    "vue": "^3.2.37",
     "vue-loader": "^16.5.0",
-    "vuetify": "npm:@vuetify/nightly@next",
+    "vuetify": "npm:@vuetify/nightly@3.0.0-next-20220710.0",
     "webpack": "^5.65.0"
   }
 }
