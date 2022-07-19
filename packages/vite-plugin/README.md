@@ -13,6 +13,8 @@
 ## Automatic imports
 ```js
 // vite.config.js
+import vuetify from 'vite-plugin-vuetify';
+
 plugins: [
   vue(),
   vuetify({ autoImport: true }), // Enabled by default
@@ -30,6 +32,8 @@ export default createVuetify()
 ### Customising variables
 ```js
 // vite.config.js
+import vuetify from 'vite-plugin-vuetify';
+
 plugins: [
   vue(),
   vuetify({ styles: 'expose' }),
@@ -53,6 +57,8 @@ export default createVuetify()
 ### Remove all style imports
 ```js
 // vite.config.js
+import vuetify from 'vite-plugin-vuetify';
+
 plugins: [
   vue(),
   vuetify({ styles: 'none' }),
@@ -70,6 +76,8 @@ Vuetify 3 uses precompiled css by default, these imports can optionally be modif
 
 ```js
 // vite.config.js
+import vuetify from 'vite-plugin-vuetify';
+
 plugins: [
   vue(),
   vuetify({ styles: 'sass' }),
