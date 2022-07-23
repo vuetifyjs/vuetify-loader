@@ -168,7 +168,10 @@ export function stylesPlugin (options: Options): Plugin {
         await awaitResolve(id)
         debug(`returning ${id}`)
 
-        return code.replace(styleImportRegexp, '$1".cache/vuetify/styles.scss"')
+        return {
+          code: code.replace(styleImportRegexp, '$1".cache/vuetify/styles.scss"'),
+          map: null,
+        }
       }
     },
     load (id) {

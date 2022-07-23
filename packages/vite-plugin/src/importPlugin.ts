@@ -22,16 +22,16 @@ export function importPlugin (): Plugin {
     },
     async transform (code, id) {
       const { query, path } = parseId(id)
-      if (extname(path) === '.vue' && !query) {
-        if (/^import { render as _sfc_render } from ".*"$/m.test(code)) {
-          return null
-        }
 
+      if (
+        (!query && extname(path) === '.vue' && !/^import { render as _sfc_render } from ".*"$/m.test(code)) ||
+        (query && 'vue' in query && query.type === 'template')
+      ) {
         const { code: imports, source } = generateImports(code)
-        return source + imports
-      } else if (query && 'vue' in query && query.type === 'template') {
-        const { code: imports, source } = generateImports(code)
-        return source + imports
+        return {
+          code: source + imports,
+          map: null,
+        }
       }
 
       return null
