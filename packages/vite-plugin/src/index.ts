@@ -8,7 +8,7 @@ function vuetify (_options: Options = {}): Plugin[] {
   const options: Options = {
     autoImport: true,
     styles: true,
-    stylesTimeout: 10000,
+    stylesTimeout: 1000,
     ..._options,
   }
 

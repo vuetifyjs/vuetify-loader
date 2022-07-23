@@ -33,48 +33,57 @@ export function stylesPlugin (options: Options): Plugin {
     if (!server) {
       await new Promise(resolve => setTimeout(resolve, 0))
       const modules = Array.from(context.getModuleIds())
-        .filter(id => !blockingModules.has(id)) // Ignore the current file
+        .filter(id => {
+          return !blockingModules.has(id) && // Ignore the current file
+            !/\w\.(s[ac]|c)ss/.test(id) // Ignore stylesheets
+        })
         .map(id => context.getModuleInfo(id)!)
         .filter(module => module.code == null) // Ignore already loaded modules
 
       pendingModules = modules.map(module => module.id)
+      if (!pendingModules.length) return 0
 
-      return (await Promise.all(
-        modules.map(module => context.load(module))
-      )).map(module => module.id)
+      const promises = modules.map(module => context.load(module))
+      await Promise.race(promises)
+
+      return promises.length
     } else {
       const modules = Array.from(server.moduleGraph.urlToModuleMap.entries())
         .filter(([k, v]) => (
-          v.transformResult == null &&
+          v.transformResult == null && // Ignore already loaded modules
           !k.startsWith('/@id/') &&
-          !blockingModules.has(v.id!)
+          !/\w\.(s[ac]|c)ss/.test(k) && // Ignore stylesheets
+          !blockingModules.has(v.id!) && // Ignore the current file
+          !/\/node_modules\/\.vite\/deps\/(?!vuetify[._])/.test(k) // Ignore dependencies
         ))
 
       pendingModules = modules.map(([, v]) => v.id!)
+      if (!pendingModules.length) return 0
 
-      return (await Promise.all(
-        modules.map(([k, v]) => server.transformRequest(k).then(() => v))
-      )).map(module => module.id!)
+      const promises = modules.map(([k, v]) => server.transformRequest(k).then(() => v))
+      await Promise.race(promises)
+
+      return promises.length
     }
   }
 
   let timeout: NodeJS.Timeout
   async function awaitBlocking () {
-    clearTimeout(timeout)
-    timeout = setTimeout(() => {
-      console.error('vuetify:styles fallback timeout hit', {
-        blockingModules: Array.from(blockingModules.values()),
-        pendingModules,
-        pendingRequests: server._pendingRequests.keys()
-      })
-      resolve(false)
-    }, options.stylesTimeout)
-
     let pending
     do {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        console.error('vuetify:styles fallback timeout hit', {
+          blockingModules: Array.from(blockingModules.values()),
+          pendingModules,
+          pendingRequests: server?._pendingRequests.keys()
+        })
+        resolve(false)
+      }, options.stylesTimeout)
+
       pending = await Promise.any<boolean | number | null>([
         promise,
-        getPendingModules().then(v => v.length)
+        getPendingModules()
       ])
       debug(pending, 'pending modules', pendingModules)
     } while (pending)
