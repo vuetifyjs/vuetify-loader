@@ -24,7 +24,7 @@
     "upath": "^2.0.1"
   },
   "peerDependencies": {
-    "vite": "^2.7.0",
+    "vite": "^2.7.0 || ^3.0.0",
     "vuetify": "^3.0.0-beta.4"
   },
   "engines": {
