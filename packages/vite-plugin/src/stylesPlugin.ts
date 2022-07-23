@@ -1,8 +1,8 @@
 import { utimes } from 'fs/promises'
 import * as path from 'upath'
 import _debug from 'debug'
-import { cacheDir, writeStyles, resolveVuetifyBase } from '@vuetify/loader-shared'
 import { normalizePath } from 'vite'
+import { cacheDir, writeStyles, resolveVuetifyBase } from '@vuetify/loader-shared'
 
 import type { Plugin, ViteDevServer } from 'vite'
 import type { Options } from '@vuetify/loader-shared'
