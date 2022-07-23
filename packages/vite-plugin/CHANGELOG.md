@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.13](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.12...vite-plugin-vuetify@1.0.0-alpha.13) (2022-07-23)
+
+
+### Bug Fixes
+
+* add vue and upath to dependencies ([ac5af82](https://github.com/vuetifyjs/vuetify-loader/commit/ac5af823f1bfd8bc79dc3eb353eed64adef34421)), closes [#242](https://github.com/vuetifyjs/vuetify-loader/issues/242)
+* allow vite 3 ([a64f0c1](https://github.com/vuetifyjs/vuetify-loader/commit/a64f0c15ba71dbd5a323091328be50f70133724a)), closes [#256](https://github.com/vuetifyjs/vuetify-loader/issues/256)
+* cache importers invalidation on Windows ([#255](https://github.com/vuetifyjs/vuetify-loader/issues/255)) ([ab0c22d](https://github.com/vuetifyjs/vuetify-loader/commit/ab0c22d1fb5d560686b8533e825290a413178b7c))
+* load virtual requests with `?v=` query string ([#252](https://github.com/vuetifyjs/vuetify-loader/issues/252)) ([21bca2f](https://github.com/vuetifyjs/vuetify-loader/commit/21bca2f3c658168c371e850a8b6b1acc9757a0cf))
+* passthrough sourcemaps ([dfdc815](https://github.com/vuetifyjs/vuetify-loader/commit/dfdc815ad175df9ffd8be5c4847d8fe29e442f39)), closes [#233](https://github.com/vuetifyjs/vuetify-loader/issues/233)
+* resolve vuetify relative to cwd ([9bf71d4](https://github.com/vuetifyjs/vuetify-loader/commit/9bf71d4fd8596cf8333e3041f4307a851c7aba6a)), closes [#248](https://github.com/vuetifyjs/vuetify-loader/issues/248)
+* skip certain files in pendingModules, timeout per file ([1543182](https://github.com/vuetifyjs/vuetify-loader/commit/15431824d3c7ee0bf6314822476c57d1be0448ee)), closes [#249](https://github.com/vuetifyjs/vuetify-loader/issues/249)
+* use default export ([c5e01f5](https://github.com/vuetifyjs/vuetify-loader/commit/c5e01f5b0b1f018800be9b4e1a0cd2501a6f2a57)), closes [#227](https://github.com/vuetifyjs/vuetify-loader/issues/227)
+
+
+
 ## [1.0.0-alpha.12](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.11...vite-plugin-vuetify@1.0.0-alpha.12) (2022-06-16)
 
 

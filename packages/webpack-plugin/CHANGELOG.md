@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0-alpha.12](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0-alpha.11...webpack-plugin-vuetify@2.0.0-alpha.12) (2022-07-23)
+
+
+### Bug Fixes
+
+* add vue and upath to dependencies ([ac5af82](https://github.com/vuetifyjs/vuetify-loader/commit/ac5af823f1bfd8bc79dc3eb353eed64adef34421)), closes [#242](https://github.com/vuetifyjs/vuetify-loader/issues/242)
+* resolve vuetify relative to cwd ([9bf71d4](https://github.com/vuetifyjs/vuetify-loader/commit/9bf71d4fd8596cf8333e3041f4307a851c7aba6a)), closes [#248](https://github.com/vuetifyjs/vuetify-loader/issues/248)
+
+
+
 ## [2.0.0-alpha.11](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0-alpha.10...webpack-plugin-vuetify@2.0.0-alpha.11) (2022-06-16)
 
 
