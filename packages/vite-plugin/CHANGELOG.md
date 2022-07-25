@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.14](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.13...vite-plugin-vuetify@1.0.0-alpha.14) (2022-07-25)
+
+
+### Bug Fixes
+
+* transform imports in script setup lang="ts" ([322f6ba](https://github.com/vuetifyjs/vuetify-loader/commit/322f6ba511c0da4ffbb90e49bd7d467d993b8ac6))
+
+
+
 ## [1.0.0-alpha.13](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.12...vite-plugin-vuetify@1.0.0-alpha.13) (2022-07-23)
 
 
