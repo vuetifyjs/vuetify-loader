@@ -25,7 +25,7 @@ export function importPlugin (): Plugin {
 
       if (
         (!query && extname(path) === '.vue' && !/^import { render as _sfc_render } from ".*"$/m.test(code)) ||
-        (query && 'vue' in query && query.type === 'template')
+        (query && 'vue' in query && (query.type === 'template' || (query.type === 'script' && query.setup === 'true')))
       ) {
         const { code: imports, source } = generateImports(code)
         return {
