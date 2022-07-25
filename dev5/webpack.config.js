@@ -84,6 +84,7 @@ module.exports = {
     hints: false
   },
   optimization: {
+    minimize: false,
     concatenateModules: false
   }
 }

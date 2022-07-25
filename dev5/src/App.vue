@@ -9,6 +9,9 @@
           <v-text-field></v-text-field>
         </v-card-text>
       </v-card>
+      <v-card v-bind="$attrs" v-ripple>v-bind</v-card>
+      <v-card v-on="$listeners" v-ripple>v-on</v-card>
+      <v-card v-bind="$attrs" v-on="$listeners" v-ripple>v-bind v-on</v-card>
       <pre>{{ {
         directives: [{
           name: "resize"
