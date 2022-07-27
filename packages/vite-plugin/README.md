@@ -45,6 +45,7 @@ export default createVuetify()
 ```scss
 // main.scss
 @use 'vuetify/styles' with (
+  $body-font-family: ('Open Sans', sans-serif),
   $color-pack: false,
   $utilities: false,
 );
