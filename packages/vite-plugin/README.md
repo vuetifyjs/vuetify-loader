@@ -44,7 +44,7 @@ export default createVuetify()
 ```
 ```scss
 // main.scss
-@use 'vuetify/styles' with (
+@use 'vuetify' with (
   $color-pack: false,
   $utilities: false,
 );

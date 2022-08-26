@@ -1,6 +1,6 @@
 import { LoaderDefinitionFunction } from 'webpack'
 
-const styleImportRegexp = /@use ['"]vuetify(\/lib)?\/styles(\/main(\.sass)?)?['"]/
+const styleImportRegexp = /(@use |meta\.load-css\()['"](vuetify(?:\/lib)?(?:\/styles(?:\/main(?:\.sass)?)?)?)['"]/
 
 export default (function VuetifyLoader (content, sourceMap) {
   if (!styleImportRegexp.test(content)) {

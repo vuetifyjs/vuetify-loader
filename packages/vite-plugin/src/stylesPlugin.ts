@@ -15,7 +15,7 @@ function isSubdir (root: string, test: string) {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
 }
 
-const styleImportRegexp = /(@use |meta\.load-css\()['"](vuetify(?:\/lib)?\/styles(?:\/main(?:\.sass)?)?)['"]/
+const styleImportRegexp = /(@use |meta\.load-css\()['"](vuetify(?:\/lib)?(?:\/styles(?:\/main(?:\.sass)?)?)?)['"]/
 
 export function stylesPlugin (options: Options): Plugin {
   const vuetifyBase = resolveVuetifyBase()
