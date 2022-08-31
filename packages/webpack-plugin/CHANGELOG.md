@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0-alpha.13](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0-alpha.12...webpack-plugin-vuetify@2.0.0-alpha.13) (2022-08-31)
+
+
+### Features
+
+* add styles.configFile option ([9142e9d](https://github.com/vuetifyjs/vuetify-loader/commit/9142e9d644ba1e4f86486440c29a318704090636)), closes [#263](https://github.com/vuetifyjs/vuetify-loader/issues/263) [#245](https://github.com/vuetifyjs/vuetify-loader/issues/245) [#221](https://github.com/vuetifyjs/vuetify-loader/issues/221)
+* support "[@use](https://github.com/use) 'vuetify'" ([e578193](https://github.com/vuetifyjs/vuetify-loader/commit/e578193a685dd581f6f15ff6e5e99f1a6eebbf1c))
+
+
+
 ## [2.0.0-alpha.12](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0-alpha.11...webpack-plugin-vuetify@2.0.0-alpha.12) (2022-07-23)
 
 

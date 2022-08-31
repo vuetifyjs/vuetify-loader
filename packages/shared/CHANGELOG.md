@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.5.1...@vuetify/loader-shared@1.6.0) (2022-08-31)
+
+
+### Features
+
+* add styles.configFile option ([9142e9d](https://github.com/vuetifyjs/vuetify-loader/commit/9142e9d644ba1e4f86486440c29a318704090636)), closes [#263](https://github.com/vuetifyjs/vuetify-loader/issues/263) [#245](https://github.com/vuetifyjs/vuetify-loader/issues/245) [#221](https://github.com/vuetifyjs/vuetify-loader/issues/221)
+
+
+
 ### [1.5.1](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.5.0...@vuetify/loader-shared@1.5.1) (2022-07-23)
 
 
