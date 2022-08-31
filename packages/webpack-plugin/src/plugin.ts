@@ -1,6 +1,10 @@
-import * as path from 'upath'
 import { URLSearchParams } from 'url'
-import { resolveVuetifyBase, writeStyles } from '@vuetify/loader-shared'
+import { writeFile } from 'fs/promises'
+
+import * as path from 'upath'
+import * as mkdirp from 'mkdirp'
+
+import { resolveVuetifyBase, writeStyles, includes, isObject, cacheDir } from '@vuetify/loader-shared'
 
 import type { Compiler, NormalModule, Module } from 'webpack'
 import type { Options } from '@vuetify/loader-shared'
@@ -39,10 +43,23 @@ export class VuetifyPlugin {
 
     const vuetifyBase = resolveVuetifyBase()
 
-    if (
-      this.options.styles === 'none' ||
-      this.options.styles === 'expose'
-    ) {
+    function hookResolve (transform: (file: string) => string | Promise<string>) {
+      compiler.resolverFactory.hooks.resolver.for('normal').tap('vuetify-loader', resolver => {
+        resolver.getHook('beforeResult').tapAsync('vuetify-loader', async (request, context, callback) => {
+          if (
+            request.path &&
+            request.path.endsWith('.css') &&
+            isSubdir(vuetifyBase, request.path)
+          ) {
+            request.path = await transform(request.path)
+          }
+
+          callback(null, request)
+        })
+      })
+    }
+
+    if (includes(['none', 'expose'], this.options.styles)) {
       compiler.options.module.rules.push({
         enforce: 'pre',
         test: /\.css$/,
@@ -51,21 +68,7 @@ export class VuetifyPlugin {
         loader: 'null-loader',
       })
     } else if (this.options.styles === 'sass') {
-      compiler.hooks.normalModuleFactory.tap('vuetify-loader', factory => {
-        factory.hooks.beforeResolve.tap('vuetify-loader', resolveData => {
-          if (
-            resolveData.request.endsWith('.css') &&
-            isSubdir(vuetifyBase, resolveData.context)
-          ) {
-            const match = resolveData.request.match(/.*!(.+\.css)$/)
-            if (match) {
-              resolveData.request = match[1].replace(/\.css$/, '.sass')
-            } else {
-              resolveData.request = resolveData.request.replace(/\.css$/, '.sass')
-            }
-          }
-        })
-      })
+      hookResolve(file => file.replace(/\.css$/, '.sass'))
     }
 
     if (this.options.styles === 'expose') {
@@ -163,6 +166,24 @@ export class VuetifyPlugin {
               )
             })
         }
+      })
+    } else if (isObject(this.options.styles)) {
+      const configFile = path.isAbsolute(this.options.styles.configFile)
+        ? this.options.styles.configFile
+        : path.join(
+          compiler.options.context || process.cwd(),
+          this.options.styles.configFile,
+        )
+
+      hookResolve(async request => {
+        const target = request.replace(/\.css$/, '.sass')
+        const file = path.relative(vuetifyBase, target)
+        const cacheFile = cacheDir(file)
+
+        await mkdirp(path.dirname(cacheFile))
+        await writeFile(cacheFile, `@use "${configFile}"\n@use "${target}"`)
+
+        return cacheFile
       })
     }
   }

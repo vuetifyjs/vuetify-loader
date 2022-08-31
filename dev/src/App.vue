@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <v-alert>Alert</v-alert>
-      <v-card v-ripple>
+      <v-card v-ripple class="bg-red">
         <div style="text-align: center">
           <v-img src="/vuetify.png" style="display: inline-flex"></v-img>
         </div>

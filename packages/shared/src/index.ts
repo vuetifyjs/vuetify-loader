@@ -2,7 +2,9 @@ import * as path from 'upath'
 
 export interface Options {
   autoImport?: importPluginOptions,
-  styles?: true | 'none' | 'expose' | 'sass',
+  styles?: true | 'none' | 'expose' | 'sass' | {
+    configFile: string,
+  },
   /** @internal Only for testing */
   stylesTimeout?: number
 }
@@ -17,4 +19,12 @@ export { cacheDir, writeStyles } from './styles/writeStyles'
 
 export function resolveVuetifyBase () {
   return path.dirname(require.resolve('vuetify/package.json', { paths: [process.cwd()] }))
+}
+
+export function isObject (value: any): value is object {
+  return value !== null && typeof value === 'object'
+}
+
+export function includes (arr: any[], val: any) {
+  return arr.includes(val)
 }

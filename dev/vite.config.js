@@ -8,7 +8,12 @@ export default defineConfig(({ command }) => ({
   root: path.resolve(__dirname, 'src'),
   plugins: [
     vue(),
-    vuetify({ styles: 'expose', autoImport: true }),
+    vuetify({
+      autoImport: true,
+      styles: {
+        configFile: 'settings.scss',
+      },
+    }),
     {
       name: 'configure-server',
       configureServer(server) {

@@ -15,6 +15,7 @@
     "@types/find-cache-dir": "^3.2.1",
     "@types/loader-utils": "^2.0.3",
     "@types/node": "^16.11.12",
+    "@types/mkdirp": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "@vitejs/plugin-vue": "^3.0.1",

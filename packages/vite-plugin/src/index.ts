@@ -1,5 +1,5 @@
 import { Plugin } from 'vite'
-import { Options } from '@vuetify/loader-shared'
+import { Options, isObject, includes } from '@vuetify/loader-shared'
 
 import { importPlugin } from './importPlugin'
 import { stylesPlugin } from './stylesPlugin'
@@ -16,7 +16,7 @@ function vuetify (_options: Options = {}): Plugin[] {
   if (options.autoImport) {
     plugins.push(importPlugin())
   }
-  if (options.styles === 'none' || options.styles === 'expose' || options.styles === 'sass') {
+  if (includes(['none', 'expose', 'sass'], options.styles) || isObject(options.styles)) {
     plugins.push(stylesPlugin(options))
   }
 

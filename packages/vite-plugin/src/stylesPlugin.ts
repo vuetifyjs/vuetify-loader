@@ -126,6 +126,9 @@ export function stylesPlugin (options: Options): Plugin {
     return promise
   }
 
+  let configFile: string | undefined
+  const tempFiles = new Map<string, string>()
+
   return {
     name: 'vuetify:styles',
     enforce: 'pre',
@@ -137,11 +140,22 @@ export function stylesPlugin (options: Options): Plugin {
         context = this
       }
     },
+    configResolved (config) {
+      if (typeof options.styles === 'object') {
+        if (path.isAbsolute(options.styles.configFile)) {
+          configFile = options.styles.configFile
+        } else {
+          configFile = path.join(config.root || process.cwd(), options.styles.configFile)
+        }
+      }
+    },
     async resolveId (source, importer, { custom }) {
       if (
-        importer &&
-        source.endsWith('.css') &&
-        isSubdir(vuetifyBase, path.isAbsolute(source) ? source : importer)
+        source === 'vuetify/styles' || (
+          importer &&
+          source.endsWith('.css') &&
+          isSubdir(vuetifyBase, path.isAbsolute(source) ? source : importer)
+        )
       ) {
         if (options.styles === 'none') {
           return '\0__void__'
@@ -165,7 +179,21 @@ export function stylesPlugin (options: Options): Plugin {
 
             return '\0__void__'
           }
+        } else if (typeof options.styles === 'object') {
+          const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
+
+          if (!resolution) return null
+
+          const target = resolution.id.replace(/\.css$/, '.sass')
+          const file = path.relative(path.join(vuetifyBase, 'lib'), target)
+          const contents = `@use "${configFile}"\n@use "${target}"`
+
+          tempFiles.set(file, contents)
+
+          return `\0plugin-vuetify:${file}`
         }
+      } else if (source.startsWith('/plugin-vuetify:')) {
+        return '\0' + source.slice(1)
       }
 
       return null
@@ -191,6 +219,12 @@ export function stylesPlugin (options: Options): Plugin {
       // received id contains a version hash (e.g. \0__void__?v=893fa859).
       if (/^\0__void__(\?.*)?$/.test(id)) {
         return ''
+      }
+
+      if (id.startsWith('\0plugin-vuetify')) {
+        const file = /^\0plugin-vuetify:(.*)(\?.*)?$/.exec(id)![1]
+
+        return tempFiles.get(file)
       }
 
       return null

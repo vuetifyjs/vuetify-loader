@@ -10,7 +10,7 @@ function sassLoaderOptions (indentedSyntax = false) {
   return {
     // implementation: require('sass'),
     // additionalData: `@import "~@/_variables.scss"` + (indentedSyntax ? '' : ';'),
-    api: 'modern',
+    // api: 'modern',
     sassOptions: {
       indentedSyntax,
       // importers: [{
@@ -86,12 +86,14 @@ module.exports = {
       'vue$': 'vue/dist/vue.runtime.esm-bundler.js',
       '@': path.resolve(__dirname, 'src')
     },
-    extensions: ['*', '.js', '.mjs', '.cjs', '.vue', '.json']
+    extensions: ['*', '.js', '.mjs', '.cjs', '.vue', '.json', '.sass', '.scss']
   },
   plugins: [
     new VueLoaderPlugin(),
     new VuetifyPlugin({
-      styles: 'expose',
+      styles: {
+        configFile: './src/settings.scss',
+      },
       // progressiveImages: true
     }),
     // new BundleAnalyzerPlugin({
