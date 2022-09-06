@@ -15,8 +15,8 @@ function parseId (id: string) {
 export function importPlugin (): Plugin {
   return {
     name: 'vuetify:import',
-    configResolved (this: Plugin, config) {
-      if (config.plugins.indexOf(this) < config.plugins.findIndex(plugin => plugin.name === 'vite:vue')) {
+    configResolved (config) {
+      if (config.plugins.findIndex(plugin => plugin.name === 'vuetify:import') < config.plugins.findIndex(plugin => plugin.name === 'vite:vue')) {
         throw new Error('Vuetify plugin must be loaded after the vue plugin')
       }
     },
