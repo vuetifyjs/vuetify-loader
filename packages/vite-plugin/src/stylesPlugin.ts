@@ -194,6 +194,8 @@ export function stylesPlugin (options: Options): Plugin {
         }
       } else if (source.startsWith('/plugin-vuetify:')) {
         return '\0' + source.slice(1)
+      } else if (source.startsWith('/@id/__x00__plugin-vuetify:')) {
+        return '\0' + source.slice(12)
       }
 
       return null
@@ -222,7 +224,7 @@ export function stylesPlugin (options: Options): Plugin {
       }
 
       if (id.startsWith('\0plugin-vuetify')) {
-        const file = /^\0plugin-vuetify:(.*)(\?.*)?$/.exec(id)![1]
+        const file = /^\0plugin-vuetify:(.*?)(\?.*)?$/.exec(id)![1]
 
         return tempFiles.get(file)
       }
