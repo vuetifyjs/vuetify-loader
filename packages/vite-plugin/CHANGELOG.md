@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-alpha.17](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.16...vite-plugin-vuetify@1.0.0-alpha.17) (2022-09-12)
+
+
+### Bug Fixes
+
+* resolve stylesheets when using configFile with optimizeDeps.exclude ([79f51cf](https://github.com/vuetifyjs/vuetify-loader/commit/79f51cff6907fce85f83d252baf70b91238e4b9c)), closes [#268](https://github.com/vuetifyjs/vuetify-loader/issues/268)
+
+
+
 ## [1.0.0-alpha.16](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.15...vite-plugin-vuetify@1.0.0-alpha.16) (2022-09-06)
 
 
