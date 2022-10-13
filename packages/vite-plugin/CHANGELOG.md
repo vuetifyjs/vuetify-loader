@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.17...vite-plugin-vuetify@1.0.0) (2022-10-13)
+
+
+### Features
+
+* add transformAssetUrls ([c2e525b](https://github.com/vuetifyjs/vuetify-loader/commit/c2e525b3a3ad5582ffc50216a94c47b94f1c8fc9)), closes [#237](https://github.com/vuetifyjs/vuetify-loader/issues/237)
+
+
+### Bug Fixes
+
+* ignore non-standard query parameters ([183f9dc](https://github.com/vuetifyjs/vuetify-loader/commit/183f9dcc4db15afe9f5f4c46624301696c097750)), closes [#271](https://github.com/vuetifyjs/vuetify-loader/issues/271)
+
+
+
 ## [1.0.0-alpha.17](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.16...vite-plugin-vuetify@1.0.0-alpha.17) (2022-09-12)
 
 

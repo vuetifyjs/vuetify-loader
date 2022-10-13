@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.6.0...@vuetify/loader-shared@1.7.0) (2022-10-13)
+
+
+### Features
+
+* add transformAssetUrls ([c2e525b](https://github.com/vuetifyjs/vuetify-loader/commit/c2e525b3a3ad5582ffc50216a94c47b94f1c8fc9)), closes [#237](https://github.com/vuetifyjs/vuetify-loader/issues/237)
+
+
+
 ## [1.6.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.5.1...@vuetify/loader-shared@1.6.0) (2022-08-31)
 
 

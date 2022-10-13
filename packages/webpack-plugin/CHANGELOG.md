@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0-alpha.13...webpack-plugin-vuetify@2.0.0) (2022-10-13)
+
+
+### Features
+
+* add transformAssetUrls ([c2e525b](https://github.com/vuetifyjs/vuetify-loader/commit/c2e525b3a3ad5582ffc50216a94c47b94f1c8fc9)), closes [#237](https://github.com/vuetifyjs/vuetify-loader/issues/237)
+
+
+
 ## [2.0.0-alpha.13](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0-alpha.12...webpack-plugin-vuetify@2.0.0-alpha.13) (2022-08-31)
 
 
