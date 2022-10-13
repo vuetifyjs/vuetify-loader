@@ -100,3 +100,21 @@ plugins: [
   vuetify({ styles: 'sass' }),
 ]
 ```
+
+## Image loading
+
+https://github.com/vitejs/vite/tree/main/packages/plugin-vue#asset-url-handling
+
+```js
+// vite.config.js
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+
+export default {
+  plugins: [
+    vue({ 
+      template: { transformAssetUrls }
+    }),
+    vuetify(),
+  ],
+}
+```

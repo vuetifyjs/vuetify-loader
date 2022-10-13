@@ -4,7 +4,7 @@ import { writeFile } from 'fs/promises'
 import * as path from 'upath'
 import * as mkdirp from 'mkdirp'
 
-import { resolveVuetifyBase, writeStyles, includes, isObject, cacheDir } from '@vuetify/loader-shared'
+import { resolveVuetifyBase, writeStyles, includes, isObject, cacheDir, transformAssetUrls } from '@vuetify/loader-shared'
 
 import type { Compiler, NormalModule, Module } from 'webpack'
 import type { Options } from '@vuetify/loader-shared'
@@ -39,6 +39,14 @@ export class VuetifyPlugin {
         },
         use: { loader: require.resolve('./scriptLoader') },
       })
+    }
+
+    const vueLoader = compiler.options.module.rules.find(rule => {
+      return typeof rule !== 'string' && rule.loader && path.toUnix(rule.loader).endsWith('vue-loader/dist/templateLoader.js')
+    })
+    const vueOptions = typeof vueLoader === 'object' && vueLoader?.options
+    if (vueOptions && typeof vueOptions === 'object') {
+      vueOptions.transformAssetUrls ??= transformAssetUrls
     }
 
     const vuetifyBase = resolveVuetifyBase()

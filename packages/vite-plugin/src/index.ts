@@ -1,5 +1,5 @@
 import { Plugin } from 'vite'
-import { Options, isObject, includes } from '@vuetify/loader-shared'
+import { Options, isObject, includes, transformAssetUrls } from '@vuetify/loader-shared'
 
 import { importPlugin } from './importPlugin'
 import { stylesPlugin } from './stylesPlugin'
@@ -25,3 +25,6 @@ function vuetify (_options: Options = {}): Plugin[] {
 
 module.exports = vuetify
 export default vuetify
+
+module.exports.transformAssetUrls = transformAssetUrls
+export { transformAssetUrls }
