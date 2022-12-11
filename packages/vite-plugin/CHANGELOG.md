@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.1](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0...vite-plugin-vuetify@1.0.1) (2022-12-11)
+
+
+### Bug Fixes
+
+* support vite 4 ([b7d6661](https://github.com/vuetifyjs/vuetify-loader/commit/b7d6661a8b6fe3b87c95a3c5e3961cc6cb2e661d)), closes [#279](https://github.com/vuetifyjs/vuetify-loader/issues/279)
+
+
+
 ## [1.0.0](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0-alpha.17...vite-plugin-vuetify@1.0.0) (2022-10-13)
 
 
