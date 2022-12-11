@@ -2,6 +2,7 @@ import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
 import path from 'path'
 import Inspect from 'vite-plugin-inspect'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 
 export default defineConfig(({ command }) => ({
@@ -26,6 +27,7 @@ export default defineConfig(({ command }) => ({
       }
     },
     // Inspect(),
+    // visualizer(),
   ],
   build: {
     sourcemap: true,

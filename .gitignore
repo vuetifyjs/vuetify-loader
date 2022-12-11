@@ -4,3 +4,4 @@
 node_modules
 yarn_error.log
 dist
+dev/stats.html
