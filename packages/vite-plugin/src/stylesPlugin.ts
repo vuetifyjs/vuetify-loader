@@ -186,7 +186,7 @@ export function stylesPlugin (options: Options): Plugin {
 
           const target = resolution.id.replace(/\.css$/, '.sass')
           const file = path.relative(path.join(vuetifyBase, 'lib'), target)
-          const contents = `@use "${configFile}"\n@use "${target}"`
+          const contents = `@use "${configFile}"\n@use "${path.toUnix(target)}"`
 
           tempFiles.set(file, contents)
 
