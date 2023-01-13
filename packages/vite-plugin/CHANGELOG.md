@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.2](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.1...vite-plugin-vuetify@1.0.2) (2023-01-13)
+
+
+### Bug Fixes
+
+* backslash in forwarding vuetify SASS vars in windows machine ([6877a6f](https://github.com/vuetifyjs/vuetify-loader/commit/6877a6f2d3233c61a812df83e465088c9d27b84b))
+
+
+
+
 ### [1.0.1](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0...vite-plugin-vuetify@1.0.1) (2022-12-11)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "webpack-plugin-vuetify",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Webpack plugin for treeshaking Vuetify components and more",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
