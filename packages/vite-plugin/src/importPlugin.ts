@@ -1,14 +1,14 @@
 import { extname } from 'path'
 import { Plugin } from 'vite'
 import { generateImports } from '@vuetify/loader-shared'
-import { parse as parseUrl, URLSearchParams } from 'url'
+import { URL, URLSearchParams } from 'url'
 
 function parseId (id: string) {
-  const { query, pathname } = parseUrl(id)
+  const { query, pathname } = new URL(id)
 
   return {
     query: query ? Object.fromEntries(new URLSearchParams(query)) : null,
-    path: pathname ?? id
+    path: pathname.replace(/^(nuxt:)/, ''); ?? id
   }
 }
 
