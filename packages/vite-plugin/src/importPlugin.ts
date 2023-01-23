@@ -8,7 +8,7 @@ function parseId (id: string) {
 
   return {
     query: query ? Object.fromEntries(new URLSearchParams(query)) : null,
-    path: pathname.replace(/^(nuxt:)/, ''); ?? id
+    path: pathname.replace(/^(nuxt:)/, '') ?? id
   }
 }
 
