@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.2](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.1...vite-plugin-vuetify@1.0.2) (2023-01-28)
+
+
+### Bug Fixes
+
+* add leading slash to absolute paths on windows ([3ecd8e2](https://github.com/vuetifyjs/vuetify-loader/commit/3ecd8e2d8034137ca47ad8325df960dfb0efc08e)), closes [#274](https://github.com/vuetifyjs/vuetify-loader/issues/274)
+
+
+
 ### [1.0.1](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.0...vite-plugin-vuetify@1.0.1) (2022-12-11)
 
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.1](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0...webpack-plugin-vuetify@2.0.1) (2023-01-28)
+
+
+### Bug Fixes
+
+* add leading slash to absolute paths on windows ([3ecd8e2](https://github.com/vuetifyjs/vuetify-loader/commit/3ecd8e2d8034137ca47ad8325df960dfb0efc08e)), closes [#274](https://github.com/vuetifyjs/vuetify-loader/issues/274)
+
+
+
 ## [2.0.0](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@2.0.0-alpha.13...webpack-plugin-vuetify@2.0.0) (2022-10-13)
 
 
