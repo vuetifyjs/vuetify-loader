@@ -29,6 +29,12 @@ export function includes (arr: any[], val: any) {
   return arr.includes(val)
 }
 
+// Add leading slash to absolute paths on windows
+export function normalizePath (p: string) {
+  p = path.normalize(p)
+  return /^[a-z]:\//i.test(p) ? '/' + p : p
+}
+
 export function toKebabCase (str = '') {
   return str
     .replace(/[^a-z]/gi, '-')

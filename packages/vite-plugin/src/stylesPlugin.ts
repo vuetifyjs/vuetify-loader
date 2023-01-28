@@ -1,8 +1,8 @@
 import { utimes } from 'fs/promises'
 import * as path from 'upath'
 import _debug from 'debug'
-import { normalizePath } from 'vite'
-import { cacheDir, writeStyles, resolveVuetifyBase } from '@vuetify/loader-shared'
+import { normalizePath as normalizeVitePath } from 'vite'
+import { cacheDir, writeStyles, resolveVuetifyBase, normalizePath } from '@vuetify/loader-shared'
 
 import type { Plugin, ViteDevServer } from 'vite'
 import type { Options } from '@vuetify/loader-shared'
@@ -108,7 +108,7 @@ export function stylesPlugin (options: Options): Plugin {
       await writeStyles(files)
 
       if (server && needsTouch) {
-        const cacheFile = normalizePath(cacheDir('styles.scss'))
+        const cacheFile = normalizeVitePath(cacheDir('styles.scss'))
         server.moduleGraph.getModulesByFile(cacheFile)?.forEach(module => {
           module.importers.forEach(module => {
             if (module.file) {
@@ -126,7 +126,7 @@ export function stylesPlugin (options: Options): Plugin {
     return promise
   }
 
-  let configFile: string | undefined
+  let configFile: string
   const tempFiles = new Map<string, string>()
 
   return {
@@ -186,7 +186,7 @@ export function stylesPlugin (options: Options): Plugin {
 
           const target = resolution.id.replace(/\.css$/, '.sass')
           const file = path.relative(path.join(vuetifyBase, 'lib'), target)
-          const contents = `@use "${configFile}"\n@use "${target}"`
+          const contents = `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`
 
           tempFiles.set(file, contents)
 

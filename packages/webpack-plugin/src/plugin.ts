@@ -4,7 +4,15 @@ import { writeFile } from 'fs/promises'
 import * as path from 'upath'
 import * as mkdirp from 'mkdirp'
 
-import { resolveVuetifyBase, writeStyles, includes, isObject, cacheDir, transformAssetUrls } from '@vuetify/loader-shared'
+import {
+  resolveVuetifyBase,
+  writeStyles,
+  includes,
+  isObject,
+  cacheDir,
+  transformAssetUrls,
+  normalizePath,
+} from '@vuetify/loader-shared'
 
 import type { Compiler, NormalModule, Module } from 'webpack'
 import type { Options } from '@vuetify/loader-shared'
@@ -189,7 +197,7 @@ export class VuetifyPlugin {
         const cacheFile = cacheDir(file)
 
         await mkdirp(path.dirname(cacheFile))
-        await writeFile(cacheFile, `@use "${configFile}"\n@use "${target}"`)
+        await writeFile(cacheFile, `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`)
 
         return cacheFile
       })
