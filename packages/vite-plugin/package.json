@@ -25,6 +25,7 @@
   },
   "peerDependencies": {
     "vite": "^2.7.0 || ^3.0.0 || ^4.0.0",
+    "vue": "^3.0.0",
     "vuetify": "^3.0.0-beta.4"
   },
   "engines": {
