@@ -103,7 +103,7 @@ plugins: [
 
 ## Image loading
 
-https://github.com/vitejs/vite/tree/main/packages/plugin-vue#asset-url-handling
+https://github.com/vitejs/vite-plugin-vue/blob/main/packages/plugin-vue/README.md#asset-url-handling
 
 ```js
 // vite.config.js
