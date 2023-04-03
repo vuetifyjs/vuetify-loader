@@ -1,4 +1,4 @@
-This package is for Vuetify 2 only, for Vuetify 3 see [`next`](https://github.com/vuetifyjs/vuetify-loader/tree/next)
+This package is for Vuetify 2 only, for Vuetify 3 see [`master`](https://github.com/vuetifyjs/vuetify-loader/tree/master)
 
 ---
 

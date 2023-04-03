@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/vuetifyjs/vuetify-loader/issues"
   },
-  "homepage": "https://github.com/vuetifyjs/vuetify-loader#readme",
+  "homepage": "https://github.com/vuetifyjs/vuetify-loader/tree/legacy#readme",
   "dependencies": {
     "acorn": "^8.4.1",
     "acorn-walk": "^8.2.0",
