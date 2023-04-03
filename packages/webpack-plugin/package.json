@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/vuetifyjs/vuetify-loader/issues"
   },
-  "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/webpack-plugin",
+  "homepage": "https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/webpack-plugin",
   "dependencies": {
     "@vuetify/loader-shared": "^1.7.1",
     "decache": "^4.6.0",

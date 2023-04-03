@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/vuetifyjs/vuetify-loader/issues"
   },
-  "homepage": "https://github.com/vuetifyjs/vuetify-loader/packages/shared",
+  "homepage": "https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/shared",
   "dependencies": {
     "find-cache-dir": "^3.3.2",
     "upath": "^2.0.1"
