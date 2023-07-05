@@ -22,7 +22,7 @@
     "@vuetify/loader-shared": "^1.7.1",
     "decache": "^4.6.0",
     "file-loader": "^6.2.0",
-    "find-cache-dir": "^3.3.2",
+    "find-cache-dir": "^4.0.0",
     "loader-utils": "^2.0.0",
     "mkdirp": "^1.0.4",
     "null-loader": "^4.0.1",
