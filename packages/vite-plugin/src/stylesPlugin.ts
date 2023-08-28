@@ -15,101 +15,122 @@ function isSubdir (root: string, test: string) {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
 }
 
+// FOR SOME REASON: /�plugin-vuetify:/home/jesse/Documents/personal/nuxt/vuetify/lib/styles/main.sass?direct                                                                                                      16:53:03
+const PLUGIN_VIRTUAL_PREFIX = "virtual:"
+const PLUGIN_VIRTUAL_NAME = "plugin-vuetify"
+
 const styleImportRegexp = /(@use |meta\.load-css\()['"](vuetify(?:\/lib)?(?:\/styles(?:\/main(?:\.sass)?)?)?)['"]/
 
-export function stylesPlugin (options: Options): Plugin {
-  const vuetifyBase = resolveVuetifyBase()
-  const files = new Set<string>()
+class ModuleManager {
+  options: Options
+  server?: ViteDevServer
+  context?: PluginContext
+  resolve?: (v: boolean) => void
+  promise?: Promise<boolean> | null
+  needsTouch: boolean = false
+  blockingModules = new Set<string>()
+  pendingModules: string[] = []
+  timeout?: NodeJS.Timeout
+  files = new Set<string>()
+  tempFiles = new Map<string, string>()
+  configFile: string = ''
 
-  let server: ViteDevServer
-  let context: PluginContext
-  let resolve: (v: boolean) => void
-  let promise: Promise<boolean> | null
-  let needsTouch = false
-  const blockingModules = new Set<string>()
+  constructor(options: Options) {
+    this.options = options
+  }
 
-  let pendingModules: string[]
-  async function getPendingModules () {
-    if (!server) {
+  setConfigFile(config: any) {
+    if (typeof this.options.styles === 'object') {
+      if (path.isAbsolute(this.options.styles.configFile)) {
+        this.configFile = this.options.styles.configFile
+      } else {
+        this.configFile = path.join(config.root || process.cwd(), this.options.styles.configFile)
+      }
+    }
+  }
+
+
+  async getPendingModules () {
+    if (!this.server) {
       await new Promise(resolve => setTimeout(resolve, 0))
-      const modules = Array.from(context.getModuleIds())
+      const modules = Array.from(this.context!.getModuleIds())
         .filter(id => {
-          return !blockingModules.has(id) && // Ignore the current file
+          return !this.blockingModules.has(id) && // Ignore the current file
             !/\w\.(s[ac]|c)ss/.test(id) // Ignore stylesheets
         })
-        .map(id => context.getModuleInfo(id)!)
+        .map(id => this.context!.getModuleInfo(id)!)
         .filter(module => module.code == null) // Ignore already loaded modules
 
-      pendingModules = modules.map(module => module.id)
-      if (!pendingModules.length) return 0
+      this.pendingModules = modules.map(module => module.id)
+      if (!this.pendingModules.length) return 0
 
-      const promises = modules.map(module => context.load(module))
+      const promises = modules.map(module => this.context!.load(module))
       await Promise.race(promises)
 
       return promises.length
     } else {
-      const modules = Array.from(server.moduleGraph.urlToModuleMap.entries())
+      const modules = Array.from(this.server.moduleGraph.urlToModuleMap.entries())
         .filter(([k, v]) => (
           v.transformResult == null && // Ignore already loaded modules
           !k.startsWith('/@id/') &&
           !/\w\.(s[ac]|c)ss/.test(k) && // Ignore stylesheets
-          !blockingModules.has(v.id!) && // Ignore the current file
+          !this.blockingModules.has(v.id!) && // Ignore the current file
           !/\/node_modules\/\.vite\/deps\/(?!vuetify[._])/.test(k) // Ignore dependencies
         ))
 
-      pendingModules = modules.map(([, v]) => v.id!)
-      if (!pendingModules.length) return 0
+        this.pendingModules = modules.map(([, v]) => v.id!)
+      if (!this.pendingModules.length) return 0
 
-      const promises = modules.map(([k, v]) => server.transformRequest(k).then(() => v))
+      const promises = modules.map(([k, v]) => this.server!.transformRequest(k).then(() => v))
       await Promise.race(promises)
 
       return promises.length
     }
   }
 
-  let timeout: NodeJS.Timeout
-  async function awaitBlocking () {
+  async  awaitBlocking () {
     let pending
     do {
-      clearTimeout(timeout)
-      timeout = setTimeout(() => {
+      clearTimeout(this.timeout!)
+      this.timeout = setTimeout(() => {
         console.error('vuetify:styles fallback timeout hit', {
-          blockingModules: Array.from(blockingModules.values()),
-          pendingModules,
-          pendingRequests: server?._pendingRequests.keys()
+          blockingModules: Array.from(this.blockingModules.values()),
+          pendingModules: this.pendingModules,
+          pendingRequests: this.server?._pendingRequests.keys()
         })
-        resolve(false)
-      }, options.stylesTimeout)
+        this.resolve!(false)
+      }, this.options!.stylesTimeout)
 
       pending = await Promise.any<boolean | number | null>([
-        promise,
-        getPendingModules()
+        this.promise!,
+        this.getPendingModules()
       ])
-      debug(pending, 'pending modules', pendingModules)
+      debug(pending, 'pending modules', this.pendingModules)
     } while (pending)
 
-    resolve(false)
+    this.resolve!(false)
   }
 
-  async function awaitResolve (id?: string) {
+
+  async awaitResolve (id?: string) {
     if (id) {
-      blockingModules.add(id)
+      this.blockingModules.add(id)
     }
 
-    if (!promise) {
-      promise = new Promise((_resolve) => resolve = _resolve)
+    if (!this.promise) {
+      this.promise = new Promise((_resolve) => this.resolve = _resolve)
 
-      awaitBlocking()
-      await promise
-      clearTimeout(timeout)
-      blockingModules.clear()
+      this.awaitBlocking()
+      await this.promise
+      clearTimeout(this.timeout!)
+      this.blockingModules.clear()
 
       debug('writing styles')
-      await writeStyles(files)
+      await writeStyles(this.files)
 
-      if (server && needsTouch) {
+      if (this.server && this.needsTouch) {
         const cacheFile = normalizeVitePath(cacheDir('styles.scss'))
-        server.moduleGraph.getModulesByFile(cacheFile)?.forEach(module => {
+        this.server.moduleGraph.getModulesByFile(cacheFile)?.forEach(module => {
           module.importers.forEach(module => {
             if (module.file) {
               const now = new Date()
@@ -118,36 +139,33 @@ export function stylesPlugin (options: Options): Plugin {
             }
           })
         })
-        needsTouch = false
+        this.needsTouch = false
       }
-      promise = null
+      this.promise = null
     }
 
-    return promise
+    return this.promise
   }
+}
 
-  let configFile: string
-  const tempFiles = new Map<string, string>()
+export function stylesPlugin (options: Options): Plugin {
+  const vuetifyBase = resolveVuetifyBase()
+  const moduleManager = new ModuleManager(options)
+
 
   return {
     name: 'vuetify:styles',
     enforce: 'pre',
     configureServer (_server) {
-      server = _server
+      moduleManager.server = _server
     },
     buildStart () {
-      if (!server) {
-        context = this
+      if (!moduleManager.server) {
+        moduleManager.context = this
       }
     },
     configResolved (config) {
-      if (typeof options.styles === 'object') {
-        if (path.isAbsolute(options.styles.configFile)) {
-          configFile = options.styles.configFile
-        } else {
-          configFile = path.join(config.root || process.cwd(), options.styles.configFile)
-        }
-      }
+      moduleManager.setConfigFile(config)
     },
     async resolveId (source, importer, { custom }) {
       if (
@@ -158,12 +176,16 @@ export function stylesPlugin (options: Options): Plugin {
         )
       ) {
         if (options.styles === 'none') {
-          return '\0__void__'
-        } else if (options.styles === 'sass') {
+          return `${PLUGIN_VIRTUAL_PREFIX}__void__`
+        } 
+        
+        if (options.styles === 'sass') {
           const target = source.replace(/\.css$/, '.sass')
           return this.resolve(target, importer, { skipSelf: true, custom })
-        } else if (options.styles === 'expose') {
-          awaitResolve()
+        } 
+        
+        if (options.styles === 'expose') {
+          moduleManager.awaitResolve()
 
           const resolution = await this.resolve(
             source.replace(/\.css$/, '.sass'),
@@ -172,42 +194,51 @@ export function stylesPlugin (options: Options): Plugin {
           )
 
           if (resolution) {
-            if (!files.has(resolution.id)) {
-              needsTouch = true
-              files.add(resolution.id)
+            if (!moduleManager.files.has(resolution.id)) {
+              moduleManager.needsTouch = true
+              moduleManager.files.add(resolution.id)
             }
 
-            return '\0__void__'
+            return `${PLUGIN_VIRTUAL_PREFIX}__void__`
           }
-        } else if (typeof options.styles === 'object') {
+
+          return null
+        } 
+        
+        if (typeof moduleManager.options.styles === 'object') {
           const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
 
           if (!resolution) return null
 
-          const target = resolution.id.replace(/\.css$/, '.sass')
-          const file = path.relative(path.join(vuetifyBase, 'lib'), target)
-          const contents = `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`
+          const target = resolution.id
+            .replace(/\.css$/, '.sass')
 
-          tempFiles.set(file, contents)
+          const contents = `@use "${normalizePath(moduleManager.configFile)}"\n@use "${normalizePath(target)}"`
 
-          return `\0plugin-vuetify:${file}`
+          moduleManager.tempFiles.set(target, contents)
+
+          return `${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}:${target}`
         }
-      } else if (source.startsWith('/plugin-vuetify:')) {
-        return '\0' + source.slice(1)
-      } else if (source.startsWith('/@id/__x00__plugin-vuetify:')) {
-        return '\0' + source.slice(12)
+      } 
+      
+      if (source.startsWith(`/${PLUGIN_VIRTUAL_NAME}:`)) {
+        return PLUGIN_VIRTUAL_PREFIX + source.slice(1)
+      } 
+      
+      if (source.startsWith(`/@id/__x00__${PLUGIN_VIRTUAL_NAME}:`)) {
+        return PLUGIN_VIRTUAL_PREFIX + source.slice(12)
       }
 
       return null
     },
     async transform (code, id) {
       if (
-        options.styles === 'expose' &&
+        moduleManager.options.styles === 'expose' &&
         ['.scss', '.sass'].some(v => id.endsWith(v)) &&
         styleImportRegexp.test(code)
       ) {
         debug(`awaiting ${id}`)
-        await awaitResolve(id)
+        await moduleManager.awaitResolve(id)
         debug(`returning ${id}`)
 
         return {
@@ -219,14 +250,14 @@ export function stylesPlugin (options: Options): Plugin {
     load (id) {
       // When Vite is configured with `optimizeDeps.exclude: ['vuetify']`, the
       // received id contains a version hash (e.g. \0__void__?v=893fa859).
-      if (/^\0__void__(\?.*)?$/.test(id)) {
+      if (new RegExp(`^${PLUGIN_VIRTUAL_PREFIX}__void__(\\?.*)?$`).test(id)) {
         return ''
       }
 
-      if (id.startsWith('\0plugin-vuetify')) {
-        const file = /^\0plugin-vuetify:(.*?)(\?.*)?$/.exec(id)![1]
+      if (id.startsWith(`${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}`)) {
+        const file = new RegExp(`^${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}:(.*?)(\\?.*)?$`).exec(id)![1];
 
-        return tempFiles.get(file)
+        return moduleManager.tempFiles.get(file)
       }
 
       return null
