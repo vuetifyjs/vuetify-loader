@@ -134,7 +134,7 @@ class ModuleManager {
           module.importers.forEach(module => {
             if (module.file) {
               const now = new Date()
-              console.log(`touching ${module.file}`)
+              debug(`touching ${module.file}`)
               utimes(module.file, now, now)
             }
           })
