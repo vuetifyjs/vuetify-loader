@@ -2,15 +2,22 @@
   "name": "webpack-plugin-vuetify",
   "version": "2.0.1",
   "description": "A Webpack plugin for treeshaking Vuetify components and more",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
   },
   "scripts": {
-    "build": "tsc --outdir dist",
-    "dev": "yarn run build --watch"
+    "build": "unbuild",
+    "dev": "unbuild --stub"
   },
   "author": "Kael Watts-Deuchar",
   "license": "MIT",
@@ -22,7 +29,6 @@
     "@vuetify/loader-shared": "^1.7.1",
     "decache": "^4.6.0",
     "file-loader": "^6.2.0",
-    "find-cache-dir": "^3.3.2",
     "loader-utils": "^2.0.0",
     "mkdirp": "^1.0.4",
     "null-loader": "^4.0.1",
@@ -31,7 +37,7 @@
   "peerDependencies": {
     "@vue/compiler-sfc": "^3.2.6",
     "vue": "^3.2.6",
-    "vuetify": "^3.0.0-beta.4",
+    "vuetify": "^3.0.0",
     "webpack": "^5.0.0"
   },
   "optionalPeerDependencies": {
@@ -40,7 +46,7 @@
     "sharp": "^0.21.0"
   },
   "engines": {
-    "node": ">=12"
+    "node": "^18.0.0 || >=20.0.0"
   },
   "files": [
     "dist/"
