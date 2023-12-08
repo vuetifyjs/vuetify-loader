@@ -2,11 +2,9 @@ import * as path from 'upath'
 
 export interface Options {
   autoImport?: importPluginOptions,
-  styles?: true | 'none' | 'expose' | 'sass' | {
+  styles?: true | 'none' | 'sass' | {
     configFile: string,
   },
-  /** @internal Only for testing */
-  stylesTimeout?: number
 }
 
 export type importPluginOptions =
