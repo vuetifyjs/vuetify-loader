@@ -1,15 +1,22 @@
 {
   "name": "@vuetify/loader-shared",
   "version": "1.7.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
   },
   "scripts": {
-    "build": "tsc --outdir dist",
-    "dev": "yarn run build --watch"
+    "build": "unbuild",
+    "dev": "unbuild --stub"
   },
   "author": "Kael Watts-Deuchar",
   "license": "MIT",
@@ -18,20 +25,16 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/shared",
   "dependencies": {
-    "find-cache-dir": "^3.3.2",
+    "find-cache-dir": "^5.0.0",
     "upath": "^2.0.1"
   },
   "peerDependencies": {
     "vue": "^3.0.0",
-    "vuetify": "^3.0.0-beta.4"
+    "vuetify": "^3.0.0"
   },
   "files": [
     "dist/"
   ],
-  "exports": {
-    ".": "./dist/index.js",
-    "./*": "./*"
-  },
   "publishConfig": {
     "access": "public"
   }

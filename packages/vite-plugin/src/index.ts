@@ -4,7 +4,7 @@ import { Options, isObject, includes, transformAssetUrls } from '@vuetify/loader
 import { importPlugin } from './importPlugin'
 import { stylesPlugin } from './stylesPlugin'
 
-function vuetify (_options: Options = {}): Plugin[] {
+export default function vuetify (_options: Options = {}): Plugin[] {
   const options: Options = {
     autoImport: true,
     styles: true,
@@ -21,9 +21,6 @@ function vuetify (_options: Options = {}): Plugin[] {
 
   return plugins
 }
+vuetify.transformAssetUrls = transformAssetUrls
 
-module.exports = vuetify
-export default vuetify
-
-module.exports.transformAssetUrls = transformAssetUrls
-export { transformAssetUrls }
+export { transformAssetUrls } from '@vuetify/loader-shared'

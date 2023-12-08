@@ -1,8 +1,8 @@
 import { URLSearchParams } from 'url'
 import { writeFile } from 'fs/promises'
 
-import * as path from 'upath'
-import * as mkdirp from 'mkdirp'
+import path from 'upath'
+import mkdirp from 'mkdirp'
 
 import {
   resolveVuetifyBase,
@@ -21,6 +21,8 @@ function isSubdir (root: string, test: string) {
 }
 
 export class VuetifyPlugin {
+  static transformAssetUrls = transformAssetUrls
+
   options: Required<Options>
 
   constructor (options: Options) {
@@ -47,7 +49,7 @@ export class VuetifyPlugin {
     }
 
     const vueLoader = compiler.options.module.rules.find(rule => {
-      return typeof rule !== 'string' && rule.loader && path.toUnix(rule.loader).endsWith('vue-loader/dist/templateLoader.js')
+      return rule && typeof rule !== 'string' && rule.loader && path.toUnix(rule.loader).endsWith('vue-loader/dist/templateLoader.js')
     })
     const vueOptions = typeof vueLoader === 'object' && vueLoader?.options
     if (vueOptions && typeof vueOptions === 'object') {
@@ -95,7 +97,7 @@ export class VuetifyPlugin {
       hookResolve(async request => {
         const target = request.replace(/\.css$/, '.sass')
         const file = path.relative(vuetifyBase, target)
-        const cacheFile = cacheDir(file)
+        const cacheFile = path.join(cacheDir, file)
 
         await mkdirp(path.dirname(cacheFile))
         await writeFile(cacheFile, `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`)
