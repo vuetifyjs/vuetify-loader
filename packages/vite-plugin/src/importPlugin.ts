@@ -1,6 +1,6 @@
 import { extname } from 'path'
 import { Plugin } from 'vite'
-import { generateImports } from '@vuetify/loader-shared'
+import { generateImports, importPluginOptions, isObject } from '@vuetify/loader-shared'
 import { parse as parseUrl, URLSearchParams } from 'url'
 
 function parseId (id: string) {
@@ -12,7 +12,8 @@ function parseId (id: string) {
   }
 }
 
-export function importPlugin (): Plugin {
+export function importPlugin (_options: importPluginOptions): Plugin {
+  const options = isObject(_options) ? _options : { ignore: [] };
   return {
     name: 'vuetify:import',
     configResolved (config) {
@@ -27,7 +28,7 @@ export function importPlugin (): Plugin {
         ((!query || !('vue' in query)) && extname(path) === '.vue' && !/^import { render as _sfc_render } from ".*"$/m.test(code)) ||
         (query && 'vue' in query && (query.type === 'template' || (query.type === 'script' && query.setup === 'true')))
       ) {
-        const { code: imports, source } = generateImports(code)
+        const { code: imports, source } = generateImports(code, options.ignore)
         return {
           code: source + imports,
           map: null,

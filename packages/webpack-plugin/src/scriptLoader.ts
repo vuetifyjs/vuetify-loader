@@ -1,5 +1,5 @@
 import { LoaderDefinitionFunction } from 'webpack'
-import { generateImports } from '@vuetify/loader-shared'
+import { generateImports, ObjectImportPluginOptions } from '@vuetify/loader-shared'
 
 export default (function VuetifyLoader (content, sourceMap) {
   if (this.data?.skip) {
@@ -9,10 +9,12 @@ export default (function VuetifyLoader (content, sourceMap) {
   this.async()
   this.cacheable()
 
-  const { code: imports, source } = generateImports(content)
+  const options = this.getOptions()
+
+  const { code: imports, source } = generateImports(content, options.ignore)
 
   this.callback(null, source + imports, sourceMap)
-} as LoaderDefinitionFunction)
+} as LoaderDefinitionFunction<ObjectImportPluginOptions>)
 
 export const pitch = (function VuetifyLoaderPitch (remainingRequest, precedingRequest, data) {
   if (this.loaders.some(loader => loader.path.endsWith('vue-loader/dist/pitcher.js'))) {
