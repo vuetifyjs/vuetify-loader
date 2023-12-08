@@ -8,7 +8,6 @@ function vuetify (_options: Options = {}): Plugin[] {
   const options: Options = {
     autoImport: true,
     styles: true,
-    stylesTimeout: 1000,
     ..._options,
   }
 
@@ -16,7 +15,7 @@ function vuetify (_options: Options = {}): Plugin[] {
   if (options.autoImport) {
     plugins.push(importPlugin())
   }
-  if (includes(['none', 'expose', 'sass'], options.styles) || isObject(options.styles)) {
+  if (includes(['none', 'sass'], options.styles) || isObject(options.styles)) {
     plugins.push(stylesPlugin(options))
   }
 
