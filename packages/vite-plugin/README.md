@@ -32,16 +32,16 @@ export default createVuetify()
 plugins: [
   vue(),
   vuetify({ 
-      autoImport: {
-          ignore: [
-              'VAlert', // Component name
-              'Ripple', // Directive name
-          ]
-      }
+    autoImport: {
+      ignore: [
+        'VAlert', // Component name
+        'Ripple', // Directive name
+      ]
+    }
   }), 
 ]
 ```
-`ignore` prop is case-sensitive
+Note `ignore` values are case-sensitive
 
 ## Style loading
 ### Customising variables

@@ -9,7 +9,9 @@ export interface Options {
   },
 }
 
-export interface ObjectImportPluginOptions { ignore: (keyof typeof Components | keyof typeof Directives)[] }
+export interface ObjectImportPluginOptions {
+  ignore: (keyof typeof Components | keyof typeof Directives)[]
+}
 export type importPluginOptions =
   | boolean
   | ObjectImportPluginOptions

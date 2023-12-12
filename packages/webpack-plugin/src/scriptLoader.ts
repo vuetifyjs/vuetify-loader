@@ -11,10 +11,10 @@ export default (function VuetifyLoader (content, sourceMap) {
 
   const options = this.getOptions()
 
-  const { code: imports, source } = generateImports(content, options.ignore)
+  const { code: imports, source } = generateImports(content, options?.ignore)
 
   this.callback(null, source + imports, sourceMap)
-} as LoaderDefinitionFunction<ObjectImportPluginOptions>)
+} as LoaderDefinitionFunction<ObjectImportPluginOptions | undefined>)
 
 export const pitch = (function VuetifyLoaderPitch (remainingRequest, precedingRequest, data) {
   if (this.loaders.some(loader => loader.path.endsWith('vue-loader/dist/pitcher.js'))) {
