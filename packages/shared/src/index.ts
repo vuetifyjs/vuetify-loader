@@ -1,4 +1,6 @@
 import * as path from 'upath'
+import type * as Components from 'vuetify/components'
+import type * as Directives from 'vuetify/directives'
 
 export interface Options {
   autoImport?: importPluginOptions,
@@ -7,8 +9,12 @@ export interface Options {
   },
 }
 
+export interface ObjectImportPluginOptions {
+  ignore: (keyof typeof Components | keyof typeof Directives)[]
+}
 export type importPluginOptions =
   | boolean
+  | ObjectImportPluginOptions
   // | ((source: string, importer: string, isVuetify: boolean) => boolean | null | replace)
 // type replace = { symbol: string, from: string, as?: string }
 

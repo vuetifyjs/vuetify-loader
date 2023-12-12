@@ -34,7 +34,8 @@ export class VuetifyPlugin {
   }
 
   apply (compiler: Compiler) {
-    if (this.options.autoImport) {
+    const autoImport = this.options.autoImport
+    if (autoImport) {
       compiler.options.module.rules.unshift({
         resourceQuery: query => {
           if (!query) return false
@@ -44,7 +45,10 @@ export class VuetifyPlugin {
             (qs.get('type') === 'script' && qs.has('setup'))
           )
         },
-        use: { loader: require.resolve('./scriptLoader') },
+        use: {
+          loader: require.resolve('./scriptLoader'),
+          options: isObject(autoImport) ? autoImport : undefined
+        },
       })
     }
 

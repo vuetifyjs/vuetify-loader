@@ -1,7 +1,7 @@
 import { parseTemplate, TemplateMatch } from './parseTemplate'
 import * as importMap from 'vuetify/dist/json/importMap.json'
 
-export function getImports (source: string) {
+export function getImports (source: string, ignore: string[] = []) {
   const { components, directives } = parseTemplate(source)
   const resolvedComponents: TemplateMatch[] = []
   const resolvedDirectives: TemplateMatch[] = []
@@ -9,12 +9,12 @@ export function getImports (source: string) {
 
   if (components.size || directives.size) {
     components.forEach(component => {
-      if (component.name in importMap.components) {
+      if (component.name in importMap.components && !ignore.includes(component.name)) {
         resolvedComponents.push(component)
       }
     })
     directives.forEach(directive => {
-      if (importMap.directives.includes(directive.name)) {
+      if (importMap.directives.includes(directive.name) && !ignore.includes(directive.name)) {
         resolvedDirectives.push(directive)
       }
     })

@@ -26,6 +26,23 @@ import { createVuetify } from 'vuetify'
 export default createVuetify()
 ```
 
+### Ignoring components or directives
+```js
+// vite.config.js
+plugins: [
+  vue(),
+  vuetify({ 
+    autoImport: {
+      ignore: [
+        'VAlert', // Component name
+        'Ripple', // Directive name
+      ]
+    }
+  }), 
+]
+```
+Note `ignore` values are case-sensitive
+
 ## Style loading
 ### Customising variables
 ```js
