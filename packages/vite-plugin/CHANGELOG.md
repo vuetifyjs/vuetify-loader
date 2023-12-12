@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.2...vite-plugin-vuetify@2.0.0) (2023-12-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Requires node >18
+* Removed `styles: 'expose'` option
+
+### Features
+
+* add autoImport ignore option ([#323](https://github.com/vuetifyjs/vuetify-loader/issues/323)) ([1328d49](https://github.com/vuetifyjs/vuetify-loader/commit/1328d492abcf4612f336b6ad1d014f1ed250793c))
+* add esm build ([34a03c1](https://github.com/vuetifyjs/vuetify-loader/commit/34a03c152e04e16694ca43c255a08edf3a2bd382)), closes [#319](https://github.com/vuetifyjs/vuetify-loader/issues/319)
+* allow labs auto-import ([55ead16](https://github.com/vuetifyjs/vuetify-loader/commit/55ead1692cd857a15e7595d14e97766c57651f0b)), closes [#315](https://github.com/vuetifyjs/vuetify-loader/issues/315)
+* remove `styles: 'expose'` ([c43dc80](https://github.com/vuetifyjs/vuetify-loader/commit/c43dc804811bf22be920ac72a38e7b4c193bca3b))
+
+
+### Bug Fixes
+
+* add explicit vue peer dependency ([6634db3](https://github.com/vuetifyjs/vuetify-loader/commit/6634db3218dcc706db1c5c9e90f338ce76e9fff3)), closes [#292](https://github.com/vuetifyjs/vuetify-loader/issues/292)
+
+
+
 ### [1.0.2](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@1.0.1...vite-plugin-vuetify@1.0.2) (2023-01-28)
 
 

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.7.1...@vuetify/loader-shared@2.0.0) (2023-12-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Requires node >18
+* Removed `styles: 'expose'` option
+
+### Features
+
+* add autoImport ignore option ([#323](https://github.com/vuetifyjs/vuetify-loader/issues/323)) ([1328d49](https://github.com/vuetifyjs/vuetify-loader/commit/1328d492abcf4612f336b6ad1d014f1ed250793c))
+* add esm build ([34a03c1](https://github.com/vuetifyjs/vuetify-loader/commit/34a03c152e04e16694ca43c255a08edf3a2bd382)), closes [#319](https://github.com/vuetifyjs/vuetify-loader/issues/319)
+* allow labs auto-import ([55ead16](https://github.com/vuetifyjs/vuetify-loader/commit/55ead1692cd857a15e7595d14e97766c57651f0b)), closes [#315](https://github.com/vuetifyjs/vuetify-loader/issues/315)
+* remove `styles: 'expose'` ([c43dc80](https://github.com/vuetifyjs/vuetify-loader/commit/c43dc804811bf22be920ac72a38e7b4c193bca3b))
+
+
+### Bug Fixes
+
+* update transformAssetUrls ([8cc31a8](https://github.com/vuetifyjs/vuetify-loader/commit/8cc31a8db7e325aa779c0bfb0e55186afe6db736)), closes [#317](https://github.com/vuetifyjs/vuetify-loader/issues/317)
+
+
+
 ### [1.7.1](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@1.7.0...@vuetify/loader-shared@1.7.1) (2023-01-28)
 
 
