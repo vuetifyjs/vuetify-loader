@@ -9,7 +9,7 @@ if (matchJson.length) {
   for (let i = matchJson.length - 1; i >= 0; i--) {
     const match = matchJson[i]
     code = code.slice(0, match.index + match[1].length) +
-      ' with { type: \'json\' }' +
+      ' assert { type: \'json\' }' +
       code.slice(match.index + match[1].length)
   }
 

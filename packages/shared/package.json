@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/shared",
   "dependencies": {
-    "find-cache-dir": "^5.0.0",
     "upath": "^2.0.1"
   },
   "peerDependencies": {

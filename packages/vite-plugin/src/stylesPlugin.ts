@@ -1,4 +1,4 @@
-import * as path from 'upath'
+import path from 'upath'
 import { resolveVuetifyBase, normalizePath, isObject } from '@vuetify/loader-shared'
 
 import type { Plugin } from 'vite'

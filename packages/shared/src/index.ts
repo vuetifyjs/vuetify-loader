@@ -1,6 +1,9 @@
-import * as path from 'upath'
+import { createRequire } from 'node:module'
+import path from 'upath'
 import type * as Components from 'vuetify/components'
 import type * as Directives from 'vuetify/directives'
+
+const require = createRequire(import.meta.url)
 
 export interface Options {
   autoImport?: ImportPluginOptions,
@@ -18,7 +21,6 @@ export type ImportPluginOptions =
   | ObjectImportPluginOptions
 
 export { generateImports } from './imports/generateImports'
-export { cacheDir, writeStyles } from './styles/writeStyles'
 
 export function resolveVuetifyBase () {
   return path.dirname(require.resolve('vuetify/package.json', { paths: [process.cwd()] }))

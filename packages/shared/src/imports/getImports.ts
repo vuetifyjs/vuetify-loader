@@ -1,6 +1,6 @@
 import { parseTemplate, TemplateMatch } from './parseTemplate'
-import * as importMap from 'vuetify/dist/json/importMap.json' with { type: 'json' }
-import * as importMapLabs from 'vuetify/dist/json/importMap-labs.json' with { type: 'json' }
+import importMap from 'vuetify/dist/json/importMap.json' assert { type: 'json' }
+import importMapLabs from 'vuetify/dist/json/importMap-labs.json' assert { type: 'json' }
 import { isObject } from '../'
 import type { Options } from '../'
 

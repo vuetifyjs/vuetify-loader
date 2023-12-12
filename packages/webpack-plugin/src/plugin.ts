@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module'
 import { URLSearchParams } from 'url'
 import { writeFile } from 'fs/promises'
 
@@ -7,7 +8,6 @@ import mkdirp from 'mkdirp'
 import {
   resolveVuetifyBase,
   isObject,
-  cacheDir,
   transformAssetUrls,
   normalizePath,
 } from '@vuetify/loader-shared'
@@ -33,8 +33,9 @@ export class VuetifyPlugin {
     }
   }
 
-  apply (compiler: Compiler) {
+  async apply (compiler: Compiler) {
     if (this.options.autoImport) {
+      const require = createRequire(import.meta.url)
       compiler.options.module.rules.unshift({
         resourceQuery: query => {
           if (!query) return false
@@ -88,6 +89,11 @@ export class VuetifyPlugin {
     } else if (this.options.styles === 'sass') {
       hookResolve(file => file.replace(/\.css$/, '.sass'))
     } else if (isObject(this.options.styles)) {
+      const findCacheDir = (await import('find-cache-dir')).default
+      const cacheDir = findCacheDir({
+        name: 'vuetify',
+        create: true,
+      })!
       const configFile = path.isAbsolute(this.options.styles.configFile)
         ? this.options.styles.configFile
         : path.join(
