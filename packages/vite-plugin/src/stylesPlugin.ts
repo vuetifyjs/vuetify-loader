@@ -1,5 +1,5 @@
 import * as path from 'upath'
-import { resolveVuetifyBase, normalizePath } from '@vuetify/loader-shared'
+import { resolveVuetifyBase, normalizePath, isObject } from '@vuetify/loader-shared'
 
 import type { Plugin } from 'vite'
 import type { Options } from '@vuetify/loader-shared'
@@ -19,7 +19,7 @@ export function stylesPlugin (options: Options): Plugin {
     name: 'vuetify:styles',
     enforce: 'pre',
     configResolved (config) {
-      if (typeof options.styles === 'object') {
+      if (isObject(options.styles)) {
         if (path.isAbsolute(options.styles.configFile)) {
           configFile = options.styles.configFile
         } else {
@@ -40,7 +40,7 @@ export function stylesPlugin (options: Options): Plugin {
         } else if (options.styles === 'sass') {
           const target = source.replace(/\.css$/, '.sass')
           return this.resolve(target, importer, { skipSelf: true, custom })
-        } else if (typeof options.styles === 'object') {
+        } else if (isObject(options.styles)) {
           const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
 
           if (!resolution) return null

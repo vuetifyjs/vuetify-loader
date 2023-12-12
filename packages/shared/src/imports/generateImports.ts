@@ -1,7 +1,8 @@
 import { getImports } from './getImports'
+import type { Options } from '../'
 
-export function generateImports (source: string, ignore: string[] = []) {
-  const { imports, components, directives } = getImports(source, ignore)
+export function generateImports (source: string, options: Options) {
+  const { imports, components, directives } = getImports(source, options)
 
   let code = ''
 

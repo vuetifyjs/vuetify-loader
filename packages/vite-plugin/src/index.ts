@@ -13,7 +13,7 @@ export default function vuetify (_options: Options = {}): Plugin[] {
 
   const plugins: Plugin[] = []
   if (options.autoImport) {
-    plugins.push(importPlugin(options.autoImport))
+    plugins.push(importPlugin(options))
   }
   if (includes(['none', 'sass'], options.styles) || isObject(options.styles)) {
     plugins.push(stylesPlugin(options))

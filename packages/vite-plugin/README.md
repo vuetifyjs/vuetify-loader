@@ -26,6 +26,17 @@ import { createVuetify } from 'vuetify'
 export default createVuetify()
 ```
 
+### Include labs components
+```js
+// vite.config.js
+plugins: [
+  vue(),
+  vuetify({
+    autoImport: { labs: true }
+  }),
+]
+```
+
 ### Ignoring components or directives
 ```js
 // vite.config.js

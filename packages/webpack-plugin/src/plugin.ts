@@ -34,8 +34,7 @@ export class VuetifyPlugin {
   }
 
   apply (compiler: Compiler) {
-    const autoImport = this.options.autoImport
-    if (autoImport) {
+    if (this.options.autoImport) {
       compiler.options.module.rules.unshift({
         resourceQuery: query => {
           if (!query) return false
@@ -47,7 +46,7 @@ export class VuetifyPlugin {
         },
         use: {
           loader: require.resolve('./scriptLoader'),
-          options: isObject(autoImport) ? autoImport : undefined
+          options: this.options
         },
       })
     }
@@ -88,9 +87,7 @@ export class VuetifyPlugin {
       })
     } else if (this.options.styles === 'sass') {
       hookResolve(file => file.replace(/\.css$/, '.sass'))
-    }
-
-    if (isObject(this.options.styles)) {
+    } else if (isObject(this.options.styles)) {
       const configFile = path.isAbsolute(this.options.styles.configFile)
         ? this.options.styles.configFile
         : path.join(

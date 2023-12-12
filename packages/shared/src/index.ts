@@ -3,20 +3,19 @@ import type * as Components from 'vuetify/components'
 import type * as Directives from 'vuetify/directives'
 
 export interface Options {
-  autoImport?: importPluginOptions,
+  autoImport?: ImportPluginOptions,
   styles?: true | 'none' | 'sass' | {
     configFile: string,
   },
 }
 
 export interface ObjectImportPluginOptions {
-  ignore: (keyof typeof Components | keyof typeof Directives)[]
+  labs?: boolean
+  ignore?: (keyof typeof Components | keyof typeof Directives)[]
 }
-export type importPluginOptions =
+export type ImportPluginOptions =
   | boolean
   | ObjectImportPluginOptions
-  // | ((source: string, importer: string, isVuetify: boolean) => boolean | null | replace)
-// type replace = { symbol: string, from: string, as?: string }
 
 export { generateImports } from './imports/generateImports'
 export { cacheDir, writeStyles } from './styles/writeStyles'
