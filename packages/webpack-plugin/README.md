@@ -95,32 +95,6 @@ export default createVuetify()
 
 `settings.scss` can be used in your own components to access vuetify's variables. 
 
-### Customising variables (old method)
-```js
-// webpack.config.js
-const { VuetifyPlugin } = require('webpack-plugin-vuetify')
-
-module.exports = {
-  plugins: [
-    new VuetifyPlugin({ styles: 'expose' }),
-  ],
-}
-```
-```js
-// plugins/vuetify.js
-import './main.scss'
-import { createVuetify } from 'vuetify'
-
-export default createVuetify()
-```
-```scss
-// main.scss
-@use 'vuetify' with (
-  $color-pack: false,
-  $utilities: false,
-);
-```
-
 ### Remove all style imports
 ```js
 // webpack.config.js

@@ -69,29 +69,6 @@ export default createVuetify()
 
 `settings.scss` can be used in your own components to access vuetify's variables.
 
-### Customising variables (old method)
-```js
-// vite.config.js
-plugins: [
-  vue(),
-  vuetify({ styles: 'expose' }),
-]
-```
-```js
-// plugins/vuetify.js
-import './main.scss'
-import { createVuetify } from 'vuetify'
-
-export default createVuetify()
-```
-```scss
-// main.scss
-@use 'vuetify' with (
-  $color-pack: false,
-  $utilities: false,
-);
-```
-
 ### Remove all style imports
 ```js
 // vite.config.js
