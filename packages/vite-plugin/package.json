@@ -16,7 +16,7 @@
     "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
   },
   "scripts": {
-    "build": "unbuild && node ../../scripts/patchCJS.mjs",
+    "build": "unbuild",
     "dev": "unbuild --stub"
   },
   "author": "Kael Watts-Deuchar",
