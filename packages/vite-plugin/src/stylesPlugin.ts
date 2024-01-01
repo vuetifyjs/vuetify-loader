@@ -9,7 +9,7 @@ function isSubdir (root: string, test: string) {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
 }
 
-const PLUGIN_VIRTUAL_PREFIX = "\0"
+const PLUGIN_VIRTUAL_PREFIX = "virtual:"
 const PLUGIN_VIRTUAL_NAME = "plugin-vuetify"
 
 export function stylesPlugin (options: Options): Plugin {
