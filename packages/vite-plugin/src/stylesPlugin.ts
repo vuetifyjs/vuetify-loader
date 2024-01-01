@@ -9,6 +9,10 @@ function isSubdir (root: string, test: string) {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
 }
 
+const PLUGIN_VIRTUAL_PREFIX = "virtual:"
+const PLUGIN_VIRTUAL_NAME = "plugin-vuetify"
+const VIRTUAL_MODULE_ID = `${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}`
+
 export function stylesPlugin (options: Options): Plugin {
   const vuetifyBase = resolveVuetifyBase()
 
@@ -36,7 +40,7 @@ export function stylesPlugin (options: Options): Plugin {
         )
       ) {
         if (options.styles === 'none') {
-          return '\0__void__'
+          return `${PLUGIN_VIRTUAL_PREFIX}__void__`
         } else if (options.styles === 'sass') {
           const target = source.replace(/\.css$/, '.sass')
           return this.resolve(target, importer, { skipSelf: true, custom })
@@ -51,12 +55,14 @@ export function stylesPlugin (options: Options): Plugin {
 
           tempFiles.set(file, contents)
 
-          return `\0plugin-vuetify:${file}`
+          return `${VIRTUAL_MODULE_ID}:${file}`
         }
-      } else if (source.startsWith('/plugin-vuetify:')) {
-        return '\0' + source.slice(1)
-      } else if (source.startsWith('/@id/__x00__plugin-vuetify:')) {
-        return '\0' + source.slice(12)
+      } else if (source.startsWith(`/${PLUGIN_VIRTUAL_NAME}:`)) {
+        return PLUGIN_VIRTUAL_PREFIX + source.slice(1)
+      } else if (source.startsWith(`/@id/__x00__${PLUGIN_VIRTUAL_NAME}:`)) {
+        return PLUGIN_VIRTUAL_PREFIX + source.slice(12)
+      } else if (source.startsWith(`/${VIRTUAL_MODULE_ID}:`)) {
+        return source.slice(1)
       }
 
       return null
@@ -64,12 +70,12 @@ export function stylesPlugin (options: Options): Plugin {
     load (id) {
       // When Vite is configured with `optimizeDeps.exclude: ['vuetify']`, the
       // received id contains a version hash (e.g. \0__void__?v=893fa859).
-      if (/^\0__void__(\?.*)?$/.test(id)) {
+      if (new RegExp(`^${PLUGIN_VIRTUAL_PREFIX}__void__(\\?.*)?$`).test(id)) {
         return ''
       }
 
-      if (id.startsWith('\0plugin-vuetify')) {
-        const file = /^\0plugin-vuetify:(.*?)(\?.*)?$/.exec(id)![1]
+      if (id.startsWith(`${VIRTUAL_MODULE_ID}`)) {
+        const file = new RegExp(`^${VIRTUAL_MODULE_ID}:(.*?)(\\?.*)?$`).exec(id)![1]
 
         return tempFiles.get(file)
       }
