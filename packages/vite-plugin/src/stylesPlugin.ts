@@ -11,6 +11,7 @@ function isSubdir (root: string, test: string) {
 
 const PLUGIN_VIRTUAL_PREFIX = "virtual:"
 const PLUGIN_VIRTUAL_NAME = "plugin-vuetify"
+const VIRTUAL_MODULE_ID = `${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}`
 
 export function stylesPlugin (options: Options): Plugin {
   const vuetifyBase = resolveVuetifyBase()
@@ -54,7 +55,7 @@ export function stylesPlugin (options: Options): Plugin {
 
           tempFiles.set(file, contents)
 
-          return `${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}:${file}`
+          return `${VIRTUAL_MODULE_ID}:${file}`
         }
       } else if (source.startsWith(`/${PLUGIN_VIRTUAL_NAME}:`)) {
         return PLUGIN_VIRTUAL_PREFIX + source.slice(1)
@@ -71,8 +72,8 @@ export function stylesPlugin (options: Options): Plugin {
         return ''
       }
 
-      if (id.startsWith(`${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}`)) {
-        const file = new RegExp(`^${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}:(.*?)(\\?.*)?$`).exec(id)![1]
+      if (id.startsWith(`${VIRTUAL_MODULE_ID}`)) {
+        const file = new RegExp(`^${VIRTUAL_MODULE_ID}:(.*?)(\\?.*)?$`).exec(id)![1]
 
         return tempFiles.get(file)
       }
