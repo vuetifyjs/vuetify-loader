@@ -61,6 +61,8 @@ export function stylesPlugin (options: Options): Plugin {
         return PLUGIN_VIRTUAL_PREFIX + source.slice(1)
       } else if (source.startsWith(`/@id/__x00__${PLUGIN_VIRTUAL_NAME}:`)) {
         return PLUGIN_VIRTUAL_PREFIX + source.slice(12)
+      } else if (source.startsWith(`/${VIRTUAL_MODULE_ID}:`)) {
+        return source.slice(1)
       }
 
       return null
