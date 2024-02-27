@@ -1,8 +1,12 @@
+import { createRequire } from 'node:module'
 import { parseTemplate, TemplateMatch } from './parseTemplate'
-import importMap from 'vuetify/dist/json/importMap.json' assert { type: 'json' }
-import importMapLabs from 'vuetify/dist/json/importMap-labs.json' assert { type: 'json' }
 import { isObject } from '../'
 import type { Options } from '../'
+
+const require = createRequire(import.meta.url)
+
+const importMap = require('vuetify/dist/json/importMap.json') as typeof import('vuetify/dist/json/importMap.json')
+const importMapLabs = require('vuetify/dist/json/importMap-labs.json') as typeof import('vuetify/dist/json/importMap-labs.json')
 
 export function getImports (source: string, options: Options) {
   const { components, directives } = parseTemplate(source)
