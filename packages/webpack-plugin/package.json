@@ -9,6 +9,10 @@
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
+    },
+    "./scriptLoader": {
+      "import": "./dist/scriptLoader.mjs",
+      "require": "./dist/scriptLoader.cjs"
     }
   },
   "repository": {

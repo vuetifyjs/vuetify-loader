@@ -1,4 +1,3 @@
-import { createRequire } from 'node:module'
 import { URLSearchParams } from 'url'
 import { writeFile } from 'fs/promises'
 
@@ -35,7 +34,6 @@ export class VuetifyPlugin {
 
   async apply (compiler: Compiler) {
     if (this.options.autoImport) {
-      const require = createRequire(import.meta.url)
       compiler.options.module.rules.unshift({
         resourceQuery: query => {
           if (!query) return false
@@ -46,7 +44,7 @@ export class VuetifyPlugin {
           )
         },
         use: {
-          loader: require.resolve('./scriptLoader'),
+          loader: 'webpack-plugin-vuetify/scriptLoader',
           options: this.options
         },
       })
