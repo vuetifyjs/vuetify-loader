@@ -1,10 +1,10 @@
 import { extname } from 'path'
 import { Plugin } from 'vite'
 import { generateImports, Options } from '@vuetify/loader-shared'
-import { parse as parseUrl, URLSearchParams } from 'url'
+import { URLSearchParams } from 'url'
 
 function parseId (id: string) {
-  const { query, pathname } = parseUrl(id)
+  const [pathname, query] = id.split('?')
 
   return {
     query: query ? Object.fromEntries(new URLSearchParams(query)) : null,
