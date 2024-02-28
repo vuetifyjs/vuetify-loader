@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.2](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@2.0.1...@vuetify/loader-shared@2.0.2) (2024-02-28)
+
+
+### Bug Fixes
+
+* replace json import with require ([e391b18](https://github.com/vuetifyjs/vuetify-loader/commit/e391b185fea33719f0dcbc36f8ae285515b61aae)), closes [#326](https://github.com/vuetifyjs/vuetify-loader/issues/326)
+
+
+
 ### [2.0.1](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@2.0.0...@vuetify/loader-shared@2.0.1) (2023-12-12)
 
 

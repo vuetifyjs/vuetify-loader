@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.2](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.0.1...vite-plugin-vuetify@2.0.2) (2024-02-28)
+
+
+### Bug Fixes
+
+* correct cjs types export ([4512234](https://github.com/vuetifyjs/vuetify-loader/commit/4512234a1192895d59db8180fa949597f2894025)), closes [#327](https://github.com/vuetifyjs/vuetify-loader/issues/327)
+* don't parse file paths as urls ([50c2dc0](https://github.com/vuetifyjs/vuetify-loader/commit/50c2dc0e1a739039763e32c591dcd68981f99f18)), closes [#324](https://github.com/vuetifyjs/vuetify-loader/issues/324)
+
+
+
 ### [2.0.1](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.0.0...vite-plugin-vuetify@2.0.1) (2023-12-12)
 
 
