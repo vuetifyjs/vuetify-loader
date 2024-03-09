@@ -18,6 +18,13 @@ export function generateImports (source: string, options: Options) {
     source = [...components, ...directives].reduce((acc, v) => {
       return acc.slice(0, v.index) + ' '.repeat(v.length) + acc.slice(v.index + v.length)
     }, source)
+
+    if (!source.includes('_resolveComponent(')) {
+      source = source.replace('resolveComponent as _resolveComponent, ', '')
+    }
+    if (!source.includes('_resolveDirective(')) {
+      source = source.replace('resolveDirective as _resolveDirective, ', '')
+    }
   }
 
   return { code, source }
