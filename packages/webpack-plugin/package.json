@@ -1,6 +1,6 @@
 {
   "name": "webpack-plugin-vuetify",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "A Webpack plugin for treeshaking Vuetify components and more",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/webpack-plugin",
   "dependencies": {
-    "@vuetify/loader-shared": "^2.0.2",
+    "@vuetify/loader-shared": "^2.0.3",
     "decache": "^4.6.0",
     "file-loader": "^6.2.0",
     "find-cache-dir": "^5.0.0",

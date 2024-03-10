@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.3](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@2.0.2...@vuetify/loader-shared@2.0.3) (2024-03-10)
+
+
+### Bug Fixes
+
+* remove resolveComponent import if unused ([7c38995](https://github.com/vuetifyjs/vuetify-loader/commit/7c389951c26d62dc02ff9c9b3737d1585e0284a0))
+
+
+
 ### [2.0.2](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@2.0.1...@vuetify/loader-shared@2.0.2) (2024-02-28)
 
 
