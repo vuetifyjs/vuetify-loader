@@ -28,7 +28,7 @@
   "dependencies": {
     "@vuetify/loader-shared": "^2.0.3",
     "debug": "^4.3.3",
-    "upath": "^2.0.1"
+    "pathe": "^1.1.2"
   },
   "peerDependencies": {
     "vite": ">=5",

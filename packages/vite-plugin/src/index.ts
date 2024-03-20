@@ -1,5 +1,6 @@
-import { Plugin } from 'vite'
-import { Options, isObject, includes, transformAssetUrls } from '@vuetify/loader-shared'
+import type { Plugin } from 'vite'
+import type { Options } from '@vuetify/loader-shared'
+import { isObject, includes, transformAssetUrls } from '@vuetify/loader-shared'
 
 import { importPlugin } from './importPlugin'
 import { stylesPlugin } from './stylesPlugin'
