@@ -36,7 +36,7 @@ export function stylesPlugin (options: Options): Plugin {
         )
       ) {
         if (options.styles === 'none') {
-          return '\0__void__'
+          return '/@plugin-vuetify/lib/__void__'
         } else if (options.styles === 'sass') {
           const target = source.replace(/\.css$/, '.sass')
           return this.resolve(target, importer, { skipSelf: true, custom })
@@ -56,8 +56,6 @@ export function stylesPlugin (options: Options): Plugin {
               : `/@fs/plugin-vuetify/lib/${file}`
         }
       }
-
-      return null
     },
     load (id) {
       // When Vite is configured with `optimizeDeps.exclude: ['vuetify']`, the
