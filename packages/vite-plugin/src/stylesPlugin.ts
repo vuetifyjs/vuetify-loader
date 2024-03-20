@@ -1,12 +1,12 @@
-import path from 'upath'
+import { isAbsolute, join, relative as relativePath } from 'pathe'
 import { resolveVuetifyBase, normalizePath, isObject } from '@vuetify/loader-shared'
 
 import type { Plugin } from 'vite'
 import type { Options } from '@vuetify/loader-shared'
 
 function isSubdir (root: string, test: string) {
-  const relative = path.relative(root, test)
-  return relative && !relative.startsWith('..') && !path.isAbsolute(relative)
+  const relative = relativePath(root, test)
+  return relative && !relative.startsWith('..') && !isAbsolute(relative)
 }
 
 export function stylesPlugin (options: Options): Plugin {
@@ -20,19 +20,19 @@ export function stylesPlugin (options: Options): Plugin {
     enforce: 'pre',
     configResolved (config) {
       if (isObject(options.styles)) {
-        if (path.isAbsolute(options.styles.configFile)) {
+        if (isAbsolute(options.styles.configFile)) {
           configFile = options.styles.configFile
         } else {
-          configFile = path.join(config.root || process.cwd(), options.styles.configFile)
+          configFile = join(config.root || process.cwd(), options.styles.configFile)
         }
       }
     },
-    async resolveId (source, importer, { custom }) {
+    async resolveId (source, importer, { custom, ssr }) {
       if (
         source === 'vuetify/styles' || (
           importer &&
           source.endsWith('.css') &&
-          isSubdir(vuetifyBase, path.isAbsolute(source) ? source : importer)
+          isSubdir(vuetifyBase, isAbsolute(source) ? source : importer)
         )
       ) {
         if (options.styles === 'none') {
@@ -46,17 +46,15 @@ export function stylesPlugin (options: Options): Plugin {
           if (!resolution) return null
 
           const target = resolution.id.replace(/\.css$/, '.sass')
-          const file = path.relative(path.join(vuetifyBase, 'lib'), target)
+          const file = relativePath(join(vuetifyBase, 'lib'), target)
           const contents = `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`
 
           tempFiles.set(file, contents)
 
-          return `\0plugin-vuetify:${file}`
+          return ssr
+              ? `/@plugin-vuetify/lib/${file}`
+              : `/@fs/plugin-vuetify/lib/${file}`
         }
-      } else if (source.startsWith('/plugin-vuetify:')) {
-        return '\0' + source.slice(1)
-      } else if (source.startsWith('/@id/__x00__plugin-vuetify:')) {
-        return '\0' + source.slice(12)
       }
 
       return null
@@ -64,17 +62,21 @@ export function stylesPlugin (options: Options): Plugin {
     load (id) {
       // When Vite is configured with `optimizeDeps.exclude: ['vuetify']`, the
       // received id contains a version hash (e.g. \0__void__?v=893fa859).
-      if (/^\0__void__(\?.*)?$/.test(id)) {
+      if (/^\/@plugin-vuetify\/lib\/__void__(\?.*)?$/.test(id))
         return ''
-      }
 
-      if (id.startsWith('\0plugin-vuetify')) {
-        const file = /^\0plugin-vuetify:(.*?)(\?.*)?$/.exec(id)![1]
-
+      if (id.startsWith('/@plugin-vuetify/lib/')) {
+        const file = /^\/@plugin-vuetify\/lib\/(.*?)(\?.*)?$/.exec(id)![1]
         return tempFiles.get(file)
       }
 
-      return null
+      if (id.startsWith('/@fs/plugin-vuetify/lib/')) {
+        const file = /^\/@fs\/plugin-vuetify\/lib\/(.*?)(\?.*)?$/.exec(id)![1]
+        return tempFiles.get(file)
+      }
+
+      if (id.includes('plugin-vuetify/lib'))
+        return ''
     },
   }
 }

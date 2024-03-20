@@ -1,5 +1,5 @@
 import { extname } from 'path'
-import { Plugin } from 'vite'
+import type { Plugin } from 'vite'
 import { generateImports, Options } from '@vuetify/loader-shared'
 import { URLSearchParams } from 'url'
 
