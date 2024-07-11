@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "@vuetify/loaders-root",
   "workspaces": [
     "dev",
     "packages/*"
