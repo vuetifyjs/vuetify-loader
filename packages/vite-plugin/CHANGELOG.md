@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.4](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.0.3...vite-plugin-vuetify@2.0.4) (2024-08-04)
+
+
+### Bug Fixes
+
+* respect vue's include and exclude options ([557713a](https://github.com/vuetifyjs/vuetify-loader/commit/557713aa2c32bfdf2a6465d8a5c6eeabe0613491))
+
+
+
 ### [2.0.3](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.0.2...vite-plugin-vuetify@2.0.3) (2024-03-10)
 
 **Note:** Version bump only for package vite-plugin-vuetify
