@@ -11,6 +11,7 @@ module.exports = {
     'plugin:import/typescript',
   ],
   rules: {
+    'no-unused-vars': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: false }],
   }
 }
