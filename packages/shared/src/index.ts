@@ -22,8 +22,10 @@ export type ImportPluginOptions =
 
 export { generateImports } from './imports/generateImports'
 
-export function resolveVuetifyBase () {
-  return path.dirname(require.resolve('vuetify/package.json', { paths: [process.cwd()] }))
+export function resolveVuetifyBase (root?: string) {
+  const paths = (root && root != process.cwd()) ? [root] : []
+  paths.push(process.cwd())
+  return path.dirname(require.resolve('vuetify/package.json', { paths }))
 }
 
 export function isObject (value: any): value is object {

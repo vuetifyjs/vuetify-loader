@@ -14,7 +14,7 @@ const PLUGIN_VIRTUAL_NAME = "plugin-vuetify"
 const VIRTUAL_MODULE_ID = `${PLUGIN_VIRTUAL_PREFIX}${PLUGIN_VIRTUAL_NAME}`
 
 export function stylesPlugin (options: Options): Plugin {
-  const vuetifyBase = resolveVuetifyBase()
+  let vuetifyBase: string
 
   let configFile: string
   const tempFiles = new Map<string, string>()
@@ -23,11 +23,13 @@ export function stylesPlugin (options: Options): Plugin {
     name: 'vuetify:styles',
     enforce: 'pre',
     configResolved (config) {
+      const root = config.root || process.cwd();
+      vuetifyBase = resolveVuetifyBase(root)
       if (isObject(options.styles)) {
         if (path.isAbsolute(options.styles.configFile)) {
           configFile = options.styles.configFile
         } else {
-          configFile = path.join(config.root || process.cwd(), options.styles.configFile)
+          configFile = path.join(root, options.styles.configFile)
         }
       }
     },
