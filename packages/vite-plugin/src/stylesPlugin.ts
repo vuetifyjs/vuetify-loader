@@ -25,8 +25,8 @@ export function stylesPlugin (options: Options): Plugin {
           configFile = path.resolve(path.join(config.root || process.cwd(), options.styles.configFile))
         }
         configFile = useFileImport
-          ? normalizePath(configFile)
-          : pathToFileURL(configFile!).href
+          ? pathToFileURL(configFile!).href
+          : normalizePath(configFile)
       }
     },
     async resolveId (source, importer, { custom }) {
