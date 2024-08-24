@@ -24,7 +24,9 @@ export function stylesPlugin (options: Options): Plugin {
         } else {
           configFile = path.resolve(path.join(config.root || process.cwd(), options.styles.configFile))
         }
-        configFile = normalizePath(configFile)
+        configFile = useFileImport
+          ? normalizePath(configFile)
+          : pathToFileURL(configFile!).href
       }
     },
     async resolveId (source, importer, { custom }) {
@@ -42,14 +44,16 @@ export function stylesPlugin (options: Options): Plugin {
 
         const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
 
-        if (!resolution) return null
+        if (!resolution) {
+          return undefined
+        }
 
         const target = resolution.id.replace(/\.css$/, '.sass')
         tempFiles.set(target, isNone
             ? '' :
             useFileImport
-                ? `@use "${pathToFileURL(configFile!).href}"\n@use "${pathToFileURL(target).href}"`
-                : `@use "${normalizePath(configFile!)}"\n@use "${normalizePath(target)}"`
+                ? `@use "${configFile}"\n@use "${pathToFileURL(target).href}"`
+                : `@use "${configFile}"\n@use "${normalizePath(target)}"`
         )
 
         return target
