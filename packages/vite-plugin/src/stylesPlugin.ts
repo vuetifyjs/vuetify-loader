@@ -11,20 +11,20 @@ export function stylesPlugin (options: Options): Plugin {
   const tempFiles = new Map<string, string>()
   const isNone = options.styles === 'none'
   const sassVariables = isNone ? false : isObject(options.styles)
-  let useFileImport = false
+  let fileImport = false
 
   return {
     name: 'vuetify:styles',
     enforce: 'pre',
     configResolved (config) {
       if (isObject(options.styles)) {
-        useFileImport = options.styles.useViteFileImport === true
+        fileImport = options.styles.useViteFileImport === true
         if (path.isAbsolute(options.styles.configFile)) {
           configFile = path.resolve(options.styles.configFile)
         } else {
           configFile = path.resolve(path.join(config.root || process.cwd(), options.styles.configFile))
         }
-        configFile = useFileImport
+        configFile = fileImport
           ? pathToFileURL(configFile).href
           : normalizePath(configFile)
       }
@@ -50,10 +50,8 @@ export function stylesPlugin (options: Options): Plugin {
 
         const target = resolution.id.replace(/\.css$/, '.sass')
         tempFiles.set(target, isNone
-            ? '' :
-            useFileImport
-                ? `@use "${configFile}"\n@use "${pathToFileURL(target).href}"`
-                : `@use "${configFile}"\n@use "${normalizePath(target)}"`
+            ? ''
+            : `@use "${configFile}"\n@use "${fileImport ? pathToFileURL(target).href : normalizePath(target)}"`
         )
 
         return target
