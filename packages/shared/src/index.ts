@@ -9,6 +9,13 @@ export interface Options {
   autoImport?: ImportPluginOptions,
   styles?: true | 'none' | 'sass' | {
     configFile: string,
+    /**
+     * Enable this flag when using Vite >= 5.4.3.
+     *
+     * @see https://github.com/vitejs/vite/pull/17909
+     * @default false
+     */
+    useViteFileImport?: boolean,
   },
 }
 
