@@ -29,7 +29,7 @@ export function stylesPlugin (options: Options): Plugin {
           : normalizePath(configFile)
       }
     },
-    async resolveId (source, importer, { custom }) {
+    async resolveId (source, importer, { custom, ssr }) {
       if (
         source === 'vuetify/styles' || (
           importer &&
@@ -54,7 +54,10 @@ export function stylesPlugin (options: Options): Plugin {
           return target
         }
 
-        return `${PREFIX}${path.relative(vuetifyBase, target)}`
+        // Avoid writing the asset in the html when SSR enabled:
+        // https://vitejs.dev/guide/features#disabling-css-injection-into-the-page
+        // This will prevent vue router warnings for the virtual sass file in Nuxt with SSR enabled.
+        return `${PREFIX}${path.relative(vuetifyBase, target)}${ssr ? '?inline' : ''}`
       }
 
       return undefined
