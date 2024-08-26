@@ -3,22 +3,23 @@ import { resolveVuetifyBase, normalizePath, isObject } from '@vuetify/loader-sha
 import type { Plugin } from 'vite'
 import type { Options } from '@vuetify/loader-shared'
 import { pathToFileURL } from 'node:url'
-import { mkdir, writeFile } from 'node:fs/promises'
 
 export function stylesPlugin (options: Options): Plugin {
   const vuetifyBase = resolveVuetifyBase()
   let configFile: string | undefined
-  let tempDir: string | undefined
   const noneFiles = new Set<string>()
-  const isNone = options.styles === 'none'
+  let isNone = false
+  let sassVariables = false
   let fileImport = false
+  const PREFIX = 'vuetify-styles/'
 
   return {
     name: 'vuetify:styles',
     enforce: 'pre',
-    async configResolved (config) {
+    configResolved (config) {
+      isNone = options.styles === 'none'
       if (isObject(options.styles)) {
-        tempDir = path.resolve(config.cacheDir, 'vuetify-styles')
+        sassVariables = true
         fileImport = options.styles.useViteFileImport === true
         configFile = path.isAbsolute(options.styles.configFile)
           ? path.resolve(options.styles.configFile)
@@ -53,22 +54,21 @@ export function stylesPlugin (options: Options): Plugin {
           return target
         }
 
-        const tempFile = path.resolve(
-          tempDir,
-          path.relative(path.join(vuetifyBase, 'lib'), target),
-        )
-        await mkdir(path.dirname(tempFile), { recursive: true })
-        await writeFile(
-          tempFile,
-          `@use "${configFile}"\n@use "${fileImport ? pathToFileURL(target).href : normalizePath(target)}"`,
-          'utf-8',
-        )
-        return tempFile
+        return `${PREFIX}${path.relative(vuetifyBase, target)}`
       }
 
       return undefined
     },
     load (id) {
+      if (sassVariables && id.startsWith(PREFIX)) {
+        const target = path.resolve(vuetifyBase, id.slice(PREFIX.length))
+        return {
+          code: `@use "${configFile}"\n@use "${fileImport ? pathToFileURL(target).href : normalizePath(target)}"`,
+          map: {
+            mappings: '',
+          },
+        }
+      }
       return isNone && noneFiles.has(id) ? '' : undefined
     },
   }
