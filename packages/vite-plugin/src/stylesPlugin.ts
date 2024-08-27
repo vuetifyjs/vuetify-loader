@@ -67,19 +67,19 @@ export function stylesPlugin (options: Options): Plugin {
     load (id) {
       if (sassVariables) {
         const target = id.startsWith(PREFIX)
-            ? path.resolve(vuetifyBase, id.slice(PREFIX.length))
-            : id.startsWith(SSR_PREFIX)
-                ? path.resolve(vuetifyBase, id.slice(SSR_PREFIX.length))
-                : undefined
+          ? path.resolve(vuetifyBase, id.slice(PREFIX.length))
+          : id.startsWith(SSR_PREFIX)
+            ? path.resolve(vuetifyBase, id.slice(SSR_PREFIX.length))
+            : undefined
 
-            if (target) {
-              return {
-                code: `@use "${configFile}"\n@use "${fileImport ? pathToFileURL(target).href : normalizePath(target)}"`,
-                map: {
-                  mappings: '',
-                },
-              }
-            }
+        if (target) {
+          return {
+            code: `@use "${configFile}"\n@use "${fileImport ? pathToFileURL(target).href : normalizePath(target)}"`,
+            map: {
+              mappings: '',
+            },
+          }
+        }
       }
       return isNone && noneFiles.has(id) ? '' : undefined
     },
