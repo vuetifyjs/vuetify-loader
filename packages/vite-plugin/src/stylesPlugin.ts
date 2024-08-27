@@ -12,6 +12,7 @@ export function stylesPlugin (options: Options): Plugin {
   let sassVariables = false
   let fileImport = false
   const PREFIX = 'vuetify-styles/'
+  const SSR_PREFIX = '/@vuetify-styles/'
 
   return {
     name: 'vuetify:styles',
@@ -30,6 +31,10 @@ export function stylesPlugin (options: Options): Plugin {
       }
     },
     async resolveId (source, importer, { custom, ssr }) {
+      if (source.startsWith(PREFIX) || source.startsWith(SSR_PREFIX)) {
+        return source
+      }
+
       if (
         source === 'vuetify/styles' || (
           importer &&
@@ -54,25 +59,27 @@ export function stylesPlugin (options: Options): Plugin {
           return target
         }
 
-        // Avoid writing the asset in the html when SSR enabled:
-        // https://vitejs.dev/guide/features#disabling-css-injection-into-the-page
-        // This will prevent vue router warnings for the virtual sass file in Nuxt with SSR enabled.
-        return `${PREFIX}${path.relative(vuetifyBase, target)}${ssr ? '?inline' : ''}`
+        return `${ssr ? SSR_PREFIX : PREFIX}${path.relative(vuetifyBase, target)}`
       }
 
       return undefined
     },
-    load (id, options) {
-      if (sassVariables && id.startsWith(PREFIX)) {
-        let target = path.resolve(vuetifyBase, id.slice(PREFIX.length))
-        if (options?.ssr)
-          target = target.replace(/\?inline$/, '')
-        return {
-          code: `@use "${configFile}"\n@use "${fileImport ? pathToFileURL(target).href : normalizePath(target)}"`,
-          map: {
-            mappings: '',
-          },
-        }
+    load (id) {
+      if (sassVariables) {
+        const target = id.startsWith(PREFIX)
+            ? path.resolve(vuetifyBase, id.slice(PREFIX.length))
+            : id.startsWith(SSR_PREFIX)
+                ? path.resolve(vuetifyBase, id.slice(SSR_PREFIX.length))
+                : undefined
+
+            if (target) {
+              return {
+                code: `@use "${configFile}"\n@use "${fileImport ? pathToFileURL(target).href : normalizePath(target)}"`,
+                map: {
+                  mappings: '',
+                },
+              }
+            }
       }
       return isNone && noneFiles.has(id) ? '' : undefined
     },
