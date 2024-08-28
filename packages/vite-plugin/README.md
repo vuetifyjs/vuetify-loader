@@ -80,12 +80,12 @@ export default createVuetify()
 
 `settings.scss` can be used in your own components to access vuetify's variables.
 
-### Configure modern SASS compiler
+#### Configure modern SASS compiler
 
 Performance can be improved by using the modern SASS compiler. Replace your `sass` dependency with `sass-embedded`, update vite to 5.4 or later, and set
 [css.preprocessorOptions.sass.api](https://vitejs.dev/config/shared-options#css-preprocessoroptions) to 'modern-compiler' in the vite config.
 
-If you're using Nuxt 3 with Vite, you can configure the modern SASS compiler in the Nuxt configuration file, using [vite](https://nuxt.com/docs/api/nuxt-config#vite) option.
+If you're using Nuxt 3, you can configure the modern SASS compiler in the Nuxt configuration file using [vite](https://nuxt.com/docs/api/nuxt-config#vite) option.
 
 
 ### Remove all style imports
