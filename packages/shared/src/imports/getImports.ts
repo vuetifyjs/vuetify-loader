@@ -39,10 +39,13 @@ export function getImports (source: string, options: Options) {
   }
 
   resolvedComponents.forEach(component => {
-    addImport(imports, component.name, component.symbol, 'vuetify/lib/' + (map.components as any)[component.name].from)
+    const from = (map.components as any)[component.name].from
+    // Vuetify 3.7.11+ resolves to subpath exports instead of a file in /lib
+    const lib = from.endsWith('.mjs') ? 'lib/' : ''
+    addImport(imports, component.name, component.symbol, 'vuetify/' + lib + from)
   })
   resolvedDirectives.forEach(directive => {
-    addImport(imports, directive.name, directive.symbol, 'vuetify/lib/directives/index.mjs')
+    addImport(imports, directive.name, directive.symbol, 'vuetify/directives')
   })
 
   return {
