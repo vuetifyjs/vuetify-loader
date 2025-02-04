@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.0.4...vite-plugin-vuetify@2.1.0) (2025-02-04)
+
+**Note:** Version bump only for package vite-plugin-vuetify
+
+
+
+
+
 ### [2.0.4](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.0.3...vite-plugin-vuetify@2.0.4) (2024-08-04)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@3.0.3...webpack-plugin-vuetify@3.1.0) (2025-02-04)
+
+**Note:** Version bump only for package webpack-plugin-vuetify
+
+
+
+
+
 ### [3.0.3](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@3.0.2...webpack-plugin-vuetify@3.0.3) (2024-03-10)
 
 **Note:** Version bump only for package webpack-plugin-vuetify

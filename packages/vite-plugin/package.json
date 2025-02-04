@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-vuetify",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "A Vite plugin for treeshaking Vuetify components and more",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin",
   "dependencies": {
-    "@vuetify/loader-shared": "^2.0.3",
+    "@vuetify/loader-shared": "^2.1.0",
     "debug": "^4.3.3",
     "upath": "^2.0.1"
   },
