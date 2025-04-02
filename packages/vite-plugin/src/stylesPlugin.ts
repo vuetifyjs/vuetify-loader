@@ -70,7 +70,8 @@ export function stylesPlugin (options: Options): Plugin {
 
           const target = resolveCss(resolution.id)
           const file = path.relative(path.join(vuetifyBase, 'lib'), target)
-          const contents = `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`
+          const suffix = target.match(/\.scss/) ? ';\n' : '\n'
+          const contents = `@use "${normalizePath(configFile)}"${suffix}@use "${normalizePath(target)}"${suffix}`
 
           tempFiles.set(file, contents)
 
