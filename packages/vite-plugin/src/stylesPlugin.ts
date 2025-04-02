@@ -42,16 +42,33 @@ export function stylesPlugin (options: Options): Plugin {
         if (options.styles === 'none') {
           return `${PLUGIN_VIRTUAL_PREFIX}__void__`
         } else if (options.styles === 'sass') {
-          const target = source.replace(/\.css$/, '.sass')
-          return this.resolve(target, importer, { skipSelf: true, custom })
+          let target = source.replace(/\.css$/, '.sass')
+          let resolution = await this.resolve(target, importer, { skipSelf: true, custom })
+          if (!resolution) {
+            target = source.replace(/\.css$/, '.scss')
+            resolution = await this.resolve(target, importer, { skipSelf: true, custom })
+          }
+          return resolution
         } else if (isObject(options.styles)) {
+          // pre-resolve for package exports like 'vuetify/styles' that have no extension
           const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
-
           if (!resolution) return null
 
-          const target = resolution.id.replace(/\.css$/, '.sass')
-          const file = path.relative(path.join(vuetifyBase, 'lib'), target)
-          const contents = `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`
+          let target, suffix
+          const id = resolution.id.replace(/\.css$/, '.sass')
+          target = await this.resolve(id, importer, { skipSelf: true, custom })
+          suffix = '\n'
+          if (!target) {
+            // .sass doesn't exist, try .scss
+            const id = resolution.id.replace(/\.css$/, '.scss')
+            target = await this.resolve(id, importer, { skipSelf: true, custom })
+            suffix = ';\n'
+          }
+
+          if (!target) return null
+
+          const file = path.relative(path.join(vuetifyBase, 'lib'), target.id)
+          const contents = `@use "${normalizePath(configFile)}"${suffix}@use "${normalizePath(target.id)}"${suffix}`
 
           tempFiles.set(file, contents)
 

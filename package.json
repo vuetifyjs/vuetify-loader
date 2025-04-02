@@ -20,8 +20,8 @@
     "@types/node": "^20.10.4",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
-    "@vitejs/plugin-vue": "^4.5.2",
-    "@vue/compiler-sfc": "^3.3.11",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/compiler-sfc": "^3.5.13",
     "conventional-changelog-conventionalcommits": "^4.6.1",
     "eslint": "^8.18.0",
     "eslint-plugin-import": "^2.26.0",
@@ -30,10 +30,10 @@
     "sass": "^1.69.5",
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0",
-    "vite": "^5.0.6",
-    "vue": "^3.3.11",
-    "vue-loader": "^16.5.0",
-    "vuetify": "^3.4.6",
+    "vite": "^6.2.4",
+    "vue": "^3.5.13",
+    "vue-loader": "^17.4.2",
+    "vuetify": "^3.8.0",
     "webpack": "^5.89.0"
   }
 }
