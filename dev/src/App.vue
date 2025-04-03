@@ -9,6 +9,7 @@
         <v-card-text>
           <v-text-field></v-text-field>
           <v-btn></v-btn>
+          <v-icon-btn icon="$vuetify"></v-icon-btn>
 <!--          <v-list>-->
 <!--            <v-list-item title="List"></v-list-item>-->
 <!--            <v-list-group>-->

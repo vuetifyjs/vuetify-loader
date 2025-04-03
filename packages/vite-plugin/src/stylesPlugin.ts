@@ -1,4 +1,5 @@
 import path from 'upath'
+import fs from 'node:fs/promises'
 import { resolveVuetifyBase, normalizePath, isObject } from '@vuetify/loader-shared'
 
 import type { Plugin } from 'vite'
@@ -18,6 +19,23 @@ export function stylesPlugin (options: Options): Plugin {
 
   let configFile: string
   const tempFiles = new Map<string, string>()
+  const mappings = new Map<string, string>()
+
+  async function resolveCss(target: string) {
+    let mapping = mappings.get(target)
+    if (!mapping) {
+      try {
+        mapping = target.replace(/\.css$/, '.sass')
+        await fs.access(mapping, fs.constants.R_OK)
+      } catch (err) {
+        if (!(err instanceof Error && 'code' in err && err.code === 'ENOENT')) throw err
+        mapping = target.replace(/\.css$/, '.scss')
+      }
+      mappings.set(target, mapping)
+    }
+
+    return mapping
+  }
 
   return {
     name: 'vuetify:styles',
@@ -42,16 +60,17 @@ export function stylesPlugin (options: Options): Plugin {
         if (options.styles === 'none') {
           return `${PLUGIN_VIRTUAL_PREFIX}__void__`
         } else if (options.styles === 'sass') {
-          const target = source.replace(/\.css$/, '.sass')
+          const target = await resolveCss(source)
           return this.resolve(target, importer, { skipSelf: true, custom })
         } else if (isObject(options.styles)) {
           const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
 
           if (!resolution) return null
 
-          const target = resolution.id.replace(/\.css$/, '.sass')
+          const target = await resolveCss(resolution.id)
           const file = path.relative(path.join(vuetifyBase, 'lib'), target)
-          const contents = `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`
+          const suffix = target.match(/\.scss/) ? ';\n' : '\n'
+          const contents = `@use "${normalizePath(configFile)}"${suffix}@use "${normalizePath(target)}"${suffix}`
 
           tempFiles.set(file, contents)
 
