@@ -1,5 +1,5 @@
 import { URLSearchParams } from 'url'
-import { writeFile } from 'fs/promises'
+import fs from 'fs/promises'
 
 import path from 'upath'
 import mkdirp from 'mkdirp'
@@ -76,6 +76,22 @@ export class VuetifyPlugin {
       })
     }
 
+    const stylesCache = new Map<string, string>()
+    async function resolveCSS (target: string) {
+      let result = stylesCache.get(target)
+      if (!result) {
+        try {
+          result = target.replace(/\.css$/, '.sass')
+          await fs.access(result, fs.constants.R_OK)
+        } catch (err) {
+          if (!(err instanceof Error && 'code' in err && err.code === 'ENOENT')) throw err
+          result = target.replace(/\.css$/, '.scss')
+        }
+        stylesCache.set(target, result)
+      }
+      return result
+    }
+
     if (this.options.styles === 'none') {
       compiler.options.module.rules.push({
         enforce: 'pre',
@@ -85,7 +101,7 @@ export class VuetifyPlugin {
         loader: 'null-loader',
       })
     } else if (this.options.styles === 'sass') {
-      hookResolve(file => file.replace(/\.css$/, '.sass'))
+      hookResolve(resolveCSS)
     } else if (isObject(this.options.styles)) {
       const findCacheDir = (await import('find-cache-dir')).default
       const cacheDir = findCacheDir({
@@ -100,12 +116,14 @@ export class VuetifyPlugin {
         )
 
       hookResolve(async request => {
-        const target = request.replace(/\.css$/, '.sass')
+        const target = await resolveCSS(request)
         const file = path.relative(vuetifyBase, target)
         const cacheFile = path.join(cacheDir, file)
+        const suffix = target.match(/\.scss/) ? ';\n' : '\n'
+        const contents = `@use "${normalizePath(configFile)}"${suffix}@use "${normalizePath(target)}"${suffix}`
 
         await mkdirp(path.dirname(cacheFile))
-        await writeFile(cacheFile, `@use "${normalizePath(configFile)}"\n@use "${normalizePath(target)}"`)
+        await fs.writeFile(cacheFile, contents)
 
         return cacheFile
       })
