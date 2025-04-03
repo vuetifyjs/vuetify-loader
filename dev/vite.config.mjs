@@ -10,7 +10,9 @@ export default defineConfig(({ command }) => ({
   plugins: [
     vue(),
     vuetify({
-      autoImport: true,
+      autoImport: {
+        labs: true,
+      },
       styles: {
         configFile: 'settings.scss',
       },

@@ -91,6 +91,9 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new VuetifyPlugin({
+      autoImport: {
+        labs: true,
+      },
       styles: {
         configFile: './src/settings.scss',
       },
