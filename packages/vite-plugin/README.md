@@ -72,7 +72,7 @@ export default createVuetify()
 ```
 ```scss
 // settings.scss
-@use 'vuetify/settings' with (
+@forward 'vuetify/settings' with (
   $color-pack: false,
   $utilities: false,
 );
