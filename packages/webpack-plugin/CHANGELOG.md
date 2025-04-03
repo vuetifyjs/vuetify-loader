@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.1](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@3.1.0...webpack-plugin-vuetify@3.1.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **styles:** resolve new scss component styles ([#345](https://github.com/vuetifyjs/vuetify-loader/issues/345)) ([98ef110](https://github.com/vuetifyjs/vuetify-loader/commit/98ef1106fb3875a5079d309986de61e12cd5683d))
+
+
+
 ## [3.1.0](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@3.0.3...webpack-plugin-vuetify@3.1.0) (2025-02-04)
 
 **Note:** Version bump only for package webpack-plugin-vuetify
