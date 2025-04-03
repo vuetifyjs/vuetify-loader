@@ -1,5 +1,5 @@
 import path from 'upath'
-import { existsSync } from 'node:fs'
+import fs from 'node:fs/promises'
 import { resolveVuetifyBase, normalizePath, isObject } from '@vuetify/loader-shared'
 
 import type { Plugin } from 'vite'
@@ -21,22 +21,20 @@ export function stylesPlugin (options: Options): Plugin {
   const tempFiles = new Map<string, string>()
   const mappings = new Map<string, string>()
 
-  function resolveCss(target: string) {
+  async function resolveCss(target: string) {
     let mapping = mappings.get(target)
     if (!mapping) {
       try {
         mapping = target.replace(/\.css$/, '.sass')
-        if (!existsSync(mapping)) {
-          mapping = target.replace(/\.css$/, '.scss')
-        }
-      }
-      catch {
+        await fs.access(mapping, fs.constants.R_OK)
+      } catch (err) {
+        if (!(err instanceof Error && 'code' in err && err.code === 'ENOENT')) throw err
         mapping = target.replace(/\.css$/, '.scss')
       }
       mappings.set(target, mapping)
     }
 
-    return mapping!
+    return mapping
   }
 
   return {
@@ -62,13 +60,14 @@ export function stylesPlugin (options: Options): Plugin {
         if (options.styles === 'none') {
           return `${PLUGIN_VIRTUAL_PREFIX}__void__`
         } else if (options.styles === 'sass') {
-          return this.resolve(resolveCss(source), importer, { skipSelf: true, custom })
+          const target = await resolveCss(source)
+          return this.resolve(target, importer, { skipSelf: true, custom })
         } else if (isObject(options.styles)) {
           const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
 
           if (!resolution) return null
 
-          const target = resolveCss(resolution.id)
+          const target = await resolveCss(resolution.id)
           const file = path.relative(path.join(vuetifyBase, 'lib'), target)
           const suffix = target.match(/\.scss/) ? ';\n' : '\n'
           const contents = `@use "${normalizePath(configFile)}"${suffix}@use "${normalizePath(target)}"${suffix}`
