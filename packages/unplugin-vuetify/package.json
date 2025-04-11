@@ -1,0 +1,91 @@
+{
+  "name": "unplugin-vuetify",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A set of utilities for Vuetify components, directives, styles and more",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/types.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./types": {
+      "types": "./dist/types.d.mts"
+    },
+    "./unimport-presets": "./dist/unimport-presets.mjs",
+    "./unplugin-vue-component-resolvers": "./dist/unplugin-vue-component-resolvers.mjs",
+    "./utils": "./dist/utils.mjs"
+  },
+  "typesVersions": {
+    "*": {
+      "types": [
+        "dist/types.d.mts"
+      ],
+      "unimport-presets": [
+        "dist/unimport-presets.d.mts"
+      ],
+      "unplugin-vue-component-resolvers": [
+        "dist/unplugin-vue-component-resolvers.d.mts"
+      ],
+      "utils": [
+        "dist/utils.d.mts"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuetifyjs/vuetify-loader.git"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub"
+  },
+  "author": "Kael Watts-Deuchar",
+  "contributors": [
+    {
+      "name": "Joaquín Sánchez <userquin@gmail.com> @userquin"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vuetifyjs/vuetify-loader/issues"
+  },
+  "homepage": "https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin",
+  "dependencies": {
+    "debug": "^4.4.0",
+    "pathe": "2.0.3",
+    "upath": "^2.0.1"
+  },
+  "peerDependencies": {
+    "unimport": "^4.0.0 || ^5.0.0",
+    "unplugin-vue-components": "^28.4.1",
+    "vite": "^5.0.0 || ^6.0.0",
+    "vue": "^3.0.0",
+    "vuetify": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "unimport": {
+      "optional": true
+    },
+    "unplugin-vue-components": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "unbuild": "^2.0.0",
+    "unimport": "^5.0.0",
+    "unplugin-vue-components": "^28.4.1",
+    "vite": "^5.0.0"
+  },
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "files": [
+    "dist/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
