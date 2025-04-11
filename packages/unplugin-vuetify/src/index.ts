@@ -89,7 +89,7 @@ export function VuetifyStylesVitePlugin(options: VuetifyStylesOptions = {}) {
     },
     configResolved(config) {
       if (config.plugins.findIndex(plugin => plugin.name === 'vuetify:styles') > -1)
-        throw new Error('Remove vite-plugin-vuetify from your Nuxt config file, this module registers a modified version.')
+        throw new Error('The "vite-plugin-vuetify" styles plugin is incompatible with this plugin. Please remove "vite-plugin-vuetify" or set the styles to \'none\' in your Vite configuration file.')
 
       if (isObject(options.mode)) {
         sassVariables = true
