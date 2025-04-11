@@ -41,12 +41,13 @@ export function prepareTransformAssetUrls (prefix: boolean) {
 
     if (!prefix) {
         for (const [component, attrs] of Object.entries(transformAssetUrls)) {
+            const useAttrs = [...attrs]
             for (const attr of attrs) {
                 if (/[A-Z]/.test(attr)) {
-                    attrs.push(toKebabCase(attr))
+                    useAttrs.push(toKebabCase(attr))
                 }
             }
-            transformAssetUrls[toKebabCase(component)] = attrs
+            transformAssetUrls[toKebabCase(component)] = useAttrs
         }
 
         return transformAssetUrls
@@ -55,13 +56,14 @@ export function prepareTransformAssetUrls (prefix: boolean) {
     const result: Record<string, string[]> = {}
     for (const [component, attrs] of Object.entries(transformAssetUrls)) {
         const useComponent = mapComponent(true, component)
-        result[useComponent] = attrs
+        const useAttrs = [...attrs]
+        result[useComponent] = useAttrs
         for (const attr of attrs) {
             if (/[A-Z]/.test(attr)) {
-                attrs.push(toKebabCase(attr))
+                useAttrs.push(toKebabCase(attr))
             }
         }
-        result[toKebabCase(useComponent)] = attrs
+        result[toKebabCase(useComponent)] = useAttrs
     }
 
     return result
