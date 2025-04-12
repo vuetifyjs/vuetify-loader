@@ -5,7 +5,7 @@ export default defineBuildConfig({
         'src/index',
         'src/types',
         'src/unimport-presets',
-        'src/unplugin-vue-component-resolvers',
+        'src/unplugin-vue-components-resolvers',
         'src/utils',
     ],
     externals: [

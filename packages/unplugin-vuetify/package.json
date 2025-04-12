@@ -5,14 +5,14 @@
   "description": "A set of utilities for Vuetify components, directives, styles and more",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/types.d.mts",
+  "types": "./dist/index.d.mts",
   "exports": {
     ".": "./dist/index.mjs",
     "./types": {
       "types": "./dist/types.d.mts"
     },
     "./unimport-presets": "./dist/unimport-presets.mjs",
-    "./unplugin-vue-component-resolvers": "./dist/unplugin-vue-component-resolvers.mjs",
+    "./unplugin-vue-components-resolvers": "./dist/unplugin-vue-components-resolvers.mjs",
     "./utils": "./dist/utils.mjs"
   },
   "typesVersions": {
@@ -23,8 +23,8 @@
       "unimport-presets": [
         "dist/unimport-presets.d.mts"
       ],
-      "unplugin-vue-component-resolvers": [
-        "dist/unplugin-vue-component-resolvers.d.mts"
+      "unplugin-vue-components-resolvers": [
+        "dist/unplugin-vue-components-resolvers.d.mts"
       ],
       "utils": [
         "dist/utils.d.mts"

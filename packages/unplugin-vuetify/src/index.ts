@@ -12,14 +12,18 @@ export interface VuetifyStylesOptions {
   /**
    * What CSS SASS/SCSS API should the plugin register?
    * - `false` - don't register any SASS/SCSS API
+   * - `legacy` - use legacy SASS/SCSS API (will be removed in Vite 7)
    * - `modern` - register SASS/SCSS 'modern' API => when using `sass`
    * - `modern-compiler` - register SASS/SCSS 'modern-compiler' API => when using `sass-embedded`
    *
    * When using `modern` API, the plugin will enable `preprocessorMaxWorkers` in Vite CSS config.
    *
    * @default 'modern-compiler'
+   *
+   * @see https://vite.dev/config/shared-options.html#css-preprocessoroptions
+   * @see https://vite.dev/guide/migration.html#sass-now-uses-modern-api-by-default
    */
-  registerApi?: 'modern' | 'modern-compiler' | false
+  registerApi?: 'modern' | 'modern-compiler' | 'legacy' | false
   /**
    * Mode to use for styles:
    * - `none`: remove all style imports
@@ -33,11 +37,10 @@ export interface VuetifyStylesOptions {
 
 export function VuetifyStylesVitePlugin(options: VuetifyStylesOptions = {}) {
   let configFile: string | undefined
-  // let cacheDir: string | undefined
   const vuetifyBase = resolveVuetifyBase()
   const noneFiles = new Set<string>()
   let isNone = false
-  let sassVariables = false
+  let cssVariables = false
   let fileImport = false
   const PREFIX = 'vuetify-styles/'
   const SSR_PREFIX = `/@${PREFIX}`
@@ -55,7 +58,7 @@ export function VuetifyStylesVitePlugin(options: VuetifyStylesOptions = {}) {
       if (!api)
         return null
 
-      if (api === 'modern-compiler') {
+      if (api === 'modern-compiler' || api === 'legacy') {
         return {
           css: {
             preprocessorOptions: {
@@ -89,10 +92,10 @@ export function VuetifyStylesVitePlugin(options: VuetifyStylesOptions = {}) {
     },
     configResolved(config) {
       if (config.plugins.findIndex(plugin => plugin.name === 'vuetify:styles') > -1)
-        throw new Error('The "vite-plugin-vuetify" styles plugin is incompatible with this plugin. Please remove "vite-plugin-vuetify" or set the styles to \'none\' in your Vite configuration file.')
+        throw new Error('The "vite-plugin-vuetify" styles plugin is incompatible with this plugin. Please remove "vite-plugin-vuetify" or set the styles to \'true\' in your Vite configuration file.')
 
       if (isObject(options.mode)) {
-        sassVariables = true
+        cssVariables = true
         // use file import when vite version > 5.4.2
         // check https://github.com/vitejs/vite/pull/17909
         fileImport = major > 5 || (major === 5 && minor > 4) || (major === 5 && minor === 4 && patch > 2)
@@ -110,6 +113,9 @@ export function VuetifyStylesVitePlugin(options: VuetifyStylesOptions = {}) {
       }
     },
     async resolveId(source, importer, { custom, ssr }) {
+      if (!options.mode)
+        return undefined
+
       if (source.startsWith(PREFIX) || source.startsWith(SSR_PREFIX)) {
         if (source.match(/\.s[ca]ss$/))
           return source
@@ -144,7 +150,10 @@ export function VuetifyStylesVitePlugin(options: VuetifyStylesOptions = {}) {
       return undefined
     },
     load(id) {
-      if (sassVariables) {
+      if (!options.mode)
+        return undefined
+
+      if (cssVariables) {
         const target = id.startsWith(PREFIX)
             ? path.resolve(vuetifyBase, id.slice(PREFIX.length))
             : id.startsWith(SSR_PREFIX)
