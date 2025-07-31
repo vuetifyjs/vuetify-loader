@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.1](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@2.1.0...@vuetify/loader-shared@2.1.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* account for spaces when extracting components and directives ([#348](https://github.com/vuetifyjs/vuetify-loader/issues/348)) ([b7b547b](https://github.com/vuetifyjs/vuetify-loader/commit/b7b547b5c7fa1e7abf922782598fe7d4bf324c90))
+
+
+
 ## [2.1.0](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@2.0.3...@vuetify/loader-shared@2.1.0) (2025-02-04)
 
 

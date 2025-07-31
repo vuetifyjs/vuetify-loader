@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.2](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.1.1...vite-plugin-vuetify@2.1.2) (2025-07-31)
+
+
+### Bug Fixes
+
+* correct `styles: 'sass'` path resolution ([d57e3c7](https://github.com/vuetifyjs/vuetify-loader/commit/d57e3c779fc3f7755853e68a5e055201d4b5d011))
+
+
+
 ### [2.1.1](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.1.0...vite-plugin-vuetify@2.1.1) (2025-04-03)
 
 
