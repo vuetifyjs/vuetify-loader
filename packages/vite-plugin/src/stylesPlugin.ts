@@ -60,8 +60,11 @@ export function stylesPlugin (options: Options): Plugin {
         if (options.styles === 'none') {
           return `${PLUGIN_VIRTUAL_PREFIX}__void__`
         } else if (options.styles === 'sass') {
-          const target = await resolveCss(source)
-          return this.resolve(target, importer, { skipSelf: true, custom })
+          const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
+
+          if (!resolution) return null
+
+          return resolveCss(resolution.id)
         } else if (isObject(options.styles)) {
           const resolution = await this.resolve(source, importer, { skipSelf: true, custom })
 
