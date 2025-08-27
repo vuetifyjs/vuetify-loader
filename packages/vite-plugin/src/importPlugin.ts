@@ -18,7 +18,7 @@ export function importPlugin (options: Options): Plugin {
     name: 'vuetify:import',
     configResolved (config) {
       const vuetifyIdx = config.plugins.findIndex(plugin => plugin.name === 'vuetify:import')
-      const vueIdx = config.plugins.findIndex(plugin => plugin.name === 'vite:vue')
+      const vueIdx = config.plugins.findIndex(plugin => ['vite:vue', 'unplugin-vue'].includes(plugin.name))
       if (vuetifyIdx < vueIdx) {
         throw new Error('Vuetify plugin must be loaded after the vue plugin')
       }
