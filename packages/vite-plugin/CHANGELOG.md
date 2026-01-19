@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.3](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.1.2...vite-plugin-vuetify@2.1.3) (2026-01-19)
+
+
+### Bug Fixes
+
+* allow vuetify plugin to work with unplugin-vue ([0136201](https://github.com/vuetifyjs/vuetify-loader/commit/013620115691b6d6af2f98917bc44e6e28b458d5))
+* support vuetify 4 ([6dc37ce](https://github.com/vuetifyjs/vuetify-loader/commit/6dc37ce2ee9a3feed333a65baae827119dc84133))
+
+
+
 ### [2.1.2](https://github.com/vuetifyjs/vuetify-loader/compare/vite-plugin-vuetify@2.1.1...vite-plugin-vuetify@2.1.2) (2025-07-31)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@vuetify/loader-shared",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

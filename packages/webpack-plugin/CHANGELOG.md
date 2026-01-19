@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.3](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@3.1.2...webpack-plugin-vuetify@3.1.3) (2026-01-19)
+
+
+### Bug Fixes
+
+* support vuetify 4 ([6dc37ce](https://github.com/vuetifyjs/vuetify-loader/commit/6dc37ce2ee9a3feed333a65baae827119dc84133))
+
+
+
 ### [3.1.2](https://github.com/vuetifyjs/vuetify-loader/compare/webpack-plugin-vuetify@3.1.1...webpack-plugin-vuetify@3.1.2) (2025-07-31)
 
 **Note:** Version bump only for package webpack-plugin-vuetify

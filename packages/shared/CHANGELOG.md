@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.2](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@2.1.1...@vuetify/loader-shared@2.1.2) (2026-01-19)
+
+
+### Bug Fixes
+
+* support vuetify 4 ([6dc37ce](https://github.com/vuetifyjs/vuetify-loader/commit/6dc37ce2ee9a3feed333a65baae827119dc84133))
+
+
+
 ### [2.1.1](https://github.com/vuetifyjs/vuetify-loader/compare/@vuetify/loader-shared@2.1.0...@vuetify/loader-shared@2.1.1) (2025-07-31)
 
 
