@@ -42,7 +42,7 @@
   "peerDependencies": {
     "@vue/compiler-sfc": "^3.2.6",
     "vue": "^3.2.6",
-    "vuetify": "^3.0.0",
+    "vuetify": ">=3",
     "webpack": "^5.0.0"
   },
   "optionalPeerDependencies": {

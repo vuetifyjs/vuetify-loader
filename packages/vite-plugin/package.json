@@ -33,7 +33,7 @@
   "peerDependencies": {
     "vite": ">=5",
     "vue": "^3.0.0",
-    "vuetify": "^3.0.0"
+    "vuetify": ">=3"
   },
   "engines": {
     "node": "^18.0.0 || >=20.0.0"

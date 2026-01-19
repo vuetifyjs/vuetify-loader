@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "vue": "^3.0.0",
-    "vuetify": "^3.0.0"
+    "vuetify": ">=3"
   },
   "files": [
     "dist/"
