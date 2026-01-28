@@ -13,6 +13,8 @@
 ## Automatic imports
 ```js
 // vite.config.js
+import vuetify from 'vite-plugin-vuetify';
+
 plugins: [
   vue(),
   vuetify({ autoImport: true }), // Enabled by default
