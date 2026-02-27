@@ -1,4 +1,18 @@
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.vuetifyjs.com/docs/images/one/logos/vloader-logo-dark.png">
+    <img alt="Vuetify Loader Logo" src="https://cdn.vuetifyjs.com/docs/images/one/logos/vloader-logo-light.png" height="100">
+  </picture>
+</div>
+
 # vuetify-loader
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/vite-plugin-vuetify"><img src="https://img.shields.io/npm/v/vite-plugin-vuetify.svg" alt="npm version"></a>
+  <a href="https://npm.chart.dev/vite-plugin-vuetify"><img src="https://img.shields.io/npm/dm/vite-plugin-vuetify?color=blue" alt="npm downloads"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://community.vuetifyjs.com"><img src="https://discordapp.com/api/guilds/340160225338195969/widget.png" alt="Discord"></a>
+</p>
 
 This monorepo contains compiler plugins for autoloading Vuetify components and configuring styles.
 
