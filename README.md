@@ -5,10 +5,6 @@
   </picture>
 </div>
 
-# vuetify-loader
-
----
-
 <p align="center">
   <a href="https://www.npmjs.com/package/vite-plugin-vuetify"><img src="https://img.shields.io/npm/v/vite-plugin-vuetify.svg" alt="npm version"></a>
   <a href="https://npm.chart.dev/vite-plugin-vuetify"><img src="https://img.shields.io/npm/dm/vite-plugin-vuetify?color=blue" alt="npm downloads"></a>
