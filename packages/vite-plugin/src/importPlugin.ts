@@ -13,7 +13,7 @@ function parseId (id: string) {
 }
 
 export function importPlugin (options: Options): Plugin {
-  let filter: (id: unknown) => boolean
+  let filter: (id: unknown) => boolean = createFilter();
   return {
     name: 'vuetify:import',
     configResolved (config) {
