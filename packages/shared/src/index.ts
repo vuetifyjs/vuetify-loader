@@ -62,6 +62,7 @@ export const transformAssetUrls = {
   VCardItem: ['prependAvatar', 'appendAvatar'],
   VCarouselItem: ['src', 'lazySrc', 'srcset'],
   VChip: ['prependAvatar', 'appendAvatar'],
+  VEmptyState: ['image'],
   VImg: ['src', 'lazySrc', 'srcset'],
   VListItem: ['prependAvatar', 'appendAvatar'],
   VNavigationDrawer: ['image'],
